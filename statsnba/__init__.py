@@ -3,3 +3,6 @@
 __author__ = 'Yicheng Luo'
 __email__ = 'ethanluoyc@gmail.com'
 __version__ = '0.1.0'
+
+
+BASE_URL = 'stats.nba.com/stats'
