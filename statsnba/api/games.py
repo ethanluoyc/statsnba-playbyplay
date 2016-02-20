@@ -1,4 +1,4 @@
-from statsnba.statsnba import StatsNBAAPI
+from statsnba.api.statsnba import StatsNBAAPI
 
 
 class LeagueGameLog(StatsNBAAPI):
@@ -13,30 +13,14 @@ class LeagueGameLog(StatsNBAAPI):
         return header, rows
 
     def __init__(self, params, fetcher=None):
-        super().__init__(fetcher)
-        if type(params) is not list:
-            params = [params]
-        self.params = params
+        super().__init__(params, fetcher)
 
         urls = []
-        for p in params:
+        for p in self.params:
             urls.append(super(LeagueGameLog, self)._encode_url(LeagueGameLog.resource, p))
 
         self.fetcher.fetch(urls)
         self.data = self.fetcher.get()
-
-        # import pandas as pd
-        # columns, data = LeagueGameLog._get_table_formula(json_data)
-        # self.df = pd.DataFrame(data, columns=columns)
-
-    def to_json(self, **kargs):
-        return self.df.to_json(**kargs)
-
-    def to_df(self):
-        return self.df
-
-    def get_all_games(self):
-        return self.df['GAME_ID']
 
     def __str__(self):
         return self.data.__str__()
