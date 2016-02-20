@@ -19,9 +19,12 @@ class StatsNBAAPI(object):
         'Connection': 'keep-alive'
     }
 
-    def __init__(self, fetcher=None):
+    def __init__(self, params, fetcher=None):
         if fetcher is None:
             self.fetcher = Fetcher()
+        if type(params) is not list:
+            params = [params]
+        self.params = params
 
     def _encode_url(self, resource, params):
         p = urllib.parse.urlencode(params)

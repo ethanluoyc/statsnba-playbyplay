@@ -13,3 +13,13 @@ def make_season(year):
     """
     next_yr = str(year+1)[-2:]
     return '{0}-{1}'.format(year, next_yr)
+
+
+def make_table(doc):
+    header = doc['resultSets'][0]['headers']
+    rows = doc['resultSets'][0]['rowSet']
+    import pandas as pd
+    df = pd.DataFrame(rows, columns=header)
+    for k, v in doc['parameters'].items():
+        df[k] = v
+    return df
