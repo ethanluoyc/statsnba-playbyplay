@@ -1,10 +1,19 @@
 from statsnba.api.statsnba import StatsNBAAPI
 
 
-class LeagueGameLog(StatsNBAAPI):
+class PlayByPlay(StatsNBAAPI):
 
-    resource = 'leaguegamelog'
-    default_params = dict()
+    resource = 'playbyplayv2'  # version 2 of the API
+    default_params = {
+        'EndPeriod': '10',
+        'EndRange': '55800',
+        'GameID': '0021500391',
+        'RangeType': '2',
+        'Season': '2015-16',
+        'SeasonType': 'Regular Season',
+        'StartPeriod': '1',
+        'StartRange': '0'
+    }
 
     @staticmethod
     def _get_table_formula(data, table_no=0):
@@ -17,7 +26,7 @@ class LeagueGameLog(StatsNBAAPI):
 
         urls = []
         for p in self.params:
-            urls.append(super(LeagueGameLog, self)._encode_url(LeagueGameLog.resource, p))
+            urls.append(super(PlayByPlay, self)._encode_url(PlayByPlay.resource, p))
 
         self.fetcher.fetch(urls)
         self.data = self.fetcher.get()

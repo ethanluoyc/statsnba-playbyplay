@@ -1,13 +1,18 @@
 from gevent.pool import Pool
 from gevent.queue import Queue
-import requests
 import grequests
+import logging
+
 
 class Fetcher(object):
+    """ Fetcher class for downloading resources online
+
+    It uses grequests to support simultaneous downloads of multiple resources
+    """
+    logger = logging.getLogger(__name__)
 
     # headers to allow correct return of data.
     # referenced from py-Goldsberry
-
     headers = {
         'Accept-Encoding': 'gzip, deflate, sdch',
         'Accept-Language': 'en-US,en;q=0.8',
@@ -26,20 +31,26 @@ class Fetcher(object):
         self.res = None
 
     def fetch(self, urls):
-        """
+        """Start to fetch the urls
+
+        :param urls the list of urls to download
+        :rtype None access the fetched resources by self.get()
         """
         def log_download(url):
             # need kargs for correct working
             # http://stackoverflow.com/questions/17977525/how-to-make-asynchronous-http-get-requests-in-python-and-pass-response-object-to
             def real_func(r, **kargs):
-                print(url + ' downloaded')
+                Fetcher.logger.info('Downloaded ' + url)
             return real_func
-        # use grequests to allow for simultaneous downloads
+        # TODO handle exception here
         rs = [grequests.get(u, headers=Fetcher.headers, callback=log_download(u)) for u in urls]
 
         self.res = grequests.imap(rs, size=self.size)
 
     def get(self):
+        """Returns the fetched resources
+        Must be called only after self.fetch().
+        """
         if not self.res:
             raise Exception('You have not fetched the data!')
         return [r.json() for r in self.res]

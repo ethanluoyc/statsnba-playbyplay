@@ -8,13 +8,14 @@ db = mongo_client.test
 
 
 params = {
-        'Direction': 'DESC',
-        'LeagueID': '00',
-        'PlayerOrTeam': 'T',
-        'Season': None,
+        'EndPeriod': '10',
+        'EndRange': '55800',
+        'GameID': None,
+        'RangeType': '2',
+        'Season': '2015-16',
         'SeasonType': 'Regular Season',
-        'Sorter': 'PTS',
-        'Counter': '1000'
+        'StartPeriod': '1',
+        'StartRange': '0'
     }
 
 
