@@ -1,0 +1,53 @@
+* What this is
+** Downloading play-by-play data from stats.nba.com, used for basketball analytics
+* Set up the environment
+  I use Conda for managing Python virtual environment, but virtualenv is fine
+* My notes
+  #+name playbyplay-parameters
+  #+begin_src json
+    "parameters": {
+        "Direction": "DESC",
+        "Sorter": "PTS",
+        "Counter": 1000,
+        "PlayerOrTeam": "T",
+        "SeasonType": "Regular Season",
+        "Season": "2015-16",
+        "LeagueID": "00"
+    },
+    "resource": "leaguegamelog"
+  #+end_src
+  This can readily become query parameters for other resources (such as playbyplay data)
+
+** Columns of PlayByPlay
+    | SEASON_ID         |
+    | TEAM_ID           |
+    | TEAM_ABBREVIATION |
+    | TEAM_NAME         |
+    | GAME_ID           |
+    | GAME_DATE         |
+    | MATCHUP           |
+    | WL                |
+    | MIN               |
+    | FGM               |
+    | FGA               |
+    | FG_PCT            |
+    | FG3M              |
+    | FG3A              |
+    | FG3_PCT           |
+    | FTM               |
+    | FTA               |
+    | FT_PCT            |
+    | OREB              |
+    | DREB              |
+    | REB               |
+    | AST               |
+    | STL               |
+    | BLK               |
+    | TOV               |
+    | PF                |
+    | PTS               |
+    | PLUS_MINUS        |
+    | VIDEO_AVAILABLE   |
+
+** Columns of LeagueGameLog
+   Here are the columns for the LeagueGameLog
