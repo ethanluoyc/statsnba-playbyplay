@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import urllib.parse
-
 from statsnba.fetcher import Fetcher
 
 
@@ -17,9 +16,12 @@ class StatsNBAAPI(object):
             params = [params]
         self.params = params
 
+        updated_params = []
         for p in self.params:
             self._validate_params(p)
-            p = self._update_params(p)
+            updated_params.append(self._update_params(p))
+
+        self.params = updated_params
 
         urls = []
         for p in self.params:

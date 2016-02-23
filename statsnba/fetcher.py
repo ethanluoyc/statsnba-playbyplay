@@ -26,7 +26,7 @@ class Fetcher(object):
         'Connection': 'keep-alive'
     }
 
-    def __init__(self, size=10):
+    def __init__(self, size=5, queue=None):
         self.size = size
         self.res = None
 
@@ -40,6 +40,7 @@ class Fetcher(object):
             # need kargs for correct working
             # http://stackoverflow.com/questions/17977525/how-to-make-asynchronous-http-get-requests-in-python-and-pass-response-object-to
             def real_func(r, **kargs):
+                Fetcher.logger.debug(r.text)
                 Fetcher.logger.info('Downloaded ' + url)
             return real_func
         # TODO handle exception here
