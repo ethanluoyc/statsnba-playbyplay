@@ -23,3 +23,16 @@ def make_table(doc):
     for k, v in doc['parameters'].items():
         df[k] = v
     return df
+
+
+def convert_result(result_dict):
+    """
+        :param result_dict the dict containing the headers, name and rowSet (see sample_data)
+        :return (name, data) a tuple containing the name of the resultSet and data
+    """
+    result_name = result_dict['name']
+    headers = result_dict['headers']
+    data = result_dict['rowSet']
+    import pandas as pd
+    df = pd.DataFrame(data, columns=headers)
+    return result_name, df.to_dict(orient='records')

@@ -1,3 +1,4 @@
+from statsnba.api.boxscore import BoxscoreTraditional
 from statsnba.api.playbyplay import PlayByPlay
 from statsnba.utils import make_season, make_table
 from pymongo import MongoClient
@@ -11,13 +12,18 @@ mongo_client = MongoClient('mongodb://127.0.0.1:27017')
 db = mongo_client.test
 
 
-params = {
+playbyplay_params = {
         'EndPeriod': '10',
-        'EndRange': '55800',
         'GameID': '0021500391',
-        'RangeType': '2',
-        'Season': '2015-16',
-        'SeasonType': 'Regular Season',
+        'StartPeriod': '1'
+    }
+
+
+boxscore_params = {
+        'EndPeriod': '10',
+        'EndRange': '14400',
+        'GameID': '0021500818',
+        'RangeType': '0',
         'StartPeriod': '1',
         'StartRange': '0'
     }
@@ -37,13 +43,23 @@ if __name__ == "__main__":
     dfs = find_games(db.gamelogs, query)
     import json
     params_list = []
+    boxscore_params = []
     for df in dfs:
         json_data = json.loads(df.to_json(orient='records'))
         for r in json_data:
-            params.update({'GameID': r['GAME_ID'],
+            playbyplay_params.update({'GameID': r['GAME_ID'],
                            'Season': r['Season']})
-            params_list.append(params.copy())
-    pbp = PlayByPlay(params=params_list[0:10])
+            params_list.append(playbyplay_params.copy())
 
+        for r in json_data:
+            boxscore_params.update({'GameID': r['GAME_ID'],
+                                    'Season': r['Season']})
+            boxscore_params.append(boxscore_params.copy())
+
+    pbp = PlayByPlay(params=params_list[0:10])
     db.playbyplay.drop()
     db.playbyplay.insert_many(pbp.data)
+
+    box = BoxscoreTraditional(params=params_list[0:10])
+    db.boxscore.drop()
+    db.boxscore.insert_many(box.data)

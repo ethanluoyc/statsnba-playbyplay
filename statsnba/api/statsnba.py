@@ -6,7 +6,8 @@ from statsnba.fetcher import Fetcher
 
 class StatsNBAAPI(object):
     base_url = 'http://stats.nba.com/stats/'
-    default_parameters = {}
+    resource = None
+    default_params = {}
 
     def __init__(self, params, fetcher=None):
         if fetcher is None:
@@ -16,7 +17,35 @@ class StatsNBAAPI(object):
             params = [params]
         self.params = params
 
+        for p in self.params:
+            self._validate_params(p)
+            p = self._update_params(p)
 
-    def _encode_url(self, resource, params):
+        urls = []
+        for p in self.params:
+            urls.append(type(self)._encode_url(p))
+
+        self.fetcher.fetch(urls) # batch fetching with grequests
+        self.data = self.fetcher.get()
+
+    @classmethod
+    def _update_params(cls, params):
+        params_copy = cls.default_params.copy()
+        params_copy.update(params)
+        return params_copy
+
+    @classmethod
+    def _encode_url(cls, params):
         p = urllib.parse.urlencode(params)
-        return StatsNBAAPI.base_url + resource + '?' + p
+        return cls.base_url + cls.resource + '?' + p
+
+    @classmethod
+    def _validate_params(cls, params):
+        if not cls.default_params:
+            return True
+        for k, v in params.items():
+            try:
+                cls.default_params[k]
+            except KeyError:
+                raise Exception('parameter {k} should not appear!'.format(k=k))
+        return True
