@@ -8,13 +8,12 @@ class StatsNBAAPI(object):
     resource = None
     default_params = {}
 
-    def __init__(self, params, fetcher=None):
-        if fetcher is None:
-            self.fetcher = Fetcher()
-
+    def __init__(self, params, fetcher=None, collection=None):
         if type(params) is not list:
             params = [params]
         self.params = params
+
+        self.collection = collection
 
         updated_params = []
         for p in self.params:
@@ -27,8 +26,11 @@ class StatsNBAAPI(object):
         for p in self.params:
             urls.append(type(self)._encode_url(p))
 
-        self.fetcher.fetch(urls) # batch fetching with grequests
-        self.data = self.fetcher.get()
+        if fetcher is None:
+            self.fetcher = Fetcher(api=self)
+
+        self.fetcher.fetch(urls)  # start fetching with grequests
+        self.fetcher.get()
 
     @classmethod
     def _update_params(cls, params):
@@ -49,5 +51,11 @@ class StatsNBAAPI(object):
             try:
                 cls.default_params[k]
             except KeyError:
-                raise Exception('parameter {k} should not appear!'.format(k=k))
+                raise Exception('parameter {k} should not be used!'.format(k=k))
         return True
+
+    def post_download(self, response):
+        """
+            :param response a response object from requests
+        """
+        self.collection.insert_one(response.json())

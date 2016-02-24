@@ -11,9 +11,10 @@ mongo_client = MongoClient('mongodb://127.0.0.1:27017')
 db = mongo_client.test
 
 if __name__ == '__main__':
-    for c in db.gamelogs.find(modifiers={"$snapshot": True}):
+    for c in db.playbyplay.find(modifiers={"$snapshot": True}):
         resultSets = map(convert_result, c['resultSets'])
         c['resultSets'] = {}
         for name, data in resultSets:
+            # TODO need to convert the data
             c['resultSets'][name] = data
-        db.gamelogs.save(c)
+        db.playbyplay.save(c)

@@ -34,5 +34,7 @@ def convert_result(result_dict):
     headers = result_dict['headers']
     data = result_dict['rowSet']
     import pandas as pd
+    import json
     df = pd.DataFrame(data, columns=headers)
-    return result_name, df.to_dict(orient='records')
+    # use this to avoid Mongo conversion error
+    return result_name, json.loads(df.to_json(orient='records'))

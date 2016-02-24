@@ -22,6 +22,5 @@ if __name__ == "__main__":
     for year in range(2006, 2016):
         params['Season'] = make_season(year)
         params_list.append(params.copy())
-    log = LeagueGameLog(params_list)
     db['gamelogs'].drop()
-    db['gamelogs'].insert_many(log.data)
+    log = LeagueGameLog(params_list, collection=db['gamelogs'])
