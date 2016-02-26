@@ -60,3 +60,4 @@ target/
 
 # Pycharm project configuration
 .idea/
+/data
