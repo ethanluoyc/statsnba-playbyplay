@@ -11,8 +11,8 @@
 
 BOT_NAME = 'statsnba'
 
-SPIDER_MODULES = ['statsnba.spiders']
-NEWSPIDER_MODULE = 'statsnba.spiders'
+SPIDER_MODULES = ['crawl.spiders']
+NEWSPIDER_MODULE = 'crawl.spiders'
 
 # MongoDB Settings
 MONGO_URI = '127.0.0.1:27017'

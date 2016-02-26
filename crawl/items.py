@@ -7,7 +7,6 @@
 
 import scrapy
 
-
 class StatsnbaItem(scrapy.Item):
     """
         It conforms to the API response from stats.nba.com

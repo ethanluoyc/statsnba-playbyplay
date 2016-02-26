@@ -1,6 +1,6 @@
 import scrapy
 import urllib
-from statsnba.items import StatsnbaItem
+from crawl.items import StatsnbaItem
 import json
 
 
