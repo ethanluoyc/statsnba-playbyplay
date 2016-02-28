@@ -1,0 +1,195 @@
+,EVENTMSGTYPE,EVENTMSGACTIONTYPE,EVENTNUM,GAME_ID,HOMEDESCRIPTION,NEUTRALDESCRIPTION,PCTIMESTRING,PERIOD,PERSON1TYPE,PERSON2TYPE,PERSON3TYPE,PLAYER1_ID,PLAYER1_NAME,PLAYER1_TEAM_ABBREVIATION,PLAYER1_TEAM_CITY,PLAYER1_TEAM_ID,PLAYER1_TEAM_NICKNAME,PLAYER2_ID,PLAYER2_NAME,PLAYER2_TEAM_ABBREVIATION,PLAYER2_TEAM_CITY,PLAYER2_TEAM_ID,PLAYER2_TEAM_NICKNAME,PLAYER3_ID,PLAYER3_NAME,PLAYER3_TEAM_ABBREVIATION,PLAYER3_TEAM_CITY,PLAYER3_TEAM_ID,PLAYER3_TEAM_NICKNAME,SCORE,SCOREMARGIN,VISITORDESCRIPTION,WCTIMESTRING
+0,1,1,52,0021000782,,,6:24,1,5.0,5,0,201951,Ty Lawson,DEN,Denver,1610612743.0,Nuggets,201167,Arron Afflalo,DEN,Denver,1610612743.0,Nuggets,0,,,,,,16 - 8,-8,Lawson  3PT Jump Shot (3 PTS) (Afflalo 2 AST),11:00 PM
+1,1,3,70,0021000782,,,4:45,1,5.0,5,0,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,23 - 15,-8,Martin 9' Hook Shot (4 PTS) (Anthony 2 AST),11:05 PM
+2,1,4,5,0021000783,,,11:17,1,5.0,0,0,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,0,,,,1610612753.0,,0,,,,,,2 - 0,-2,Bynum 1' Tip Shot (2 PTS),8:16 PM
+3,1,5,9,0021000782,,,10:38,1,5.0,5,0,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,201951,Ty Lawson,DEN,Denver,1610612743.0,Nuggets,0,,,,,,2 - 2,TIE,Martin  Layup (2 PTS) (Lawson 1 AST),10:53 PM
+4,1,7,29,0021000783,,,7:12,1,5.0,5,0,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,965,Derek Fisher,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,10 - 8,-2,Bynum  Dunk (4 PTS) (Fisher 1 AST),8:21 PM
+5,1,8,24,0021000782,Biedrins 2' Slam Dunk (2 PTS) (Curry 1 AST),,8:55,1,4.0,4,0,2740,Andris Biedrins,GSW,Golden State,1610612744.0,Warriors,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,0,,,,,,4 - 4,TIE,,10:55 PM
+6,1,40,82,0021000784,Hill 1' Layup (2 PTS) (Nash 5 AST),,4:02,1,4.0,4,0,255,Grant Hill,PHX,Phoenix,1610612756.0,Suns,959,Steve Nash,PHX,Phoenix,1610612756.0,Suns,0,,,,,,14 - 22,8,,9:26 PM
+7,1,41,275,0021000783,Pierce 5' Running Layup (8 PTS),,10:00,3,4.0,0,0,1718,Paul Pierce,BOS,Boston,1610612738.0,Celtics,0,,,,1610612738.0,,0,,,,,,55 - 55,TIE,,9:44 PM
+8,1,42,140,0021000782,Ellis 2' Driving Layup (15 PTS),,10:04,2,4.0,0,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,0,,,,1610612744.0,,0,,,,,,40 - 38,-2,,11:20 PM
+9,1,43,427,0021000783,,,8:35,4,5.0,5,0,1885,Lamar Odom,LAL,Los Angeles,1610612747.0,Lakers,200769,Shannon Brown,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,80 - 72,-8,Odom 1' Alley Oop Layup (10 PTS) (Brown 2 AST),10:24 PM
+10,1,44,97,0021000782,,,1:59,1,5.0,5,0,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,2403,Nene,DEN,Denver,1610612743.0,Nuggets,0,,,,,,32 - 25,-7,Anthony 1' Reverse Layup (8 PTS) (Nene 2 AST),11:12 PM
+11,1,45,218,0021000544,Bargnani 14' Jump Shot (14 PTS) (Calderon 6 AST),,4:12,2,4.0,4,0,200745,Andrea Bargnani,TOR,Toronto,1610612761.0,Raptors,101181,Jose Calderon,TOR,Toronto,1610612761.0,Raptors,0,,,,,,42 - 51,9,,2:02 PM
+12,1,46,273,0021000782,Wright 5' Running Jump Shot (16 PTS) (Biedrins 2 AST),,9:32,3,4.0,4,0,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,2740,Andris Biedrins,GSW,Golden State,1610612744.0,Warriors,0,,,,,,70 - 74,4,,12:04 PM
+13,1,47,313,0021000783,,,5:23,3,5.0,5,0,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,965,Derek Fisher,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,63 - 60,-3,Bynum 8' Turnaround Jump Shot (16 PTS) (Fisher 5 AST),9:55 PM
+14,1,48,490,0021000662,Lee 1' Dunk (31 PTS) (Radmanovic 1 AST),,2:31,4,4.0,4,0,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,2209,Vladimir Radmanovic,GSW,Golden State,1610612744.0,Warriors,0,,,,,,111 - 97,-14,,12:54 PM
+15,1,49,226,0021000786,,,4:39,2,5.0,5,0,201572,Brook Lopez,NJN,New Jersey,1610612751.0,Nets,2734,Devin Harris,NJN,New Jersey,1610612751.0,Nets,0,,,,,,39 - 29,-10,Lopez 1' Driving Dunk (13 PTS) (Harris 3 AST),8:02 PM
+16,1,50,225,0021000443,,,8:23,3,5.0,5,0,1740,Rashard Lewis,WAS,Washington,1610612764.0,Wizards,200756,Hilton Armstrong,WAS,Washington,1610612764.0,Wizards,0,,,,,,51 - 57,6,Lewis 2' Running Dunk (13 PTS) (Armstrong 1 AST),8:25 PM
+17,1,51,306,0021000667,Gasol 1' Reverse Dunk (14 PTS) (Fisher 2 AST),,5:38,3,4.0,4,0,2200,Pau Gasol,LAL,Los Angeles,1610612747.0,Lakers,965,Derek Fisher,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,51 - 81,30,,12:05 PM
+18,1,52,275,0021000782,,,9:17,3,5.0,5,0,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,0,,,,,,72 - 74,2,Anthony 2' Alley Oop Dunk (19 PTS) (Martin 4 AST),12:04 PM
+19,1,53,284,0021000545,,,3:15,2,5.0,0,0,2429,Dan Gadzuric,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,,,46 - 49,3,Gadzuric 1' Tip Shot (2 PTS),4:39 PM
+20,1,54,91,0021000579,,,1:57,1,5.0,0,0,1737,Nazr Mohammed,CHA,Charlotte,1610612766.0,Bobcats,0,,,,1610612762.0,,0,,,,,,21 - 22,1,Mohammed 1' Running Tip Shot (2 PTS),8:01 PM
+21,1,55,495,0021000506,Stoudemire 4' Hook Shot (28 PTS) (Felton 7 AST),,2:32,4,4.0,4,0,2405,Amar'e Stoudemire,NYK,New York,1610612752.0,Knicks,101109,Raymond Felton,NYK,New York,1610612752.0,Knicks,0,,,,,,112 - 124,12,,9:53 PM
+22,1,56,59,0021000787,,,6:24,1,5.0,0,0,201567,Kevin Love,MIN,Minnesota,1610612750.0,Timberwolves,0,,,,1610612755.0,,0,,,,,,11 - 18,7,Love 14' Running Hook Shot (2 PTS),7:20 PM
+23,1,57,317,0021000788,Anderson 5' Driving Hook Shot (2 PTS) (Turkoglu 4 AST),,8:19,3,4.0,4,0,201583,Ryan Anderson,ORL,Orlando,1610612753.0,Magic,2045,Hedo Turkoglu,ORL,Orlando,1610612753.0,Magic,0,,,,,,71 - 61,-10,,8:39 PM
+24,1,58,232,0021000782,Biedrins 7' Turnaround Hook Shot (4 PTS) (Lee 5 AST),,1:57,2,4.0,4,0,2740,Andris Biedrins,GSW,Golden State,1610612744.0,Warriors,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,,,60 - 64,4,,11:41 PM
+25,1,63,142,0021000782,Ellis 16' Fadeaway Jumper (17 PTS) (Wright 4 AST),,9:50,2,4.0,4,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,40 - 40,TIE,,11:21 PM
+26,1,65,398,0021000780,,,9:37,4,5.0,0,0,201959,Taj Gibson,CHI,Chicago,1610612741.0,Bulls,0,,,,1610612758.0,,0,,,,,,69 - 64,-5,Gibson 3' Jump Hook Shot (4 PTS),11:11 PM
+27,1,66,291,0021000783,Perkins 14' Jump Bank Shot (9 PTS) (Rondo 9 AST),,8:25,3,4.0,4,0,2570,Kendrick Perkins,BOS,Boston,1610612738.0,Celtics,200765,Rajon Rondo,BOS,Boston,1610612738.0,Celtics,0,,,,,,55 - 60,5,,9:47 PM
+28,1,67,232,0021000780,,,0:03,2,5.0,0,0,201565,Derrick Rose,CHI,Chicago,1610612741.0,Bulls,0,,,,1610612745.0,,0,,,,,,44 - 41,-3,Rose 6' Hook Bank Shot (14 PTS),10:17 PM
+29,1,71,131,0021000787,Collison 3' Finger Roll Layup (6 PTS),,0:23,1,4.0,0,0,201954,Darren Collison,IND,Indiana,1610612754.0,Pacers,0,,,,1610612742.0,,0,,,,,,29 - 28,-1,,7:35 PM
+30,1,72,131,0021000782,Lee 2' Putback Layup (4 PTS),,10:58,2,4.0,0,0,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,1610612755.0,,0,,,,,,38 - 36,-2,,11:19 PM
+31,1,73,4,0021000782,Ellis 2' Driving Reverse Layup (2 PTS) (Wright 1 AST),,11:17,1,4.0,4,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0 - 2,2,,10:52 PM
+32,1,74,182,0021000665,Barea 1' Running Reverse Layup (8 PTS),,9:38,2,4.0,0,0,200826,Jose Juan Barea,DAL,Dallas,1610612742.0,Mavericks,0,,,,1610612748.0,,0,,,,,,42 - 29,-13,,9:25 PM
+33,1,75,44,0021000782,Curry 2' Driving Finger Roll Layup (2 PTS) (Lee 1 AST),,7:03,1,4.0,4,0,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,,,10 - 8,-2,,10:58 PM
+34,1,76,64,0021000789,,,4:57,1,5.0,5,0,202390,Gary Neal,SAS,San Antonio,1610612759.0,Spurs,2225,Tony Parker,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,13 - 16,3,Neal 3' Running Finger Roll Layup (4 PTS) (Parker 2 AST),7:30 PM
+35,1,77,326,0021000780,,,3:25,3,5.0,0,0,201565,Derrick Rose,CHI,Chicago,1610612741.0,Bulls,0,,,,1610612742.0,,0,,,,,,61 - 60,-1,Rose 9' Driving Jump Shot (18 PTS),10:53 PM
+36,1,78,431,0021000780,,,6:38,4,5.0,0,0,201565,Derrick Rose,CHI,Chicago,1610612741.0,Bulls,0,,,,1610612759.0,,0,,,,,,75 - 71,-4,Rose 10' Floating Jump Shot (22 PTS),11:19 PM
+37,1,79,55,0021000782,Ellis 16' Pullup Jump Shot (4 PTS) (Wright 2 AST),,6:07,1,4.0,4,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,16 - 10,-6,,11:00 PM
+38,1,80,128,0021000782,,,11:27,2,5.0,5,0,2747,J.R. Smith,DEN,Denver,1610612743.0,Nuggets,201814,Gary Forbes,DEN,Denver,1610612743.0,Nuggets,0,,,,,,38 - 34,-4,Smith 26' 3PT Step Back Jump Shot (3 PTS) (Forbes 1 AST),11:18 PM
+39,1,81,441,0021000787,Price 8' Pullup Bank Shot (2 PTS),,11:41,4,4.0,0,0,201985,A.J. Price,IND,Indiana,1610612754.0,Pacers,0,,,,1610612743.0,,0,,,,,,90 - 85,-5,,8:56 PM
+40,1,82,20,0021000787,,,9:51,1,5.0,0,0,201147,Corey Brewer,MIN,Minnesota,1610612750.0,Timberwolves,0,,,,1610612746.0,,0,,,,,,5 - 7,2,Brewer 10' Driving Bank Shot (5 PTS),7:13 PM
+41,1,83,469,0021000781,Cousins 8' Fadeaway Bank Shot (18 PTS),,5:12,4,4.0,0,0,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,0,,,,1610612738.0,,0,,,,,,91 - 89,-2,,12:17 PM
+42,1,84,209,0021000782,Curry 7' Running Bank Shot (7 PTS) (Williams 3 AST),,3:47,2,4.0,4,0,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,202130,Reggie Williams,GSW,Golden State,1610612744.0,Warriors,0,,,,,,57 - 60,3,,11:35 PM
+43,1,85,3,0021000785,,,11:18,1,5.0,0,0,1717,Dirk Nowitzki,DAL,Dallas,1610612742.0,Mavericks,0,,,,1610612753.0,,0,,,,,,2 - 2,TIE,Nowitzki 12' Turnaround Bank Shot (2 PTS),10:52 PM
+44,1,86,304,0021000783,,,6:33,3,5.0,0,0,977,Kobe Bryant,LAL,Los Angeles,1610612747.0,Lakers,0,,,,1610612747.0,,0,,,,,,59 - 60,1,Bryant 13' Turnaround Fadeaway (10 PTS),9:50 PM
+45,1,87,41,0021000782,Wright 1' Putback Dunk (2 PTS),,7:34,1,4.0,0,0,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,1610612758.0,,0,,,,,,10 - 6,-4,,10:58 PM
+46,1,88,201,0021000782,Williams 1' Driving Slam Dunk (2 PTS) (Lee 3 AST),,4:54,2,4.0,4,0,202130,Reggie Williams,GSW,Golden State,1610612744.0,Warriors,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,,,57 - 54,-3,,11:34 PM
+47,1,89,50,0021000765,Lee  Reverse Slam Dunk (4 PTS) (Wright 1 AST),,7:09,1,4.0,4,0,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,17 - 6,-11,,11:01 PM
+48,1,90,280,0021000663,McGee 1' Running Slam Dunk (6 PTS) (Wall 7 AST),,11:22,3,4.0,4,0,201580,JaVale McGee,WAS,Washington,1610612764.0,Wizards,202322,John Wall,WAS,Washington,1610612764.0,Wizards,0,,,,,,70 - 58,-12,,8:34 PM
+49,1,92,13,0021000544,,,9:20,1,5.0,0,0,201574,Jason Thompson,SAC,Sacramento,1610612758.0,Kings,0,,,,,,0,,,,,,6 - 8,2,Thompson  Putback Slam Dunk (4 PTS),1:17 PM
+50,1,93,6,0021000939,Jennings 6' Driving Bank Hook Shot (3 PTS),,11:14,1,4.0,0,0,201943,Brandon Jennings,MIL,Milwaukee,1610612749.0,Bucks,0,,,,,,0,,,,,,2 - 3,1,,9:12 PM
+51,1,94,167,0021000548,,,7:25,2,5.0,0,0,2731,Emeka Okafor,NOH,New Orleans,1610612740.0,Hornets,0,,,,1610612743.0,,0,,,,,,33 - 29,-4,Okafor 4' Jump Bank Hook Shot (6 PTS),9:53 PM
+52,1,95,27,0021000579,,,8:14,1,5.0,0,0,201571,D.J. Augustin,CHA,Charlotte,1610612766.0,Bobcats,0,,,,1610612763.0,,0,,,,,,8 - 8,TIE,Augustin 6' Running Bank Hook Shot (2 PTS),7:45 PM
+53,1,96,89,0021000789,,,1:54,1,5.0,5,0,201971,DeJuan Blair,SAS,San Antonio,1610612759.0,Spurs,202390,Gary Neal,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,17 - 23,6,Blair 5' Turnaround Bank Hook Shot (4 PTS) (Neal 1 AST),7:33 PM
+54,2,1,2,0021000782,,,11:36,1,5.0,0,0,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612744.0,,,,MISS Anthony 16' Jump Shot,10:52 PM
+55,2,2,25,0021000666,Casspi BLOCK (1 BLK),,10:06,1,5.0,0,4,2222,Gerald Wallace,CHA,Charlotte,1610612766.0,Bobcats,0,,,,,,201956,Omri Casspi,SAC,Sacramento,1610612758.0,Kings,,,MISS Wallace 3' Running Jump Shot,10:18 PM
+56,2,3,15,0021000783,,,9:28,1,5.0,0,0,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,1610612747.0,,,,MISS Bynum 7' Hook Shot,8:18 PM
+57,2,4,120,0021000782,MISS Lee 2' Tip Shot,,0:06,1,4.0,0,0,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612763.0,,,,,11:15 PM
+58,2,5,15,0021000782,,,9:38,1,5.0,0,0,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612743.0,,,,MISS Anthony 1' Layup,10:54 PM
+59,2,7,393,0021000786,MISS Najera 2' Dunk,,2:41,3,4.0,0,5,2059,Eduardo Najera,CHA,Charlotte,1610612766.0,Bobcats,0,,,,,,2624,Quinton Ross,NJN,New Jersey,1610612751.0,Nets,,,Ross BLOCK (1 BLK),8:50 PM
+60,2,8,226,0021000662,,,3:19,2,5.0,0,0,201588,George Hill,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,0,,,,1610612760.0,,,,MISS Hill 1' Slam Dunk,11:40 PM
+61,2,40,379,0021000611,House BLOCK (1 BLK),,11:07,4,5.0,0,4,2585,Zaza Pachulia,ATL,Atlanta,1610612737.0,Hawks,0,,,,,,2067,Eddie House,MIA,Miami,1610612748.0,Heat,,,MISS Pachulia 2' Layup,9:26 PM
+62,2,41,149,0021000667,,,9:10,2,5.0,0,0,1905,Andrei Kirilenko,UTA,Utah,1610612762.0,Jazz,0,,,,,,0,,,,1610612754.0,,,,MISS Kirilenko 3' Running Layup,11:15 PM
+63,2,42,7,0021000782,MISS Wright 3' Driving Layup,,10:46,1,4.0,0,0,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612753.0,,,,,10:53 PM
+64,2,43,173,0021000780,MISS Kirilenko 3' Alley Oop Layup,,6:49,2,4.0,0,0,1905,Andrei Kirilenko,UTA,Utah,1610612762.0,Jazz,0,,,,,,0,,,,1610612763.0,,,,,10:04 PM
+65,2,44,294,0021000782,MISS Ellis  Reverse Layup,,7:40,3,4.0,0,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612742.0,,,,,12:07 PM
+66,2,45,194,0021000781,MISS Cousins 10' Jump Shot,,5:57,2,4.0,0,5,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,0,,,,,,1890,Shawn Marion,DAL,Dallas,1610612742.0,Mavericks,,,Marion BLOCK (1 BLK),10:58 PM
+67,2,46,104,0021000782,Lee BLOCK (1 BLK),,1:21,1,5.0,0,4,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,,,MISS Anthony 6' Running Jump Shot,11:13 PM
+68,2,47,177,0021000782,MISS Williams 8' Turnaround Jump Shot,,6:43,2,4.0,0,0,202130,Reggie Williams,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612758.0,,,,,11:29 PM
+69,2,48,43,0021000667,Bynum BLOCK (2 BLK),,7:07,1,5.0,0,4,2744,Al Jefferson,UTA,Utah,1610612762.0,Jazz,0,,,,,,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,,,MISS Jefferson 2' Dunk,10:50 PM
+70,2,49,346,0021000544,Johnson BLOCK (1 BLK),,5:53,3,5.0,0,4,201574,Jason Thompson,SAC,Sacramento,1610612758.0,Kings,0,,,,,,101161,Amir Johnson,TOR,Toronto,1610612761.0,Raptors,,,MISS Thompson 2' Driving Dunk,2:43 PM
+71,2,50,319,0021000631,MISS Johnson 1' Running Dunk,,5:31,3,4.0,0,0,2207,Joe Johnson,ATL,Atlanta,1610612737.0,Hawks,0,,,,,,0,,,,1610612737.0,,,,,9:09 PM
+72,2,51,384,0021000550,,,2:58,3,5.0,0,0,201163,Wilson Chandler,NYK,New York,1610612752.0,Knicks,0,,,,,,0,,,,1610612740.0,,,,MISS Chandler 2' Reverse Dunk,11:17 PM
+73,2,52,80,0021000785,MISS Martin 1' Alley Oop Dunk,,2:56,1,4.0,0,0,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612766.0,,,,,11:08 PM
+74,2,53,510,0021000786,,,6:02,4,5.0,0,0,2743,Kris Humphries,NJN,New Jersey,1610612751.0,Nets,0,,,,,,0,,,,1610612744.0,,,,MISS Humphries 1' Tip Shot,9:17 PM
+75,2,54,250,0021000666,MISS Evans 3' Running Tip Shot,,4:10,2,4.0,0,0,201936,Tyreke Evans,SAC,Sacramento,1610612758.0,Kings,0,,,,,,0,,,,,,,,,11:05 PM
+76,2,55,400,0021000667,MISS Gasol 4' Hook Shot,,8:21,4,4.0,0,0,2200,Pau Gasol,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,1610612751.0,,,,,12:28 PM
+77,2,56,73,0021000781,,,4:01,1,5.0,0,0,1890,Shawn Marion,DAL,Dallas,1610612742.0,Mavericks,0,,,,,,0,,,,1610612758.0,,,,MISS Marion 7' Running Hook Shot,10:29 PM
+78,2,57,360,0021000544,,,4:38,3,5.0,0,0,201574,Jason Thompson,SAC,Sacramento,1610612758.0,Kings,0,,,,,,0,,,,1610612747.0,,,,MISS Thompson 8' Driving Hook Shot,2:48 PM
+79,2,58,136,0021000782,MISS Udoh 7' Turnaround Hook Shot,,10:22,2,4.0,0,0,202327,Ekpe Udoh,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612739.0,,,,,11:20 PM
+80,2,63,324,0021000783,,,3:46,3,5.0,0,0,977,Kobe Bryant,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,1610612743.0,,,,MISS Bryant 10' Fadeaway Jumper,9:57 PM
+81,2,65,73,0021000782,MISS Biedrins 3' Jump Hook Shot,,4:03,1,4.0,0,0,2740,Andris Biedrins,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612750.0,,,,,11:06 PM
+82,2,66,12,0021000782,,,9:54,1,5.0,0,0,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612747.0,,,,MISS Martin 17' Jump Bank Shot,10:53 PM
+83,2,67,258,0021000784,MISS Lopez 4' Hook Bank Shot,,8:25,3,4.0,0,0,201577,Robin Lopez,PHX,Phoenix,1610612756.0,Suns,0,,,,,,0,,,,,,,,,10:24 PM
+84,2,71,78,0021000781,MISS Cousins 2' Finger Roll Layup,,3:35,1,4.0,0,0,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,0,,,,,,0,,,,1610612739.0,,,,,10:30 PM
+85,2,72,305,0021000665,,,9:09,3,5.0,0,0,201599,DeAndre Jordan,LAC,Los Angeles,1610612746.0,Clippers,0,,,,,,0,,,,1610612744.0,,,,MISS Jordan 2' Putback Layup,10:11 PM
+86,2,73,395,0021000731,,,5:28,4,5.0,0,0,2568,Carlos Delfino,MIL,Milwaukee,1610612749.0,Bucks,0,,,,,,0,,,,1610612742.0,,,,MISS Delfino 1' Driving Reverse Layup,12:35 PM
+87,2,74,163,0021000664,MISS Wafer 3' Running Reverse Layup,,8:33,2,4.0,0,0,101144,Von Wafer,BOS,Boston,1610612738.0,Celtics,0,,,,,,0,,,,1610612737.0,,,,,8:18 PM
+88,2,75,291,0021000782,MISS Ellis 3' Driving Finger Roll Layup,,7:57,3,4.0,0,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612748.0,,,,,12:07 PM
+89,2,76,5,0021000714,MISS Davis 2' Running Finger Roll Layup,,11:16,1,4.0,0,0,1884,Baron Davis,LAC,Los Angeles,1610612746.0,Clippers,0,,,,,,0,,,,,,,,,10:44 PM
+90,2,77,112,0021000443,,,8:58,2,5.0,0,0,201156,Nick Young,WAS,Washington,1610612764.0,Wizards,0,,,,,,0,,,,1610612758.0,,,,MISS Young 8' Driving Jump Shot,7:43 PM
+91,2,78,207,0021000782,,,3:53,2,5.0,0,0,201951,Ty Lawson,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612739.0,,,,MISS Lawson 10' Floating Jump Shot,11:35 PM
+92,2,79,202,0021000782,,,4:38,2,5.0,0,0,2747,J.R. Smith,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612744.0,,,,MISS Smith 26' 3PT Pullup Jump Shot,11:34 PM
+93,2,80,217,0021000782,,,3:04,2,5.0,0,0,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612757.0,,,,MISS Anthony 17' Step Back Jump Shot,11:39 PM
+94,2,81,454,0021000143,,,6:08,4,5.0,0,0,255,Grant Hill,PHX,Phoenix,1610612756.0,Suns,0,,,,,,0,,,,,,,,MISS Hill 7' Pullup Bank Shot,11:34 PM
+95,2,82,483,0021000665,,,5:08,4,5.0,0,0,201933,Blake Griffin,LAC,Los Angeles,1610612746.0,Clippers,0,,,,,,0,,,,,,,,MISS Griffin 6' Driving Bank Shot,10:54 PM
+96,2,83,209,0021000667,,,2:33,2,5.0,0,0,101114,Deron Williams,UTA,Utah,1610612762.0,Jazz,0,,,,,,0,,,,,,,,MISS D. Williams 6' Fadeaway Bank Shot,11:29 PM
+97,2,84,161,0021000784,,,6:54,2,5.0,0,0,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612742.0,,,,MISS Curry 8' Running Bank Shot,9:48 PM
+98,2,85,184,0021000443,MISS Duncan 12' Turnaround Bank Shot,,1:42,2,4.0,0,0,1495,Tim Duncan,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,0,,,,1610612759.0,,,,,7:59 PM
+99,2,86,47,0021000783,MISS Pierce 12' Turnaround Fadeaway Shot,,5:35,1,4.0,0,0,1718,Paul Pierce,BOS,Boston,1610612738.0,Celtics,0,,,,,,0,,,,1610612760.0,,,,,8:28 PM
+100,2,87,340,0021000785,MISS Harrington 1' Putback Dunk,,2:41,3,4.0,0,0,1733,Al Harrington,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,1610612764.0,,,,,12:28 PM
+101,2,88,204,0021000662,MISS Ellis 1' Driving Slam Dunk,,5:06,2,4.0,0,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,1610612745.0,,,,,11:36 PM
+102,2,89,31,0021001209,MISS Budinger 1' Reverse Slam Dunk,,8:16,1,4.0,0,0,201978,Chase Budinger,HOU,Houston,1610612745.0,Rockets,0,,,,,,0,,,,,,,,,8:44 PM
+103,2,90,36,0021000295,MISS Weems 1' Running Slam Dunk,,8:08,1,4.0,0,0,201603,Sonny Weems,TOR,Toronto,1610612761.0,Raptors,0,,,,,,0,,,,,,,,,1:18 PM
+104,2,91,122,0021001079,Lee BLOCK (1 BLK),,10:30,2,5.0,0,4,200745,Andrea Bargnani,TOR,Toronto,1610612761.0,Raptors,0,,,,,,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,,,MISS Bargnani 1' Putback Reverse Dunk,11:21 PM
+105,2,92,587,0021001019,,,2:18,4,5.0,0,0,202344,Trevor Booker,WAS,Washington,1610612764.0,Wizards,0,,,,,,0,,,,,,,,MISS Booker 2' Putback Slam Dunk,9:32 PM
+106,2,93,126,0021000146,MISS Haywood 5' Driving Bank Hook Shot,,0:31,1,4.0,0,0,2217,Brendan Haywood,DAL,Dallas,1610612742.0,Mavericks,0,,,,,,0,,,,,,,,,9:08 PM
+107,2,94,169,0021000654,MISS Howard 7' Jump Bank Hook Shot,,7:03,2,4.0,0,0,2730,Dwight Howard,ORL,Orlando,1610612753.0,Magic,0,,,,,,0,,,,,,,,,7:52 PM
+108,2,96,289,0021000983,,,7:22,3,5.0,0,0,1495,Tim Duncan,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,0,,,,,,,,MISS Duncan 6' Turnaround Bank Hook Shot,9:54 PM
+109,3,10,30,0021000782,,,8:20,1,5.0,0,0,2403,Nene,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,7 - 4,-3,Nene Free Throw 1 of 1 (3 PTS),10:56 PM
+110,3,11,62,0021000782,MISS Wright Free Throw 1 of 2,,5:50,1,4.0,0,0,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,,,,,,11:04 PM
+111,3,12,64,0021000782,Wright Free Throw 2 of 2 (3 PTS),,5:50,1,4.0,0,0,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,,,16 - 11,-5,,11:04 PM
+112,3,13,154,0021000783,,,8:45,2,5.0,0,0,200769,Shannon Brown,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,26 - 37,11,Brown Free Throw 1 of 3 (4 PTS),8:56 PM
+113,3,14,156,0021000783,,,8:45,2,5.0,0,0,200769,Shannon Brown,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,27 - 37,10,Brown Free Throw 2 of 3 (5 PTS),8:56 PM
+114,3,15,158,0021000783,,,8:45,2,5.0,0,0,200769,Shannon Brown,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,28 - 37,9,Brown Free Throw 3 of 3 (6 PTS),8:56 PM
+115,3,16,46,0021000782,,,6:50,1,5.0,0,0,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,11 - 8,-3,Anthony Free Throw Technical (1 PTS),10:59 PM
+116,3,18,424,0021000780,Kirilenko Free Throw Flagrant 1 of 2 (12 PTS),,7:08,4,4.0,0,0,1905,Andrei Kirilenko,UTA,Utah,1610612762.0,Jazz,0,,,,,,0,,,,,,73 - 71,-2,,11:18 PM
+117,3,19,426,0021000780,MISS Kirilenko Free Throw Flagrant 2 of 2,,7:08,4,4.0,0,0,1905,Andrei Kirilenko,UTA,Utah,1610612762.0,Jazz,0,,,,,,0,,,,,,,,,11:18 PM
+118,3,20,458,0021000389,Scola Free Throw Flagrant 1 of 1 (21 PTS),,5:51,4,4.0,0,0,2449,Luis Scola,HOU,Houston,1610612745.0,Rockets,0,,,,,,0,,,,,,74 - 95,21,,13:39 PM
+119,3,25,43,0021000785,Billups Free Throw Clear Path 1 of 2 (11 PTS),,6:22,1,4.0,0,0,1497,Chauncey Billups,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,10 - 15,5,,10:59 PM
+120,3,26,45,0021000785,Billups Free Throw Clear Path 2 of 2 (12 PTS),,6:22,1,4.0,0,0,1497,Chauncey Billups,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,10 - 16,6,,11:00 PM
+121,4,0,3,0021000782,Ellis REBOUND (Off:0 Def:1),,11:35,1,4.0,0,0,101145,Monta Ellis,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,,,,,,10:52 PM
+122,4,1,63,0021000782,WARRIORS Rebound,,5:50,1,2.0,0,0,1610612744,,,,1610612752.0,,0,,,,,,0,,,,,,,,,11:04 PM
+123,4,2,118,0021000726,,,11:01,2,5.0,0,0,202419,Chris Johnson,POR,Portland,1610612757.0,Trail Blazers,0,,,,,,0,,,,,,,,Johnson REBOUND (Off:0 Def:1),9:39 PM
+124,5,0,28,0021000765,Wright No Turnover (P1.T1),,9:12,1,4.0,5,0,2748,Dorell Wright,GSW,Golden State,1610612744.0,Warriors,201577,Robin Lopez,PHX,Phoenix,1610612756.0,Suns,0,,,,,,,,Lopez STEAL (1 STL),10:56 PM
+125,5,1,49,0021000782,Curry Bad Pass Turnover (P1.T3),,6:34,1,4.0,5,0,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,201951,Ty Lawson,DEN,Denver,1610612743.0,Nuggets,0,,,,1610612739.0,,,,Lawson STEAL (1 STL),10:59 PM
+126,5,2,14,0021000782,Lee Lost Ball Turnover (P1.T1),,9:42,1,4.0,5,0,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,0,,,,1610612756.0,,,,Martin STEAL (1 STL),10:54 PM
+127,5,3,499,0021000612,,,0:08,4,5.0,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766.0,Bobcats,0,,,,,,0,,,,,,,,Diaw Out Of Bounds Turnover (P1.T9),10:10 PM
+128,5,4,43,0021000782,,,7:20,1,5.0,0,1,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,,,Martin Traveling Turnover (P1.T1),10:58 PM
+129,5,5,57,0021000782,,,6:01,1,5.0,0,1,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,0,,,,1610612738.0,,0,,,,1610612760.0,,,,Martin Foul Turnover (P2.T2),11:00 PM
+130,5,6,404,0021000443,Jefferson Double Dribble Turnover (P1.T9),,5:15,4,4.0,0,1,2210,Richard Jefferson,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,0,,,,,,,,,9:02 PM
+131,5,7,274,0021000443,,,4:12,3,5.0,0,1,202322,John Wall,WAS,Washington,1610612764.0,Wizards,0,,,,,,0,,,,,,,,Wall Discontinue Dribble Turnover (P1.T7),8:33 PM
+132,5,8,200,0021000783,,,5:19,2,5.0,0,1,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,,,Bynum 3 Second Violation Turnover (P3.T8),9:05 PM
+133,5,9,296,0021000759,,,7:41,3,5.0,0,1,977,Kobe Bryant,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,,,Bryant 5 Second Violation Turnover (P1.T6),9:34 PM
+134,5,10,520,0021000544,RAPTORS Turnover: 8 Second Violation (T#14),,3:28,4,2.0,0,1,1610612761,,,,,,0,,,,,,0,,,,,,,,,3:26 PM
+135,5,11,113,0021000783,CELTICS Turnover: Shot Clock (T#1),,0:00,1,2.0,0,1,1610612738,,,,,,0,,,,,,0,,,,,,,,,8:43 PM
+136,5,12,283,0021000734,Granger Inbound Turnover (P2.T7),,0:01,2,4.0,0,1,101122,Danny Granger,IND,Indiana,1610612754.0,Pacers,0,,,,,,0,,,,,,,,,8:15 PM
+137,5,13,54,0021000789,Holiday Backcourt Turnover (P1.T3),,5:40,1,4.0,0,1,201950,Jrue Holiday,PHI,Philadelphia,1610612755.0,76ers,0,,,,,,0,,,,,,,,,7:28 PM
+138,5,15,489,0021000781,,,2:53,4,5.0,0,1,2199,Tyson Chandler,DAL,Dallas,1610612742.0,Mavericks,0,,,,,,0,,,,,,,,Chandler Offensive Goaltending Turnover (P2.T12),12:23 PM
+139,5,17,572,0021000544,,,0:25,4,5.0,0,1,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,0,,,,,,0,,,,,,,,Cousins Lane Violation Turnover (P4.T9),3:37 PM
+140,5,18,472,0021001099,Splitter Jump Ball Violation Turnover (P2.T11),,4:29,4,4.0,0,1,201168,Tiago Splitter,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,0,,,,,,,,,10:43 PM
+141,5,19,201,0021000931,,,0:58,2,5.0,0,1,2736,Luol Deng,CHI,Chicago,1610612741.0,Bulls,0,,,,,,0,,,,,,,,Deng Kicked Ball Violation Turnover (P2.T10),1:58 PM
+142,5,20,19,0021000665,,,10:21,1,5.0,0,1,201933,Blake Griffin,LAC,Los Angeles,1610612746.0,Clippers,0,,,,,,0,,,,,,,,Griffin Illegal Assist Turnover (P1.T1),8:46 PM
+143,5,21,566,0021000787,McRoberts Palming Turnover (P1.T15),,1:05,4,4.0,0,1,201177,Josh McRoberts,IND,Indiana,1610612754.0,Pacers,0,,,,,,0,,,,,,,,,9:26 PM
+144,5,23,100,0021000179,Butler Double Personal Turnover (P1.T1),,1:24,1,4.0,0,0,2406,Caron Butler,DAL,Dallas,1610612742.0,Mavericks,0,,,,,,0,,,,,,,,,10:10 PM
+145,5,34,327,0021000359,,,1:31,3,5.0,0,1,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,,,,,Lee Swinging Elbows Turnover (P2.T13),10:53 PM
+146,5,35,141,0021000704,,,8:55,2,5.0,0,1,2365,Chris Andersen,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,,,Andersen Basket from Below Turnover (P1.T7),6:50 PM
+147,5,36,112,0021001094,,,11:42,2,5.0,0,1,202347,Quincy Pondexter,NOH,New Orleans,1610612740.0,Hornets,0,,,,,,0,,,,,,,,Pondexter Illegal Screen Turnover (P1.T3),10:06 PM
+148,5,37,441,0021000107,Barnes Offensive Foul Turnover (P1.T14),,11:22,4,4.0,0,1,2440,Matt Barnes,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,,,,12:27 PM
+149,5,38,402,0021000784,SUNS Turnover: 5 Second Inbound (T#15),,7:48,4,2.0,0,1,1610612756,,,,,,0,,,,,,0,,,,,,,,,10:57 PM
+150,5,39,12,0021000783,,,9:48,1,5.0,0,0,101115,Andrew Bynum,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,0,,,,,,,,Bynum Step Out of Bounds Turnover (P1.T1),8:18 PM
+151,5,40,283,0021000783,Garnett Out of Bounds Lost Ball Turnover (P2.T5),,9:11,3,4.0,0,0,708,Kevin Garnett,BOS,Boston,1610612738.0,Celtics,0,,,,1610612761.0,,0,,,,1610612759.0,,,,,9:45 PM
+152,5,41,27,0021000782,Lee Poss Lost Ball Turnover (P2.T2),,8:35,1,4.0,0,1,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,0,,,,1610612749.0,,0,,,,1610612749.0,,,,,10:56 PM
+153,6,1,89,0021000782,Udoh P.FOUL (P1.T3),,2:36,1,4.0,5,1,202327,Ekpe Udoh,GSW,Golden State,1610612744.0,Warriors,201951,Ty Lawson,DEN,Denver,1610612743.0,Nuggets,0,,,,,,,,,11:10 PM
+154,6,2,29,0021000782,Lee S.FOUL (P1.T1),,8:20,1,4.0,5,1,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,2403,Nene,DEN,Denver,1610612743.0,Nuggets,0,,,,,,,,,10:56 PM
+155,6,3,320,0021000782,Lee L.B.FOUL (P3.T4),,3:32,3,4.0,5,1,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,2403,Nene,DEN,Denver,1610612743.0,Nuggets,0,,,,,,,,,12:15 PM
+156,6,4,56,0021000782,,,6:01,1,5.0,4,1,2030,Kenyon Martin,DEN,Denver,1610612743.0,Nuggets,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,0,,,,,,,,Martin OFF.Foul (P1),11:00 PM
+157,6,5,3,0021000809,Conley IN.FOUL (P1.T1),,11:48,1,4.0,5,1,201144,Mike Conley,MEM,Memphis,1610612763.0,Grizzlies,2403,Nene,DEN,Denver,1610612743.0,Nuggets,0,,,,,,,,,6:12 PM
+158,6,6,397,0021000787,Hansbrough AWAY.FROM.PLAY.FOUL (P1.PN),,3:01,3,4.0,5,1,201946,Tyler Hansbrough,IND,Indiana,1610612754.0,Pacers,201567,Kevin Love,MIN,Minnesota,1610612750.0,Timberwolves,0,,,,,,,,,8:47 PM
+159,6,9,41,0021000785,,,6:22,1,5.0,4,1,467,Jason Kidd,DAL,Dallas,1610612742.0,Mavericks,1497,Chauncey Billups,DEN,Denver,1610612743.0,Nuggets,0,,,,,,,,Kidd C.P.FOUL (P1.T2),10:58 PM
+160,6,10,86,0021000056,,,4:55,1,4.0,5,1,1713,Vince Carter,ORL,Orlando,1610612753.0,Magic,201567,Kevin Love,MIN,Minnesota,1610612750.0,Timberwolves,0,,,,,,,,,7:27 PM
+161,6,11,276,0021000782,,,9:09,3,5.0,0,1,2546,Carmelo Anthony,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,,,Anthony T.FOUL (P1.T0),12:04 PM
+162,6,12,250,0021000830,,,1:15,2,5.0,0,1,201599,DeAndre Jordan,LAC,Los Angeles,1610612746.0,Clippers,0,,,,,,0,,,,,,,,Jordan Non-Unsportsmanlike (P2.PN),9:08 PM
+163,6,13,529,0021001001,,,0:18,4,5.0,0,1,201580,JaVale McGee,WAS,Washington,1610612764.0,Wizards,0,,,,,,0,,,,,,,,McGee HANGING.TECH.FOUL (P4.PN),10:12 PM
+164,6,14,423,0021000780,,,7:08,4,5.0,4,1,703,Kurt Thomas,CHI,Chicago,1610612741.0,Bulls,1905,Andrei Kirilenko,UTA,Utah,1610612762.0,Jazz,0,,,,,,,,Thomas FLAGRANT.FOUL.TYPE1 (P5.PN),11:18 PM
+165,6,15,384,0021000187,,,8:52,4,5.0,4,1,200797,Ryan Hollins,CLE,Cleveland,1610612739.0,Cavaliers,201168,Tiago Splitter,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,,,Hollins FLAGRANT.FOUL.TYPE2 (P2.T3),10:25 PM
+166,6,16,525,0021000781,,,0:47,4,4.0,5,1,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,2199,Tyson Chandler,DAL,Dallas,1610612742.0,Mavericks,0,,,,,,,,,12:32 PM
+167,6,17,45,0021000782,WARRIORS T.Foul (Def. 3 Sec Curry ),,6:50,1,4.0,0,1,201939,Stephen Curry,GSW,Golden State,1610612744.0,Warriors,0,,,,,,0,,,,,,,,,10:59 PM
+168,6,18,505,0021000644,,,0:22,4,3.0,0,1,1610612762,,,,,,0,,,,,,0,,,,,,,,Jazz Foul,9:51 PM
+169,6,19,380,0021000348,,,0:39,3,5.0,0,1,2544,LeBron James,MIA,Miami,1610612748.0,Heat,0,,,,,,0,,,,,,,,James Taunting (P0.PN),11:54 PM
+170,6,26,181,0021000782,,,6:14,2,5.0,4,1,1733,Al Harrington,DEN,Denver,1610612743.0,Nuggets,202391,Jeremy Lin,GSW,Golden State,1610612744.0,Warriors,0,,,,,,,,Harrington Offensive Charge Foul (P1.T2),11:29 PM
+171,6,27,335,0021000781,,,5:11,3,5.0,4,1,2199,Tyson Chandler,DAL,Dallas,1610612742.0,Mavericks,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,0,,,,,,,,Chandler Personal Block Foul (P3.T3),11:45 PM
+172,6,28,533,0021000781,Head Personal Take Foul (P3.T4),,0:04,4,4.0,5,1,101129,Luther Head,SAC,Sacramento,1610612758.0,Kings,1891,Jason Terry,DAL,Dallas,1610612742.0,Mavericks,0,,,,,,,,,12:34 PM
+173,6,29,413,0021000783,Perkins Shooting Block Foul (P5.T2),,9:03,4,4.0,5,1,2570,Kendrick Perkins,BOS,Boston,1610612738.0,Celtics,1885,Lamar Odom,LAL,Los Angeles,1610612747.0,Lakers,0,,,,,,,,,10:19 PM
+174,7,1,53,0021000781,KINGS Violation: Delay of game Violation,,5:29,1,2.0,0,1,1610612758,,,,,,0,,,,,,0,,,,,,,,,10:24 PM
+175,7,2,20,0021000783,Garnett Violation:Defensive Goaltending,,8:57,1,4.0,0,1,708,Kevin Garnett,BOS,Boston,1610612738.0,Celtics,0,,,,,,0,,,,,,,,,8:19 PM
+176,7,3,109,0021000546,Bonner Violation:Lane,,1:38,1,4.0,0,1,2588,Matt Bonner,SAS,San Antonio,1610612759.0,Spurs,0,,,,,,0,,,,,,,,,7:35 PM
+177,7,4,225,0021000142,Stoudemire Violation:Jump Ball,,3:54,2,4.0,0,1,2405,Amar'e Stoudemire,NYK,New York,1610612752.0,Knicks,0,,,,,,0,,,,,,,,,8:29 PM
+178,7,5,133,0021000782,,,10:29,2,5.0,0,1,2747,J.R. Smith,DEN,Denver,1610612743.0,Nuggets,0,,,,,,0,,,,,,,,Smith Violation:Kicked Ball,11:19 PM
+179,7,6,278,0021000415,Diaw Violation:Double Lane,,0:11,2,4.0,5,1,2564,Boris Diaw,CHA,Charlotte,1610612766.0,Bobcats,201586,Serge Ibaka,OKC,Oklahoma City,1610612760.0,Thunder,0,,,,,,,,,8:18 PM
+180,8,0,86,0021000782,,,2:40,1,5.0,5,0,201167,Arron Afflalo,DEN,Denver,1610612743.0,Nuggets,2747,J.R. Smith,DEN,Denver,1610612743.0,Nuggets,0,,,,,,,,SUB: Smith FOR Afflalo,11:10 PM
+181,9,0,439,0021001194,,,8:56,4,1.0,0,0,0,,,,,,0,,,,,,0,,,,,,,,,5:48 PM
+182,9,1,59,0021000782,WARRIORS Timeout: Regular (Full 1 Short 1),,5:50,1,2.0,0,0,1610612744,,,,1610612755.0,,0,,,,,,0,,,,,,,,,11:01 PM
+183,9,2,18,0021000782,WARRIORS Timeout: Short (Full 0 Short 1),,9:28,1,2.0,0,0,1610612744,,,,,,0,,,,,,0,,,,,,,,,10:54 PM
+184,9,4,159,0021000782,,,8:10,2,1.0,0,0,0,,,,,,0,,,,,,0,,,,,,,,,11:23 PM
+185,10,0,1,0021000782,Jump Ball Lee vs. Nene: Tip to Lawson,,12:00,1,4.0,5,5,101135,David Lee,GSW,Golden State,1610612744.0,Warriors,2403,Nene,DEN,Denver,1610612743.0,Nuggets,201951,Ty Lawson,DEN,Denver,1610612743.0,Nuggets,,,,10:51 PM
+186,11,1,526,0021000781,Cousins Ejection:Second Technical,,0:47,4,4.0,0,1,202326,DeMarcus Cousins,SAC,Sacramento,1610612758.0,Kings,0,,,,,,0,,,,,,,,,12:32 PM
+187,11,3,387,0021000187,,,8:52,4,5.0,0,1,200797,Ryan Hollins,CLE,Cleveland,1610612739.0,Cavaliers,0,,,,,,0,,,,,,,,Hollins Ejection:First Flagrant Type 2,10:27 PM
+188,11,4,477,0021001178,,,5:34,4,7.0,0,1,2472,,,,1610612747.0,,0,,,,,,0,,,,,,,,,9:16 PM
+189,12,0,0,0021000782,,,12:00,1,0.0,0,0,0,,,,,,0,,,,,,0,,,,,,,,,10:51 PM
+190,13,0,122,0021000782,,,0:00,1,0.0,0,0,0,,,,,,0,,,,,,0,,,,,,35 - 34,-1,,11:16 PM
+191,18,0,265,0021000781,,,0:00,2,0.0,0,1,264,,,,,,0,,,,,,0,,,,,,,,,11:12 PM
+192,18,1,43,0021000787,,,7:40,1,0.0,0,1,42,Monty Williams,,,,,0,,,,,,0,,,,,,,,,7:17 PM
+193,18,2,568,0021000596,,,0:05,4,0.0,0,1,0,,,,,,0,,,,,,0,,,,,,90 - 99,9,,6:06 PM
