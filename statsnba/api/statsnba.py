@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import urllib.parse
-from statsnba.fetcher import Fetcher
+import urllib
+from fetcher import Fetcher
 
 
 class StatsNBAAPI(object):
@@ -40,7 +40,7 @@ class StatsNBAAPI(object):
 
     @classmethod
     def _encode_url(cls, params):
-        p = urllib.parse.urlencode(params)
+        p = urllib.urlencode(params)
         return cls.base_url + cls.resource + '?' + p
 
     @classmethod

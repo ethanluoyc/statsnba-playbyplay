@@ -1,8 +1,8 @@
-import urllib.parse
+import urllib
 
 
 def encode_url(url, params):
-    p = urllib.parse.urlencode(params)
+    p = urllib.urlencode(params)
     return url + '?' + p
 
 
