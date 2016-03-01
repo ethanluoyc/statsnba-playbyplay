@@ -1,0 +1,42 @@
+* PlayByPlay TYPE
+
+    | EVENTMSGTYPE | EVENTACTIONTYPE | DESCRIPTION     |
+    |            1 |                 | shot made       |
+    |            2 |                 | shot miss       |
+    |            3 |                 | free throw      |
+    |            4 |                 | rebound         |
+    |            5 |                 | turnover        |
+    |            6 |                 | foul            |
+    |            7 |                 | violation       |
+    |            8 |                 | substitution    |
+    |            9 |                 | timeout         |
+    |           10 |                 | jumpball        |
+    |           11 |                 |                 |
+    |           12 |                 | Start of period |
+    |           13 |                 | End of period   |
+    |           18 |                 |                 |
+
+* Run Luigi tasks
+
+  #+name run luigi tasks
+  #+begin_src sh
+  luigi --module
+  #+end_src
+
+* Generate sample data
+  After saving to MongoDB, you may use the following to generate the samples
+
+  #+begin_src sh
+  mongoexport --db statsnba \
+              --collection boxscoretraditionalv2 \
+              --query '{"parameters.GameID": "0020901030"}' > tests/sample_data/sample_boxscore.json
+  #+end_src
+
+  #+name generate sample_playbyplay
+  #+begin_src sh
+  mongoexport --db test \
+              --collection playbyplay \
+              --query '{"parameters.GameID": "0020901030"}' > tests/sample_data/sample_playbyplay.json
+  #+end_src
+
+  #+RESULTS:
