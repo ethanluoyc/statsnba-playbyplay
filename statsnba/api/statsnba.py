@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib
-from fetcher import Fetcher
+from ..fetcher import Fetcher
 
 
 class StatsNBAAPI(object):

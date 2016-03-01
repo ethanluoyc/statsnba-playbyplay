@@ -7,7 +7,6 @@ import json
 class NBABaseSpider(scrapy.Spider):
     base_url = 'http://stats.nba.com/stats/'
     resource = 'base'
-    name = resource if resource is not 'base' else ''  # ensure base spider is not discoverable
     allowed_domains = ['stats.nba.com']
     default_params = {}  # to be implemented in children classes
 
@@ -65,4 +64,3 @@ class NBABaseSpider(scrapy.Spider):
             except KeyError:
                 raise Exception('parameter {k} should not be used!'.format(k=k))
         return True
-

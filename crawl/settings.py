@@ -72,8 +72,8 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'statsnba.pipelines.StatsnbaPipeline': 200,
-    'statsnba.pipelines.MongoPipeline': 300
+    'crawl.pipelines.StatsnbaPipeline': 200,
+    'crawl.pipelines.MongoPipeline': 300
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

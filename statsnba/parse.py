@@ -1,20 +1,64 @@
-event_type = None
-num = None
-outof = None
-result = None
-points = None
-description = None
+import re
+import functools
+
+
+def _num_outof(data, group_no):
+    descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                    data['NEUTRALDESCRIPTION']]
+    for des in descriptions:
+        if des:
+            m = re.search(r'(\d) of (\d)', des)
+            if m:
+                return m.group(group_no)
+
+num = functools.partial(_num_outof, group_no=1)
+outof = functools.partial(_num_outof, group_no=2)
+
+
+def result(data):
+    if str(data['EVENTMSGTYPE']) == '1': return 'made'
+    if str(data['EVENTMSGTYPE']) == '2': return 'missed'
+    descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                    data['NEUTRALDESCRIPTION']]
+    for des in descriptions:
+        if des:
+            if re.match(r"^MISS", des):
+                return 'missed'
+    return 'made'
+
+
+def _score(data, home_or_away):
+    score = data['SCORE']
+    if home_or_away == 'home':
+        group = 1
+    elif home_or_away == 'away':
+        group = 2
+    else:
+        raise Exception('You specified an unknwon flag')
+    return group
+
+home_score = functools.partial(_score, home_or_away='home')
+away_score = functools.partial(_score, home_or_away='away')
+
+
+def points(data):
+    pass
+
+
+def description(data):
+    pass
 
 # The target columns we want to have
-column_functions = {'period': 'PERIOD',
-                    'away_score': None,
-                    'home_score': None,
-                    'remaining_time': None,
+column_functions = {'game_id': 'GAME_ID',
+                    'period': 'PERIOD',
+                    'away_score': away_score,
+                    'home_score': home_score,
+                    'remaining_time': 'PCTIMESTRING',  # TODO may improve this
                     'elapsed': None,
                     'play_length': None,
-                    'play_id': None,  # TODO disable this
+                    'play_id': 'EVENTNUM',                                 # TODO disable this
                     'team': 'PLAYER1_TEAM_ABBREVIATION',
-                    'event_type': event_type,  # parsed inside the function
+                    'event_type': None,  # parsed inside the function
                     'assist': 'PLAYER2_NAME',
                     'away': 'PLAYER2_NAME',
                     'home': 'PLAYER1_NAME',
@@ -32,7 +76,7 @@ column_functions = {'period': 'PERIOD',
                     'steal': 'PLAYER2_NAME',
                     'type': None,
                     'shot_distance': None,
-                    'original_x': None,
+                    'original_x': None,                              # TODO investigate where to look for this
                     'original_y': None,
                     'converted_x': None,
                     'converted_y': None,
@@ -46,9 +90,9 @@ optional_columns = {'team', 'assist', 'away', 'home', 'block', 'entered', 'left'
 required_columns = all_columns - optional_columns
 
 event_msg_types = [
-    (1, 'shot made', ['team', 'assist', 'player']),
-    (2, 'shot miss', ['team', 'block', 'player']),
-    (3, 'free_throw', ['team', 'player', 'num', 'outof']),
+    (1, 'shot made', ['team', 'assist', 'player', 'result']),
+    (2, 'shot miss', ['team', 'block', 'player', 'result']),
+    (3, 'free_throw', ['team', 'player', 'num', 'outof', 'result']),
     (4, 'rebound', ['team', 'player']),
     (5, 'turnover', ['team', 'player', 'steal']),
     (6, 'foul', ['team', 'player', 'opponent']),
@@ -72,7 +116,11 @@ def parse(data):
         parsed_data[k] = None
 
     def _get_event_type(event_msg_type):
-        return event_table[event_msg_type]
+        try:
+            et = event_table[event_msg_type]
+        except KeyError:
+            et = ('unknown', [])
+        return et
 
     def _parse_column(col):
         if hasattr(column_functions[col], '__call__'):
@@ -86,3 +134,5 @@ def parse(data):
     parsed_data['event_type'] = event_type
 
     return parsed_data
+
+__all__ = ['parse']
