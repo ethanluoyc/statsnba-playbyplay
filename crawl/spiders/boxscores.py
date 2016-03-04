@@ -31,3 +31,7 @@ class BoxscoreSpider(NBABaseSpider):
             for line in f.readlines():
                 gameids.append(line.rstrip('\n'))
             return gameids
+
+    @staticmethod
+    def fetch_data_in_range(start_range, end_range):
+        pass

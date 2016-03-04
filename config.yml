@@ -1,2 +1,3 @@
 mongodb:
-  url: '127.0.0.1:27017'
+  uri: '127.0.0.1:27017'
+  database: 'statsnba'
