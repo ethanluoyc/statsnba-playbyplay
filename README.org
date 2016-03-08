@@ -1,5 +1,12 @@
-* What this is
-** Downloading play-by-play data from stats.nba.com, used for basketball analytics
+* Introduction
+  Basketball analytics using play-by-play data have been an shared interest for many people. However, the lack of processed play-by-play has prohibited such analysis by many.
+
+  This project is intended to be provided for parsing for the play-by-play data from http://stats.nba.com into more comprehensive format imitating those on http://nbastuffer.com. While there are some limitations with the current parsing strategy, it does not affect the tabulation of APM and other playb-by-play based metrics.
+
+  The package also supports lineup analysis to better understand the behavior of lineups of the NBA teams.
+
+  The project is developed with flexibility in mind. Extension and customized behavior can be achieved easily should you require those.
+
 * Set up the environment
   I use Conda for managing Python virtual environment, but virtualenv is fine
 * My notes
@@ -51,3 +58,5 @@
 
 ** Columns of LeagueGameLog
    Here are the columns for the LeagueGameLog
+* TODOs
+  - parse subtypes of events. (e.g. when there is a shot, is it a layup or jumpshot? the raw data provides different codes for these subtypes but I have not yet figured out a way to easily decrypt all of them.)

@@ -1,9 +1,9 @@
-from statsnba import config
-from pymongo import MongoClient
+from loaders import FsLoader
+from resources import StatsNBABoxscore
 from statsnba.parse import parse
 
 
-class MongoTeam(object):
+class NBATeam(object):
     def __init__(self):
         pass
 
@@ -11,7 +11,7 @@ class MongoTeam(object):
         pass
 
 
-class MongoPlayer(object):
+class NBAPlayer(object):
     STARTER_POSITION = 'starters'
     BENCH_POSITION = 'bench'
 
@@ -43,7 +43,7 @@ class MongoPlayer(object):
         return 'bench'
 
 
-class MongoEvent(object):
+class NBAEvent(object):
     def __init__(self, event_data, game=None):
         self._data = parse(event_data)
         self._game = game
@@ -77,23 +77,43 @@ class MongoEvent(object):
     def update_players(self, players):
         self._players = self._players | players
 
+    @property
+    def period_length(self):
+        from datetime import timedelta
+        period_time_total = timedelta(minutes=5) if int(self.period) > 4 else timedelta(minutes=12)
 
-class MongoGame(object):
-    def __init__(self, game_id):
-        self._db = MongoClient(config['mongodb']['uri'])[config['mongodb']['database']]
-        self._boxscore = self._db.boxscoretraditionalv2.find_one({'parameters.GameID': game_id})
-        self._pbp = self._db.playbyplay.find_one({'parameters.GameID': game_id})
-        self._players = set(map(lambda p: MongoPlayer(player_stats=p), self._boxscore['resultSets']['PlayerStats']))
+        return period_time_total
 
-    def __del__(self):
-        self._db.close()
+    @staticmethod
+    def _parse_pctimestring(timestring):
+        from datetime import datetime, timedelta
+        time = datetime.strptime(timestring, '%M:%S')  # parse minutes like this '10:29'
+        return timedelta(minutes=time.minute, seconds=time.second)
 
-    def find_one_record(self):
-        """If there is not a record, then fetch it"""
-        pass
+    @property
+    def period_elapsed_time(self):
+        return self.period_length - self._parse_pctimestring(self.remaining_time)
 
-    def fetch_record(self):
-        pass
+    @property
+    def overall_elapsed_time(self):
+        from datetime import timedelta
+        if self.period > 4:
+            return timedelta(minutes=(int(self.period) - 5) * 5 + 12 * 4) + self.period_elapsed_time
+        else:
+            return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
+
+
+class NBAGame(object):
+    def __init__(self, game_id, loader=None):
+        if loader:
+            self._loader = loader
+        else:
+            self._loader = FsLoader()
+        self.game_id = game_id
+        self._boxscore = self._loader.get_boxscore(game_id)
+        self._pbp = self._loader.get_playbyplay(game_id)
+        self._players = set(map(lambda p: NBAPlayer(player_stats=p), self._boxscore['resultSets']['PlayerStats']))
+        self._playbyplay = []
 
     @property
     def home_team(self):
@@ -128,39 +148,45 @@ class MongoGame(object):
 
     @property
     def playbyplay(self):
+        if self._playbyplay:
+            return self._playbyplay
         """Playbyplay is the collection of events"""
         on_court_players = self.home_starters | self.away_starters
-        on_court_players_initial = on_court_players.copy()
         pbp = []
-
+        start_range = 0
+        to_update_floor_players = False
         for i, p in enumerate(self._pbp['resultSets']['PlayByPlay']):
-            ev = MongoEvent(p, game=self)
-            to_update_floor_players = False
-            if ev.period > MongoEvent(self._pbp['resultSets']['PlayByPlay'][i-1]).period:
-                # this conditional comes first otherwise it will result in player not found
-                # TODO
+            ev = NBAEvent(p, game=self)
+            _on_court_copy = on_court_players.copy()
+            # forward looking for the current 10 players on the floor by relying the API
+            if ev.period > NBAEvent(self._pbp['resultSets']['PlayByPlay'][i-1]).period:
+                start_range = ev.overall_elapsed_time.seconds * 10 + 10
                 to_update_floor_players = True
-            elif ev.event_type == 'substitution':
-                # TODO
-                start_range = (ev.period - 1) * 12  * 600 + 1 # hacky
-                end_range = (ev.period - 1) * 12 * 600 + 7200 - ev.current_time.seconds * 10
-                on_court_player = self.update_floor_players(start_range, end_range)
-                on_court_players.remove(self.find_player(ev.left))  # TODO got error
-                on_court_players.add(self.find_player(ev.entered))
+                j = i
+                while to_update_floor_players:
+                    forward_ev = NBAEvent(self._pbp['resultSets']['PlayByPlay'][j], game=self)
+                    if forward_ev.event_type == 'substitution':
+                        end_range = forward_ev.overall_elapsed_time.seconds * 10
+                        on_court_players = self.find_players_in_range(start_range, end_range)
+                        assert(len(on_court_players)) == 10
+                        to_update_floor_players = False
+                    else:
+                        j += 1
+            if ev.event_type == 'substitution':
+                on_court_players.remove(self._find_player(ev.left))
+                on_court_players.add(self._find_player(ev.entered))
+                assert on_court_players != _on_court_copy
             ev.update_players(on_court_players)
             pbp.append(ev)
-        return pbp
+        self._playbyplay = pbp
+        return self._playbyplay
 
-    def find_floor_player(self, start_range, end_range):
-        """this is to update the players on the floor, used to find players on the court for every play"""
-        players = set([])
-        return players
+    def find_players_in_range(self, start_range, end_range):
+        box = StatsNBABoxscore()
+        range_boxscore = box.find_boxscore_in_range(self.game_id, start_range, end_range)
+        return set(map(NBAPlayer, range_boxscore['resultSets']['PlayerStats']))
 
-
-    def boxscore_in_range(self, start_range, end_range):
-        pass
-
-    def find_player(self, player_name):
+    def _find_player(self, player_name):
         """use player's name and team to find the player"""
         for p in self._players:
             if p.name == player_name:

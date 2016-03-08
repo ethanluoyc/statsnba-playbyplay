@@ -1,15 +1,68 @@
-from mongoengine import Document, DictField, StringField
+from .mongo import NBAGame, NBAPlayer, MongoEvent
 
 
-class StatsNBABaseDocument(Document):
-    resource = StringField()
-    parameters = DictField()
-    resultSets = DictField()
-    meta = {'allow_inheritance': True}
+class Backend(object):
+    team = NotImplementedError
+    event = NotImplementedError
+    player = NotImplementedError
+    game = NotImplementedError
 
-    @staticmethod
-    def create_collection_proxy(collection):
-        return type(collection, (StatsNBABaseDocument, ))
 
-    def find(self):
+class Event(object):
+    def __init__(self, backend='mongo', **kargs):
+        if backend == 'mongo':
+            self._backend = MongoEvent(**kargs)  # can further refactor
+
+    def __eq__(self, other_player):
+        return self._backend.__eq__(other_player)
+
+    def __getattr__(self, item):
+        return getattr(self._backend, item)
+
+
+class Player(object):
+    def __init__(self, backend='mongo', **kargs):
+        if backend == 'mongo':
+            self._backend = NBAPlayer(**kargs)
+
+    def __getattr__(self, item):
+        return getattr(self._backend, item)
+
+    def __hash__(self):
+        return self._backend.__hash__()
+
+    def __eq__(self, other):
+        return self._backend.__eq__(other)
+        # return self.name == other.name and self.team_abbr == other.team_abbr
+
+    def __repr__(self):
+        return '<{}, {}>'.format(self.name, self.team_abbr)
+
+
+class Game(object):
+    def __init__(self, backend='mongo', **kargs):
+        if backend == 'mongo':
+            self._backend = NBAGame(game_id=kargs.pop('game_id'))
+        if backend == 'fs':
+            from .fs import FsGame
+            self._backend = FsGame(game_id=kargs.pop('game_id'))
+
+    def __getattr__(self, item):
+        return getattr(self._backend, item)
+
+    @property
+    def lineups(self):
+        lineups = []
+        group = []
+        for i, evt in enumerate(self.playbyplay[:-1]):
+            if evt.players == self.playbyplay[i+1].players:
+                group.append(evt)
+            elif evt.players != self.playbyplay[i-1].players:
+                group.append(evt)
+            else:
+                lineups.append(group)
+                group = []
+        return lineups
+
+    def possessions(self):
         pass
