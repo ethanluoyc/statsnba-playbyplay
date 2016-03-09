@@ -31,42 +31,21 @@ class GameIDs(luigi.Task):
         return luigi.LocalTarget('data/statsnba/game_ids_%s.csv' % self.season)
 
 
-class StatsNBABoxscoreTask(luigi.ExternalTask, StatsNBABoxscore):
+class ProcessPlayByPlay(luigi.ExternalTask):
     game_id = luigi.Parameter()
 
     def run(self):
-        pass
+        from statsnba.models.nba import NBAGame
+        game = NBAGame(self.game_id)
+        pbps = []
+        for pbp in game.playbyplay:
+            pbps.append(pbp.to_dict())
+        import pandas as pd
+        pd.DataFrame(pbps).to_csv('data/processed_playbyplay/%s.csv' % self.game_id)
 
     def output(self):
-        return luigi.LocalTarget('data/statsnba/boxscore/boxscore_%s.csv' % self.game_id)
+        return luigi.LocalTarget('data/processed_playbyplay/%s.csv' % self.game_id)
 
 
-class StatsNBAPlayByPlayTask(luigi.ExternalTask, StatsNBAPlayByPlay):
-    game_id = luigi.Parameter()
-
-    def run(self):
-        pass
-
-    def output(self):
-        return luigi.LocalTarget('data/statsnba/pbp/playbyplay_%s.csv' % self.game_id)
-
-
-class ProcessPlayByPlay(luigi.Task):
-    game_id = luigi.Parameter()
-
-    def requires(self):
-        return {
-                'boxscore': StatsNBABoxscoreTask(game_id=self.game_id),
-                'pbp': StatsNBAPlayByPlayTask(game_id=self.game_id)
-            }
-
-    def run(self):
-        boxscore = json.load(self.input()['boxscore'].open('r'))
-        pbp = json.load(self.input()['pbp'].open('r'))
-
-    def output(self):
-        pass
-
-
-if __name__ == '__main__':
+class AllPlayByPlay(luigi.Task):
     pass

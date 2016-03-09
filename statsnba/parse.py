@@ -42,7 +42,23 @@ away_score = functools.partial(_score, home_or_away='away')
 
 
 def points(data):
-    pass
+    descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                    data['NEUTRALDESCRIPTION']]
+    if str(data['EVENTMSGTYPE']) == '1':
+        pts = 2
+        for des in descriptions:
+            if re.search('3PT', des):
+                pts = 3
+    elif str(data['EVENTMSGTYPE']) == '2':
+        pts = 0
+    elif str(data['EVENTMSGTYPE']) == '3':
+        pts = 1
+    else:
+        pts = None
+        return pts
+    if result(data) == 'missed':
+        pts = 0
+    return pts
 
 
 def description(data):

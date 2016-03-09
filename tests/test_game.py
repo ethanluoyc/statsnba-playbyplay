@@ -1,14 +1,13 @@
 from os import path
 import pytest
 import mock
-import httpretty
 
 from models.nba import NBAEvent
 from statsnba.models.base import Game, Player
-from statsnba.models.nba import NBAGame, NBAPlayer
 
 
 SAMPLEDATA_DIR = path.join(path.dirname(__file__), 'sample_data/')
+
 
 # sample game id is "0020901030"
 # http://stats.nba.com/game/#!/0020901030/ for online view
@@ -18,25 +17,6 @@ def read_json(file_path):
     data = json.load(f)
     f.close()
     return data
-
-
-@pytest.fixture
-def sample_data(request):
-    httpretty.enable()
-    httpretty.register_uri(httpretty.GET, 'http://stats.nba.com/stats/boxscoretraditionalv2?StartRange=7210&GameID=0020901030&EndPeriod=10&RangeType=2&StartPeriod=1&EndRange=8020',
-                           body=read_json('../resources/boxscoretraditionalv2%3fStartRange=7210&GameID=0020901030&EndPeriod=10&RangeType=2&StartPeriod=1&EndRange=8020'),
-                           match_querystring=True)
-    httpretty.register_uri(httpretty.GET, 'http://stats.nba.com/stats/boxscoretraditionalv2?StartRange=14410&GameID=0020901030&EndPeriod=10&RangeType=2&StartPeriod=1&EndRange=17970',
-                           body='../resources/boxscoretraditionalv2%3fStartRange=14410&GameID=0020901030&EndPeriod=10&RangeType=2&StartPeriod=1&EndRange=17970',
-                           match_querystring=True)
-    httpretty.register_uri(httpretty.GET, 'http://stats.nba.com/stats/boxscoretraditionalv2?StartRange=21610&GameID=0020901030&EndPeriod=10&RangeType=2&StartPeriod=1&EndRange=23140',
-                           body='../resources/boxscoretraditionalv2%3fStartRange=21610&GameID=0020901030&EndPeriod=10&RangeType=2&StartPeriod=1&EndRange=23140',
-                           match_querystring=True)
-
-    def fin():
-        httpretty.disable()
-
-    request.addFinalizer(fin)
 
 
 @pytest.fixture(scope='module')
@@ -235,4 +215,7 @@ def test_parse_event():
 
 
 def test_pbp_lineups(sample_game):
-    assert len(sample_game.lineups) == 32
+    assert len(sample_game.lineups[0]) == 45
+    assert len(sample_game.lineups[1]) == 25
+    assert len(sample_game.lineups[2]) == 7
+    assert len(sample_game.lineups) == 24

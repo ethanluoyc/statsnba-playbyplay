@@ -1,5 +1,5 @@
-from loaders import FsLoader
-from resources import StatsNBABoxscore
+from ..loaders import FsLoader
+from ..resources import StatsNBABoxscore
 from statsnba.parse import parse
 
 
@@ -68,11 +68,19 @@ class NBAEvent(object):
 
     @property
     def home_players(self):
-        raise NotImplementedError
+        players = []
+        for p in self._players:
+            if p.team_abbr == self._game.home_team:
+                players.append(p)
+        return players
 
     @property
-    def away_player(self):
-        raise NotImplementedError
+    def away_players(self):
+        players = []
+        for p in self._players:
+            if p.team_abbr == self._game.away_team:
+                players.append(p)
+        return players
 
     def update_players(self, players):
         self._players = self._players | players
@@ -102,13 +110,26 @@ class NBAEvent(object):
         else:
             return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
 
+    def to_dict(self):
+        d = self._data.copy()
+        hps = dict(zip(['h1', 'h2', 'h3', 'h4', 'h5'], self.home_players))
+        aps = dict(zip(['a1', 'a2', 'a3', 'a4', 'a5'], self.away_players))
+        d.update({
+            'period_elapsed_time': self.period_elapsed_time,
+            'overall_elapsed_time': self.overall_elapsed_time
+        })
+        d.update(hps)
+        d.update(aps)
+        return d
+
 
 class NBAGame(object):
     def __init__(self, game_id, loader=None):
         if loader:
             self._loader = loader
         else:
-            self._loader = FsLoader()
+            from statsnba.loaders import MongoLoader
+            self._loader = MongoLoader()
         self.game_id = game_id
         self._boxscore = self._loader.get_boxscore(game_id)
         self._pbp = self._loader.get_playbyplay(game_id)
