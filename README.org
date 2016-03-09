@@ -1,3 +1,4 @@
+This project is still pretty much work in progress so it might introduce many breaking changes.
 * Introduction
   Basketball analytics using play-by-play data have been an shared interest for many people. However, the lack of processed play-by-play has prohibited such analysis by many.
 
