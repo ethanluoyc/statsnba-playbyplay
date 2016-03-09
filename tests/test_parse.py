@@ -1,6 +1,6 @@
 from os import path
 import pytest
-from statsnba.parse import parse
+from statsnba.models.nba import NBAEvent
 
 SAMPLEDATA_DIR = path.join(path.dirname(__file__), 'sample_data/')
 
@@ -14,10 +14,10 @@ def test_parse():
     import pandas as pd
     records = pd.read_csv(path.join(SAMPLEDATA_DIR, 'events.csv')).to_dict(orient='records')
     assert records[0]['EVENTMSGTYPE'] == 1
-    event = parse(records[0])
-    assert event['event_type'] == 'shot made'
-    assert event['converted_y'] is None
-    assert event['player'] == 'Ty Lawson'
+    event = NBAEvent(records[0])
+    assert event.event_type == 'shot made'
+    assert event.converted_y is None
+    assert event.player == 'Ty Lawson'
 
 
 def test_parse_result():
@@ -57,13 +57,13 @@ def test_parse_result():
         "VISITORDESCRIPTION": "MISS Anthony 16' Jump Shot",
         "WCTIMESTRING": "10:52 PM"
     }
-    parsed = parse(event)
-    assert parsed['result'] == 'missed'
+    parsed = NBAEvent(event)
+    assert parsed.result == 'missed'
 
     event['EVENTMSGTYPE'] = 1
     event['VISITORDESCRIPTION'] = "Anthony 16' Jump Shot"
-    parsed = parse(event)
-    assert parsed['result'] == 'made'
+    parsed = NBAEvent(event)
+    assert parsed.result == 'made'
 
 
 def test_parse_num_outof():
@@ -103,9 +103,9 @@ def test_parse_num_outof():
         "VISITORDESCRIPTION": "Nene Free Throw 1 of 1 (3 PTS)",
         "WCTIMESTRING": "10:56 PM"
     }
-    parsed = parse(event)
-    assert parsed['num'] == '1'
-    assert parsed['outof'] == '1'
+    parsed = NBAEvent(event)
+    assert parsed.num == '1'
+    assert parsed.outof == '1'
 
 
 def test_parse_score():
