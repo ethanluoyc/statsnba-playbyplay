@@ -54,6 +54,7 @@ def _num_outof(data, group_no):
             if m:
                 return m.group(group_no)
 
+
 num = functools.partial(_num_outof, group_no=1)
 outof = functools.partial(_num_outof, group_no=2)
 
@@ -71,14 +72,16 @@ def result(data):
 
 
 def _score(data, home_or_away):
-    score = data['SCORE']
+    if not data['SCORE']:
+        return None
+    score = data['SCORE'].split('-')
     if home_or_away == 'home':
         group = 1
     elif home_or_away == 'away':
         group = 2
     else:
         raise Exception('You specified an unknwon flag')
-    return group
+    return score[group-1].strip()
 
 home_score = functools.partial(_score, home_or_away='home')
 away_score = functools.partial(_score, home_or_away='away')
@@ -106,6 +109,7 @@ def points(data):
 
 def description(data):
     pass
+
 
 #         (is_it_required, event_attr, event_data_key)
 column_functions = ((True, 'game_id', 'GAME_ID'),
@@ -145,7 +149,7 @@ all_fields = {c[1] for c in column_functions}
 required_fields = {c[1] for c in column_functions if c[0]}
 
 event_msg_types = (
-    (1, 'shot made', {'team', 'assist', 'player', 'result'}),
+    (1, 'shot made', {'team', 'assist', 'player', 'result', 'home_score', 'away_score'}),
     (2, 'shot miss', {'team', 'block', 'player', 'result'}),
     (3, 'free_throw', {'team', 'player', 'num', 'outof', 'result'}),
     (4, 'rebound', {'team', 'player'}),
@@ -167,6 +171,7 @@ class NBAEvent(object):
     """
         The class for creating an event instance based on data in the play-by-play
     """
+
     def __init__(self, event_stats, game=None):
         self._game = game
         self._event_stats = event_stats
@@ -202,7 +207,7 @@ class NBAEvent(object):
 
     def __eq__(self, other):
         return self.play_id == other.play_id and \
-                self.game_id == other.game_id
+               self.game_id == other.game_id
 
     @property
     def home_team(self):
@@ -337,16 +342,21 @@ class NBAGame(object):
             ev = NBAEvent(p, game=self)
             _on_court_copy = on_court_players.copy()
             # forward looking for the current 10 players on the floor by relying the API
-            if ev.period > NBAEvent(self._pbp['resultSets']['PlayByPlay'][i-1]).period:
-                start_range = ev.overall_elapsed_time.seconds * 10 + 10
+            if ev.period > NBAEvent(self._pbp['resultSets']['PlayByPlay'][i - 1]).period:
+                start_range = ev.overall_elapsed_time.seconds * 10 + 5
                 to_update_floor_players = True
                 j = i
                 while to_update_floor_players:
+                    print j
                     forward_ev = NBAEvent(self._pbp['resultSets']['PlayByPlay'][j], game=self)
                     if forward_ev.event_type == 'substitution':
                         end_range = forward_ev.overall_elapsed_time.seconds * 10
                         on_court_players = self.find_players_in_range(start_range, end_range)
-                        assert(len(on_court_players)) == 10
+                        while len(on_court_players) != 10:
+                            end_range -= 5
+                            if end_range <= start_range:
+                                raise AssertionError('could not locate on floor players %s, %s' % (start_range, end_range))
+                            on_court_players = self.find_players_in_range(start_range, end_range)
                         to_update_floor_players = False
                     else:
                         j += 1
@@ -370,3 +380,7 @@ class NBAGame(object):
             if p.name == player_name:
                 return p
         raise Exception('%s is not found in this game' % player_name)
+
+
+class NBALineup:
+    pass

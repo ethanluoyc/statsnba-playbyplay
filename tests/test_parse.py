@@ -109,7 +109,51 @@ def test_parse_num_outof():
 
 
 def test_parse_score():
-    pytest.fail()
+    event = {
+                "HOMEDESCRIPTION": None,
+                "PLAYER2_TEAM_CITY": None,
+                "SCOREMARGIN": None,
+                "PLAYER3_TEAM_ABBREVIATION": None,
+                "PLAYER1_NAME": None,
+                "PCTIMESTRING": "12:00",
+                "PLAYER1_TEAM_ID": None,
+                "PLAYER1_TEAM_CITY": None,
+                "PLAYER2_NAME": None,
+                "PLAYER1_ID": 0,
+                "PERSON3TYPE": 0,
+                "WCTIMESTRING": "7:41 PM",
+                "GAME_ID": "0020901030",
+                "PERSON1TYPE": 0,
+                "EVENTMSGTYPE": 12,
+                "EVENTNUM": 0,
+                "PLAYER3_TEAM_NICKNAME": None,
+                "PLAYER1_TEAM_ABBREVIATION": None,
+                "PERIOD": 1,
+                "NEUTRALDESCRIPTION": None,
+                "PLAYER2_TEAM_ABBREVIATION": None,
+                "EVENTMSGACTIONTYPE": 0,
+                "PLAYER2_TEAM_NICKNAME": None,
+                "PLAYER3_NAME": None,
+                "PLAYER3_ID": 0,
+                "SCORE": None,
+                "PLAYER3_TEAM_ID": None,
+                "PLAYER3_TEAM_CITY": None,
+                "PLAYER1_TEAM_NICKNAME": None,
+                "VISITORDESCRIPTION": None,
+                "PLAYER2_TEAM_ID": None,
+                "PLAYER2_ID": 0,
+                "PERSON2TYPE": 0
+            }
+    parsed = NBAEvent(event)
+
+    assert parsed.home_score is None
+
+    assert parsed.away_score is None
+
+    event['SCORE'] = "8 - 15"
+    parsed = NBAEvent(event)
+    assert parsed.home_score == '8'
+    assert parsed.away_score == '15'
 
 
 def test_parse_unidentified():
