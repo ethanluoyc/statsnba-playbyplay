@@ -18,6 +18,8 @@ class StatsNBA(object):
         import requests
         from crawl.settings import DEFAULT_REQUEST_HEADERS
         response = requests.get(url, headers=DEFAULT_REQUEST_HEADERS)
+        if response.status_code != 200:
+            raise Exception, response
         resource = cls._parse_response(response)
         return resource
 
@@ -107,7 +109,7 @@ class StatsNBAGamelog(StatsNBA):
 
 
 class StatsNBAPlayByPlay(StatsNBA):
-    resource = 'playbyplay'
+    resource = 'playbyplayv2'
     default_params = {
         'EndPeriod': '10',
         'GameID': None,

@@ -1,4 +1,4 @@
-from ..resources import StatsNBABoxscore
+from statsnba.resources import StatsNBABoxscore
 import functools
 import re
 
@@ -81,7 +81,8 @@ def _score(data, home_or_away):
         group = 2
     else:
         raise Exception('You specified an unknwon flag')
-    return score[group-1].strip()
+    return score[group - 1].strip()
+
 
 home_score = functools.partial(_score, home_or_away='home')
 away_score = functools.partial(_score, home_or_away='away')
@@ -151,7 +152,7 @@ required_fields = {c[1] for c in column_functions if c[0]}
 event_msg_types = (
     (1, 'shot made', {'team', 'assist', 'player', 'result', 'home_score', 'away_score'}),
     (2, 'shot miss', {'team', 'block', 'player', 'result'}),
-    (3, 'free_throw', {'team', 'player', 'num', 'outof', 'result'}),
+    (3, 'free throw', {'team', 'player', 'num', 'outof', 'result'}),
     (4, 'rebound', {'team', 'player'}),
     (5, 'turnover', {'team', 'player', 'steal'}),
     (6, 'foul', {'team', 'player', 'opponent'}),
@@ -160,8 +161,8 @@ event_msg_types = (
     (9, 'timeout', set()),
     (10, 'jumpball', {'team', 'player', 'home', 'away', 'possession'}),
     (11, 'ejection', set()),
-    (12, 'start_of_period', set()),
-    (13, 'end_of_period', set())
+    (12, 'start of period', set()),
+    (13, 'end of period', set())
 )
 
 event_msg_mapping = {str(ev[0]): (ev[1], ev[2]) for ev in event_msg_types}
@@ -172,16 +173,17 @@ class NBAEvent(object):
         The class for creating an event instance based on data in the play-by-play
     """
 
-    def __init__(self, event_stats, game=None):
+    def __init__(self, event_stats_idx, game=None):
         self._game = game
-        self._event_stats = event_stats
+        self.event_stats_idx = event_stats_idx
+        self._event_stats = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
         self._parsed_data = {}
         self._players = set()
 
         for k in all_fields:
             self._parsed_data[k] = None
         try:
-            event_type, optional_fields = event_msg_mapping[str(event_stats['EVENTMSGTYPE'])]
+            event_type, optional_fields = event_msg_mapping[str(self._event_stats['EVENTMSGTYPE'])]
         except KeyError:
             event_type = 'unknown'
             optional_fields = set()
@@ -193,11 +195,17 @@ class NBAEvent(object):
             parse_func = col[2]
             if field in self.fields:
                 if hasattr(parse_func, '__call__'):
-                    self._parsed_data[field] = parse_func(event_stats)
+                    self._parsed_data[field] = parse_func(self._event_stats)
                 elif parse_func:
-                    self._parsed_data[field] = event_stats[parse_func]
+                    self._parsed_data[field] = self._event_stats[parse_func]
 
         self._parsed_data['event_type'] = event_type
+
+    def _parse_players(self):
+        pass
+
+    def _parse_stats(self):
+        pass
 
     def __getattr__(self, item):
         try:
@@ -208,6 +216,9 @@ class NBAEvent(object):
     def __eq__(self, other):
         return self.play_id == other.play_id and \
                self.game_id == other.game_id
+
+    def __repr__(self):
+        return '<NBAEvent ' + str(self.event_stats_idx) + ' >'
 
     @property
     def home_team(self):
@@ -268,6 +279,22 @@ class NBAEvent(object):
         else:
             return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
 
+    @property
+    def type(self):
+        if self.event_type != 'rebound':
+            return self.event_type
+        prev_event = NBAEvent(self.event_stats_idx - 1, game=self._game)
+        try:
+            assert prev_event.event_type in ['shot miss', 'free throw', 'jumpball']
+        except AssertionError:
+            raise AssertionError('prev event is %s, %s' % (prev_event, prev_event.event_type))
+        if prev_event.team == self.team:
+            event_type = 'offensive rebound'
+        else:
+            event_type = 'defensive rebound'
+        self.event_type = event_type
+        return self.event_type
+
     def to_dict(self, fields=None):
         if not fields:
             fields = []
@@ -280,6 +307,7 @@ class NBAEvent(object):
             'period_elapsed_time': self.period_elapsed_time,
             'overall_elapsed_time': self.overall_elapsed_time
         })
+        d['event_type'] = self.type
         d.update(hps)
         d.update(aps)
         if fields:
@@ -292,8 +320,8 @@ class NBAGame(object):
         if loader:
             self._loader = loader
         else:
-            from statsnba.loaders import MongoLoader
-            self._loader = MongoLoader()
+            from statsnba.loaders import WebLoader
+            self._loader = WebLoader()
         self.game_id = game_id
         self._boxscore = self._loader.get_boxscore(game_id)
         self._pbp = self._loader.get_playbyplay(game_id)
@@ -341,22 +369,23 @@ class NBAGame(object):
         start_range = 0
         to_update_floor_players = False
         for i, p in enumerate(self._pbp['resultSets']['PlayByPlay']):
-            ev = NBAEvent(p, game=self)
+            ev = NBAEvent(i, game=self)
             _on_court_copy = on_court_players.copy()
             # forward looking for the current 10 players on the floor by relying the API
-            if ev.period > NBAEvent(self._pbp['resultSets']['PlayByPlay'][i - 1]).period:
+            if ev.period > NBAEvent(i - 1, game=self).period:
                 start_range = ev.overall_elapsed_time.seconds * 10 + 5
                 to_update_floor_players = True
                 j = i
                 while to_update_floor_players:
-                    forward_ev = NBAEvent(self._pbp['resultSets']['PlayByPlay'][j], game=self)
+                    forward_ev = NBAEvent(j, game=self)
                     if forward_ev.event_type == 'substitution':
                         end_range = forward_ev.overall_elapsed_time.seconds * 10
                         on_court_players = self.find_players_in_range(start_range, end_range)
                         while len(on_court_players) != 10:
                             end_range -= 5
                             if end_range <= start_range:
-                                raise AssertionError('could not locate on floor players %s, %s' % (start_range, end_range))
+                                raise AssertionError(
+                                    'could not locate on floor players %s, %s' % (start_range, end_range))
                             on_court_players = self.find_players_in_range(start_range, end_range)
                         to_update_floor_players = False
                     else:
