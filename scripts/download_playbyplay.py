@@ -1,41 +1,22 @@
-# coding: utf-8
+#! /usr/bin/env python
 
 import sys
-sys.path.append('..')
-from statsnba.api.playbyplay import PlayByPlay
-from pymongo import MongoClient
+import argparse
+from statsnba.resources import StatsNBAPlayByPlay
+import pandas as pd
 
-import logging
-logging.basicConfig(level=logging.INFO)
-logging.getLogger('requests').setLevel(logging.ERROR)
+parser = argparse.ArgumentParser(description='Download play-by-play and save in CSV format')
+
+parser.add_argument('--game-id', dest='game_id', help='The game id of the game to download')
+parser.add_argument('-o', '--output', dest='output_file', help='The file to write to (default to standard output')
+
+args = parser.parse_args()
+
+pbp = StatsNBAPlayByPlay.fetch_resource({'GameID': args.game_id})
+
+if args.output_file:
+    pd.DataFrame(pbp['resultSets']['PlayByPlay']).to_csv(args.output_file)
+else:
+    sys.stdout.write(pd.DataFrame(pbp['resultSets']['PlayByPlay']).to_csv())
 
 
-mongo_client = MongoClient('mongodb://127.0.0.1:27017')
-db = mongo_client.test
-
-pipelines = [
-                {'$project': {'game_id': '$resultSets.LeagueGameLog'}},
-                {'$unwind': '$game_id'},
-                {'$group': {'_id': "$game_id.GAME_ID", 'count': {'$sum': 1}}}
-            ]
-
-
-def is_downloaded(collection, game_id):
-    if collection.find_one({'parameters.GameID': str(game_id)}):
-        return True
-    return False
-
-if __name__ == '__main__':
-    # db['playbyplay'].drop()
-    game_ids = []
-    for c in db.gamelogs.aggregate(pipelines):
-        game_ids.append(c['_id'])
-
-    params_list = []
-    for i in game_ids:
-        if not is_downloaded(db['playbyplay'], i):
-            param = {'GameID': i}
-            params_list.append(param)
-
-    print('Total there are {} records'.format(len(params_list)))
-    # pbp = PlayByPlay(params_list, collection=db['playbyplay'])
