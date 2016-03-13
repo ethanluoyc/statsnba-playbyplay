@@ -173,13 +173,49 @@ class NBAEvent(object):
         The class for creating an event instance based on data in the play-by-play
     """
 
-    def __init__(self, event_stats_idx, game=None):
+    def __init__(self, event_stats_idx, game=None, on_court_players=None):
         self._game = game
         self.event_stats_idx = event_stats_idx
-        self._event_stats = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
-        self._parsed_data = {}
         self._players = set()
+        self._event_stats = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
+        self._parse_event()
+        if on_court_players:
+            self._parse_players(on_court_players)
 
+    def _parse_players(self, on_court_players):
+        _on_court_copy = on_court_players.copy()
+        # forward looking for the current 10 players on the floor by relying the API
+        if self.period > NBAEvent(self.event_stats_idx - 1, game=self._game).period:
+            start_range = self.overall_elapsed_time.seconds * 10 + 5
+            to_update_floor_players = True
+            j = self.event_stats_idx
+            while to_update_floor_players:
+                forward_ev = NBAEvent(j, game=self._game)
+                if forward_ev.event_type == 'substitution':
+                    end_range = forward_ev.overall_elapsed_time.seconds * 10
+                    on_court_players = self._game.find_players_in_range(start_range, end_range)
+                    while len(on_court_players) != 10:
+                        end_range -= 5
+                        if end_range <= start_range:
+                            raise AssertionError(
+                                'could not locate on floor players %s, %s' % (start_range, end_range))
+                        on_court_players = self._game.find_players_in_range(start_range, end_range)
+                    to_update_floor_players = False
+                else:
+                    j += 1
+                    if j == len(self._game._pbp['resultSets']['PlayByPlay'][j]):
+                        end_range = forward_ev.overall_elapsed_time.seconds * 10
+                        on_court_players = self.find_players_in_range(start_range, end_range)
+                        to_update_floor_players = False
+        if self.event_type == 'substitution':
+            on_court_players.remove(self._game._find_player(self.left))
+            on_court_players.add(self._game._find_player(self.entered))
+            assert on_court_players != _on_court_copy
+        self.update_players(on_court_players)
+        self.on_court_players = on_court_players
+
+    def _parse_event(self):
+        self._parsed_data = {}
         for k in all_fields:
             self._parsed_data[k] = None
         try:
@@ -201,12 +237,6 @@ class NBAEvent(object):
 
         self._parsed_data['event_type'] = event_type
 
-    def _parse_players(self):
-        pass
-
-    def _parse_stats(self):
-        pass
-
     def __getattr__(self, item):
         try:
             return self._parsed_data[item]
@@ -219,6 +249,8 @@ class NBAEvent(object):
 
     def __repr__(self):
         return '<NBAEvent ' + str(self.event_stats_idx) + ' >'
+
+# below are parsed properties that can be included
 
     @property
     def home_team(self):
@@ -366,39 +398,9 @@ class NBAGame(object):
         """Playbyplay is the collection of events"""
         on_court_players = self.home_starters | self.away_starters
         pbp = []
-        start_range = 0
-        to_update_floor_players = False
         for i, p in enumerate(self._pbp['resultSets']['PlayByPlay']):
-            ev = NBAEvent(i, game=self)
-            _on_court_copy = on_court_players.copy()
-            # forward looking for the current 10 players on the floor by relying the API
-            if ev.period > NBAEvent(i - 1, game=self).period:
-                start_range = ev.overall_elapsed_time.seconds * 10 + 5
-                to_update_floor_players = True
-                j = i
-                while to_update_floor_players:
-                    forward_ev = NBAEvent(j, game=self)
-                    if forward_ev.event_type == 'substitution':
-                        end_range = forward_ev.overall_elapsed_time.seconds * 10
-                        on_court_players = self.find_players_in_range(start_range, end_range)
-                        while len(on_court_players) != 10:
-                            end_range -= 5
-                            if end_range <= start_range:
-                                raise AssertionError(
-                                    'could not locate on floor players %s, %s' % (start_range, end_range))
-                            on_court_players = self.find_players_in_range(start_range, end_range)
-                        to_update_floor_players = False
-                    else:
-                        j += 1
-                        if j == len(self._pbp['resultSets']['PlayByPlay'][j]):
-                            end_range = forward_ev.overall_elapsed_time.seconds * 10
-                            on_court_players = self.find_players_in_range(start_range, end_range)
-                            to_update_floor_players = False
-            if ev.event_type == 'substitution':
-                on_court_players.remove(self._find_player(ev.left))
-                on_court_players.add(self._find_player(ev.entered))
-                assert on_court_players != _on_court_copy
-            ev.update_players(on_court_players)
+            ev = NBAEvent(i, game=self, on_court_players=on_court_players)
+            on_court_players = ev.on_court_players
             pbp.append(ev)
         self._playbyplay = pbp
         return self._playbyplay
