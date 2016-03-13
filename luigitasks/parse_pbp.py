@@ -34,6 +34,7 @@ class GameIDs(luigi.Task):
 class ProcessPlayByPlay(luigi.ExternalTask):
     game_id = luigi.Parameter()
     output_columns = luigi.Parameter(default='')
+    output_file_format = '{game_id}.csv'
 
     @staticmethod
     def split_columns(column_str, sep='|'):
@@ -52,11 +53,19 @@ class ProcessPlayByPlay(luigi.ExternalTask):
 
         output_columns = ProcessPlayByPlay.split_columns(self.output_columns)
         game_df = game_df[output_columns]
-        game_df.to_csv('data/processed_playbyplay/%s.csv' % self.game_id, index=False)
+        game_df.to_csv(('data/processed_playbyplay/' + self.output_file_format).format(game_id=self.game_id), index=False)
 
     def output(self):
-        return luigi.LocalTarget('data/processed_playbyplay/%s.csv' % self.game_id)
+        return luigi.LocalTarget(('data/processed_playbyplay/' + self.output_file_format).format(game_id=self.game_id))
 
 
-class ProcessAllPlayByPlay(luigi.Task):
-    pass
+class SeasonPlayByPlay(luigi.WrapperTask):
+    season = luigi.parameter.YearParameter()
+
+    def requires(self):
+        from statsnba.utils import make_season
+        game_ids = GameIDs(season=make_season(self.season.year))
+        yield game_ids
+        with game_ids.output().open('r') as input_file:
+            for g in input_file:
+                yield ProcessPlayByPlay(game_id=g.strip())

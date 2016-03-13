@@ -157,4 +157,4 @@ def test_parse_score():
 
 
 def test_parse_unidentified():
-    pytest.fail()
+    pytest.xfail()

@@ -1,8 +1,5 @@
 import json
 from os import path
-
-from pymongo import MongoClient
-
 from statsnba import config
 
 
@@ -17,10 +14,8 @@ class MockLoader(object):
 class MongoLoader(object):
 
     def __init__(self):
+        from pymongo import MongoClient
         self._db = MongoClient(config['mongodb']['uri'])[config['mongodb']['database']]
-
-    def __del__(self):
-        self._db.close()
 
     def get_boxscore(self, game_id):
         return self._db.boxscoretraditionalv2.find_one({'parameters.GameID': game_id})
@@ -48,7 +43,9 @@ class WebLoader(object):
         pass
 
     def get_boxscore(self, game_id):
-        pass
+        from statsnba.resources import StatsNBABoxscore
+        return StatsNBABoxscore.fetch_resource({'GameID': game_id})
 
     def get_playbyplay(self, game_id):
-        pass
+        from statsnba.resources import StatsNBAPlayByPlay
+        return StatsNBAPlayByPlay.fetch_resource({'GameID': game_id})

@@ -46,7 +46,7 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 statsnba-pbp tests
+	flake8 statsnba tests
 
 test:
 	python setup.py test

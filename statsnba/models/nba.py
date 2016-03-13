@@ -138,7 +138,7 @@ column_functions = ((True, 'game_id', 'GAME_ID'),
                     (False, 'result', result),
                     (False, 'steal', 'PLAYER2_NAME'),
                     (True, 'type', None),
-                    (False, 'shot_distance', None),
+                    (False, 'shot_distance', None),  # TODO complete shot log
                     (True, 'original_x', None),
                     (True, 'original_y', None),
                     (True, 'converted_x', None),
@@ -158,7 +158,7 @@ event_msg_types = (
     (7, 'violation', {'team', 'player'}),
     (8, 'substitution', {'team', 'entered', 'left'}),
     (9, 'timeout', set()),
-    (10, 'jumpball', {'team', 'player', 'home', 'away'}),
+    (10, 'jumpball', {'team', 'player', 'home', 'away', 'possession'}),
     (11, 'ejection', set()),
     (12, 'start_of_period', set()),
     (13, 'end_of_period', set())
@@ -268,7 +268,9 @@ class NBAEvent(object):
         else:
             return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
 
-    def to_dict(self, fields=[]):
+    def to_dict(self, fields=None):
+        if not fields:
+            fields = []
         d = self._parsed_data.copy()
         home_cols = ['h1', 'h2', 'h3', 'h4', 'h5']
         away_cols = ['a1', 'a2', 'a3', 'a4', 'a5']
@@ -347,7 +349,6 @@ class NBAGame(object):
                 to_update_floor_players = True
                 j = i
                 while to_update_floor_players:
-                    print j
                     forward_ev = NBAEvent(self._pbp['resultSets']['PlayByPlay'][j], game=self)
                     if forward_ev.event_type == 'substitution':
                         end_range = forward_ev.overall_elapsed_time.seconds * 10
@@ -360,6 +361,10 @@ class NBAGame(object):
                         to_update_floor_players = False
                     else:
                         j += 1
+                        if j == len(self._pbp['resultSets']['PlayByPlay'][j]):
+                            end_range = forward_ev.overall_elapsed_time.seconds * 10
+                            on_court_players = self.find_players_in_range(start_range, end_range)
+                            to_update_floor_players = False
             if ev.event_type == 'substitution':
                 on_court_players.remove(self._find_player(ev.left))
                 on_court_players.add(self._find_player(ev.entered))
@@ -382,5 +387,6 @@ class NBAGame(object):
         raise Exception('%s is not found in this game' % player_name)
 
 
-class NBALineup:
-    pass
+class NBALineups(object):
+    def __init__(self, playbyplays):
+        self._playbyplays = playbyplays
