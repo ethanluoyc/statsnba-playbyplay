@@ -1,78 +1,11 @@
 import re
-import functools
 
 
-def create_event(event_dict, game=None):
-    pass
-
-
-def _num_outof(data, group_no):
-    descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
-                    data['NEUTRALDESCRIPTION']]
-    for des in descriptions:
-        if des:
-            m = re.search(r'(\d) of (\d)', des)
-            if m:
-                return m.group(group_no)
-
-num = functools.partial(_num_outof, group_no=1)
-outof = functools.partial(_num_outof, group_no=2)
-
-
-def result(data):
-    if str(data['EVENTMSGTYPE']) == '1': return 'made'
-    if str(data['EVENTMSGTYPE']) == '2': return 'missed'
-    descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
-                    data['NEUTRALDESCRIPTION']]
-    for des in descriptions:
-        if des:
-            if re.match(r"^MISS", des):
-                return 'missed'
-    return 'made'
-
-
-def _score(data, home_or_away):
-    score = data['SCORE']
-    if home_or_away == 'home':
-        group = 1
-    elif home_or_away == 'away':
-        group = 2
-    else:
-        raise Exception('You specified an unknwon flag')
-    return group
-
-home_score = functools.partial(_score, home_or_away='home')
-away_score = functools.partial(_score, home_or_away='away')
-
-
-def points(data):
-    descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
-                    data['NEUTRALDESCRIPTION']]
-    if str(data['EVENTMSGTYPE']) == '1':
-        pts = 2
-        for des in descriptions:
-            if re.search('3PT', des):
-                pts = 3
-    elif str(data['EVENTMSGTYPE']) == '2':
-        pts = 0
-    elif str(data['EVENTMSGTYPE']) == '3':
-        pts = 1
-    else:
-        pts = None
-        return pts
-    if result(data) == 'missed':
-        pts = 0
-    return pts
-
-
-def description(data):
-    pass
-
-# (is_it_required, event_attr, event_data_key)
+#         (is_it_required, event_attr, event_data_key)
 column_functions = ((True, 'game_id', 'GAME_ID'),
                     (True, 'period', 'PERIOD'),
-                    (True, 'away_score', away_score),
-                    (True, 'home_score', home_score),
+                    (True, 'away_score', None),
+                    (True, 'home_score', None),
                     (True, 'remaining_time', 'PCTIMESTRING'),
                     (True, 'elapsed', None),
                     (True, 'play_length', None),
@@ -85,147 +18,366 @@ column_functions = ((True, 'game_id', 'GAME_ID'),
                     (False, 'block', 'PLAYER3_NAME'),
                     (False, 'entered', 'PLAYER2_NAME'),
                     (False, 'left', 'PLAYER1_NAME'),
-                    (False, 'num', num),
+                    (False, 'num', None),
                     (False, 'opponent', 'PLAYER2_NAME'),
-                    (False, 'outof', outof),
+                    (False, 'outof', None),
                     (False, 'player', 'PLAYER1_NAME'),
-                    (False, 'points', points),
+                    (False, 'points', None),
                     (False, 'possession', 'PLAYER3_NAME'),
                     (True, 'reason', None),
-                    (False, 'result', result),
+                    (False, 'result', None),
                     (False, 'steal', 'PLAYER2_NAME'),
                     (True, 'type', None),
-                    (False, 'shot_distance', None),
+                    (False, 'shot_distance', None),  # TODO complete shot log
                     (True, 'original_x', None),
                     (True, 'original_y', None),
                     (True, 'converted_x', None),
                     (True, 'converted_y', None),
-                    (False, 'description', description))
+                    (False, 'description', None))
 
 all_fields = {c[1] for c in column_functions}
 required_fields = {c[1] for c in column_functions if c[0]}
 
-event_msg_types = (
-    (1, 'shot made', {'team', 'assist', 'player', 'result'}),
-    (2, 'shot miss', {'team', 'block', 'player', 'result'}),
-    (3, 'free_throw', {'team', 'player', 'num', 'outof', 'result'}),
-    (4, 'rebound', {'team', 'player'}),
-    (5, 'turnover', {'team', 'player', 'steal'}),
-    (6, 'foul', {'team', 'player', 'opponent'}),
-    (7, 'violation', {'team', 'player'}),
-    (8, 'substitution', {'team', 'entered', 'left'}),
-    (9, 'timeout', {}),
-    (10, 'jumpball', {'team', 'player', 'home', 'away'}),
-    (11, 'ejection', {}),
-    (12, 'start_of_period', {}),
-    (13, 'end_of_period', {})
-)
 
-event_msg_mapping = {str(ev[0]): (ev[1], ev[2]) for ev in event_msg_types}
+def NBAEvent(event_stats_idx, game=None, on_court_players=None):
+    event_mapping = {
+        1: Shot,
+        2: Shot,
+        3: FreeThrow,
+        4: Rebound,
+        5: Turnover,
+        6: Foul,
+        7: Violation,
+        8: Substitution,
+        9: Timeout,
+        10: Jumpball,
+        11: Ejection,
+        12: StartOfPeriod,
+        13: EndOfPeriod
+    }
+    event_dict = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
+    event_num = int(event_dict['EVENTMSGTYPE'])
+    try:
+        return event_mapping[event_num](event_stats_idx, game=game, on_court_players=on_court_players)
+    except KeyError:
+        return Unknown(event_stats_idx, game=game, on_court_players=on_court_players)
 
 
-class NBAEvent(object):
+class _NBAEvent(object):
+    """
+        The class for creating an event instance based on data in the play-by-play
+    """
+    optional_fields = set()
 
-    def __init__(self, event_stats):
-        self._event_stats = event_stats
-        self._parsed_data = {}
-        for k in all_fields:
-            self._parsed_data[k] = None
-        try:
-            event_type, optional_fields = event_msg_mapping[str(event_stats['EVENTMSGTYPE'])]
-        except KeyError:
-            event_type = 'unknown'
-            optional_fields = {}
-
-        for col in column_functions:
-            field = col[1]
-            parse_func = col[2]
-            if field in optional_fields | required_fields:
-                if hasattr(parse_func, '__call__'):
-                    self._parsed_data[col] = event_stats[parse_func(event_stats)]
-                else:
-                    self._parsed_data[col] = event_stats[parse_func]
-
-        self._parsed_data['event_type'] = event_type
+    def __init__(self, event_stats_idx, game=None, on_court_players=None):
+        self._game = game
+        self.event_stats_idx = event_stats_idx
+        self._players = set()
+        self._event_stats = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
+        self._parse_event()
+        if on_court_players:
+            self._parse_players(on_court_players)
 
     def __getattr__(self, item):
-        return self._parsed_data[item]
-
-    @classmethod
-    def parse(cls, data):
-        parsed_data = {}
-        for k in all_fields:
-            parsed_data[k] = None
         try:
-            event_type, optional_fields = event_msg_mapping[str(data['EVENTMSGTYPE'])]
+            return self._parsed_data[item]
         except KeyError:
-            event_type = 'unknown'
-            optional_fields = {}
+            raise KeyError, item
+
+    def __eq__(self, other):
+        return self.play_id == other.play_id and \
+               self.game_id == other.game_id
+
+    def __repr__(self):
+        return '<' + self.__class__.__name__ + ' ' + str(self.event_stats_idx) + ' >'
+
+    def _parse_players(self, on_court_players):
+        _on_court_copy = on_court_players.copy()
+        # forward looking for the current 10 players on the floor by relying the API
+        if self.period > NBAEvent(self.event_stats_idx - 1, game=self._game).period:
+            start_range = self.overall_elapsed_time.seconds * 10 + 5
+            to_update_floor_players = True
+            j = self.event_stats_idx
+            while to_update_floor_players:
+                forward_ev = NBAEvent(j, game=self._game)
+                if forward_ev.event_type == 'substitution':
+                    end_range = forward_ev.overall_elapsed_time.seconds * 10
+                    on_court_players = self._game.find_players_in_range(start_range, end_range)
+                    while len(on_court_players) != 10:
+                        end_range -= 5
+                        if end_range <= start_range:
+                            raise AssertionError(
+                                'could not locate on floor players %s, %s' % (start_range, end_range))
+                        on_court_players = self._game.find_players_in_range(start_range, end_range)
+                    to_update_floor_players = False
+                else:
+                    j += 1
+                    if j == len(self._game._pbp['resultSets']['PlayByPlay'][j]):
+                        end_range = forward_ev.overall_elapsed_time.seconds * 10
+                        on_court_players = self.find_players_in_range(start_range, end_range)
+                        to_update_floor_players = False
+        if self.event_type == 'substitution':
+            on_court_players.remove(self._game._find_player(self.left))
+            on_court_players.add(self._game._find_player(self.entered))
+            assert on_court_players != _on_court_copy
+        self.update_players(on_court_players)
+        self.on_court_players = on_court_players
+
+    def _parse_event(self):
+        self._parsed_data = {}
+
+        self.fields = self.optional_fields | required_fields
 
         for col in column_functions:
             field = col[1]
             parse_func = col[2]
-            if field in optional_fields | required_fields:
-                if hasattr(parse_func, '__call__'):
-                    parsed_data[col] = data[parse_func(data)]
-                else:
-                    parsed_data[col] = data[parse_func]
+            if field in self.fields:
+                if parse_func:
+                    self._parsed_data[field] = self._event_stats[parse_func]
 
-        parsed_data['event_type'] = event_type
+    def to_dict(self, fields=None):
+        if not fields:
+            fields = []
+        d = self._parsed_data.copy()
+        home_cols = ['h1', 'h2', 'h3', 'h4', 'h5']
+        away_cols = ['a1', 'a2', 'a3', 'a4', 'a5']
+        hps = dict(zip(home_cols, self.home_players))
+        aps = dict(zip(away_cols, self.away_players))
+        d.update({
+            'period_elapsed_time': self.period_elapsed_time,
+            'overall_elapsed_time': self.overall_elapsed_time
+        })
+        d.update(hps)
+        d.update(aps)
+        if fields:
+            return {k: v for k, v in d.items() if k in fields}
+        return d
 
-        return parsed_data
+# Below are the parsed properties.
+
+    @property
+    def home_team(self):
+        return self._game.home_team
+
+    @property
+    def away_team(self):
+        return self._game.away_team
+
+    @property
+    def players(self):
+        if self._players:
+            return self._players
+        else:
+            raise Exception('You have not updated the players')
+
+    @property
+    def home_players(self):
+        players = []
+        for p in self._players:
+            if p.team_abbr == self._game.home_team:
+                players.append(p)
+        return players
+
+    @property
+    def away_players(self):
+        players = []
+        for p in self._players:
+            if p.team_abbr == self._game.away_team:
+                players.append(p)
+        return players
+
+    def update_players(self, players):
+        self._players = self._players | players
+
+    @property
+    def period_length(self):
+        from datetime import timedelta
+        period_time_total = timedelta(minutes=5) if int(self.period) > 4 else timedelta(minutes=12)
+
+        return period_time_total
+
+    @staticmethod
+    def _parse_pctimestring(timestring):
+        from datetime import datetime, timedelta
+        time = datetime.strptime(timestring, '%M:%S')  # parse minutes like this '10:29'
+        return timedelta(minutes=time.minute, seconds=time.second)
+
+    @property
+    def period_elapsed_time(self):
+        return self.period_length - self._parse_pctimestring(self.remaining_time)
+
+    @property
+    def overall_elapsed_time(self):
+        from datetime import timedelta
+        if self.period > 4:
+            return timedelta(minutes=(int(self.period) - 5) * 5 + 12 * 4) + self.period_elapsed_time
+        else:
+            return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
+
+    @staticmethod
+    def _score(data, home_or_away):
+        if not data['SCORE']:
+            return None
+        score = data['SCORE'].split('-')
+        if home_or_away == 'home':
+            group = 1
+        elif home_or_away == 'away':
+            group = 2
+        else:
+            raise Exception('You specified an unknwon flag')
+        return score[group - 1].strip()
+
+    @property
+    def home_score(self):
+        return self._score(self._event_stats, 'home')
+
+    @property
+    def away_score(self):
+        return self._score(self._event_stats, 'away')
+
+    @property
+    def points(self):
+        data = self._event_stats
+        descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                        data['NEUTRALDESCRIPTION']]
+        if str(data['EVENTMSGTYPE']) == '1':
+            pts = 2
+            for des in descriptions:
+                if re.search('3PT', des):
+                    pts = 3
+        elif str(data['EVENTMSGTYPE']) == '2':
+            pts = 0
+        elif str(data['EVENTMSGTYPE']) == '3':
+            pts = 1
+        else:
+            pts = None
+            return pts
+        if self.result == 'missed':
+            pts = 0
+        return pts
+
+    @property
+    def description(self):
+        return None
+
+    @staticmethod
+    def _num_outof(data, group_no):
+        descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                        data['NEUTRALDESCRIPTION']]
+        for des in descriptions:
+            if des:
+                m = re.search(r'(\d) of (\d)', des)
+                if m:
+                    return m.group(group_no)
+
+    @property
+    def num(self):
+        return self._num_outof(self._event_stats, 1)
+
+    @property
+    def outof(self):
+        return self._num_outof(self._event_stats, 2)
+
+    @property
+    def result(self):
+        data = self._event_stats
+        if str(data['EVENTMSGTYPE']) == '1': return 'made'
+        if str(data['EVENTMSGTYPE']) == '2': return 'missed'
+        descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                        data['NEUTRALDESCRIPTION']]
+        for des in descriptions:
+            if des:
+                if re.match(r"^MISS", des):
+                    return 'missed'
+        return 'made'
 
 
-class Shot(NBAEvent):
-    required_fields = {'team', 'assist', 'player', 'result'}
+class Shot(_NBAEvent):
+    optional_fields = {'team', 'assist', 'player', 'result'}
+
+    @property
+    def event_type(self):
+        if str(self._event_stats['EVENTMSGTYPE']) == '1':
+            return 'shot made'
+        if str(self._event_stats['EVENTMSGTYPE']) == '2':
+            return 'shot missed'
 
 
-class FreeThrow(NBAEvent):
-    required_fields = {'team', 'player', 'num', 'outof', 'result'}
+class FreeThrow(_NBAEvent):
+    event_type = 'free throw'
+    optional_fields = {'team', 'player', 'num', 'outof', 'result'}
+
+    @property
+    def result(self):
+        descriptions = [self._event_stats['HOMEDESCRIPTION'], self._event_stats['VISITORDESCRIPTION'],
+                    self._event_stats['NEUTRALDESCRIPTION']]
+        for des in descriptions:
+            if des:
+                if re.match(r"^MISS", des):
+                    return 'missed'
+        return 'made'
 
 
-class Rebound(NBAEvent):
-    required_fields = {'team', 'player'}
+class Rebound(_NBAEvent):
+    optional_fields = {'team', 'player'}
+
+    @property
+    def event_type(self):
+        prev_event = NBAEvent(self.event_stats_idx - 1, game=self._game)
+        try:
+            assert prev_event.event_type in ['shot missed', 'free throw', 'jumpball']
+        except AssertionError:
+            raise AssertionError('Previous event is %s, %s' % (prev_event, prev_event.event_type))
+        if prev_event.team == self.team:
+            event_type = 'offensive rebound'
+        else:
+            event_type = 'defensive rebound'
+        return event_type
 
 
-class Foul(NBAEvent):
-    required_fields = {'team', 'player', 'steal'}
+class Foul(_NBAEvent):
+    event_type = 'foul'
+    optional_fields = {'team', 'player', 'steal'}
 
 
-class Violation(NBAEvent):
-    required_fields = {'team', 'player'}
+class Violation(_NBAEvent):
+    event_type = 'violation'
+    optional_fields = {'team', 'player'}
 
 
-class Substitution(NBAEvent):
-    required_fields = {'team', 'entered', 'left'}
+class Substitution(_NBAEvent):
+    event_type = 'substitution'
+    optional_fields = {'team', 'entered', 'left'}
 
 
-class Timeout(NBAEvent):
-    required_fields = {}
+class Timeout(_NBAEvent):
+    event_type = 'timeout'
 
 
-class Turnover(NBAEvent):
-    required_fields = {'team', 'player', 'steal'}
+class Turnover(_NBAEvent):
+    event_type = 'turnover'
+    optional_fields = {'team', 'player', 'steal'}
 
 
-class Jumpball(NBAEvent):
-    required_fields = {'team', 'player', 'home', 'away'}
+class Jumpball(_NBAEvent):
+    event_type = 'jumpball'
+    optional_fields = {'team', 'player', 'home', 'away', 'possession'}
 
 
-class Ejection(NBAEvent):
-    required_fields = {}
+class Ejection(_NBAEvent):
+    event_type = 'ejection'
 
 
-class StartPeriod(NBAEvent):
-    required_fields = {}
+class StartOfPeriod(_NBAEvent):
+    event_type = 'start of period'
 
 
-class EndPeriod(NBAEvent):
-    required_columns = {}
+class EndOfPeriod(_NBAEvent):
+    event_type = 'end of period'
 
 
-class Unknown(NBAEvent):
-    required_columns = {}
-    pass
+class Unknown(_NBAEvent):
+    event_type = 'unknown'
 
-__all__ = ['create_event']
+
+__all__ = ['NBAEvent']
