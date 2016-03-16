@@ -82,7 +82,18 @@ class _NBAEvent(object):
         try:
             return self._parsed_data[item]
         except KeyError:
-            raise KeyError, item
+            if item in all_fields:  # It needs to be a field parsed
+                return None
+            import re
+            m = re.match('^home_player(\d)_(.*)', item)
+            if m:
+                players = self.home_players
+                return getattr(players[int(m.group(1))-1], m.group(2))
+            m = re.match('^away_player(\d)_(.*)', item)
+            if m:
+                players = self.away_players
+                return getattr(players[int(m.group(1))-1], m.group(2))
+            raise KeyError(item)
 
     def __eq__(self, other):
         return self.play_id == other.play_id and \
@@ -176,7 +187,7 @@ class _NBAEvent(object):
         for p in self._players:
             if p.team_abbr == self._game.home_team:
                 players.append(p)
-        return players
+        return sorted(players)
 
     @property
     def away_players(self):
@@ -184,7 +195,7 @@ class _NBAEvent(object):
         for p in self._players:
             if p.team_abbr == self._game.away_team:
                 players.append(p)
-        return players
+        return sorted(players)
 
     def update_players(self, players):
         self._players = self._players | players
@@ -207,12 +218,24 @@ class _NBAEvent(object):
         return self.period_length - self._parse_pctimestring(self.remaining_time)
 
     @property
+    def period_remaining_time(self):
+        return self._parse_pctimestring(self.remaining_time)
+
+    @property
+    def overall_length(self):
+        return self._game.game_length
+
+    @property
     def overall_elapsed_time(self):
         from datetime import timedelta
         if self.period > 4:
             return timedelta(minutes=(int(self.period) - 5) * 5 + 12 * 4) + self.period_elapsed_time
         else:
             return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
+
+    @property
+    def overall_remaining_time(self):
+        return self.overall_length - self.overall_elapsed_time
 
     @staticmethod
     def _score(data, home_or_away):
@@ -243,6 +266,8 @@ class _NBAEvent(object):
         if str(data['EVENTMSGTYPE']) == '1':
             pts = 2
             for des in descriptions:
+                if des is None:
+                    des = ''
                 if re.search('3PT', des):
                     pts = 3
         elif str(data['EVENTMSGTYPE']) == '2':

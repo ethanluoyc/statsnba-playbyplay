@@ -18,6 +18,7 @@ class NBAPlayer(object):
         self.name = player_stats['PLAYER_NAME']
         self.team_abbr = player_stats['TEAM_ABBREVIATION']
         self.start_position = player_stats['START_POSITION']
+        self.id = player_stats['PLAYER_ID']
         self._player_stats = player_stats
 
     def __getattr__(self, item):
@@ -28,6 +29,9 @@ class NBAPlayer(object):
 
     def __eq__(self, other):
         return self.name == other.name and self.team_abbr == other.team_abbr
+
+    def __cmp__(self, other):
+        return cmp(self.name, other.name)
 
     def __repr__(self):
         return '<Player {}, {}>'.format(self.name, self.team_abbr)
@@ -103,6 +107,15 @@ class NBAGame(object):
         self._playbyplay = pbp
         return self._playbyplay
 
+    @property
+    def game_length(self):
+        from datetime import timedelta
+        period = int(self._pbp['resultSets']['PlayByPlay'][-1]['PERIOD'])
+        if period > 4:
+            return timedelta(minutes=((period-4) * 5 + 12 * 4))
+        else:
+            return timedelta(minutes=48)
+
     def find_players_in_range(self, start_range, end_range):
         box = StatsNBABoxscore()
         range_boxscore = box.find_boxscore_in_range(self.game_id, start_range, end_range)
@@ -117,8 +130,7 @@ class NBAGame(object):
 
 
 class NBALineups(object):
-    def __init__(self, playbyplays):
-        self._playbyplays = playbyplays
-
+    def __init__(self):
+        pass
 
 __all__ = ['NBAEvent', 'NBAGame', 'NBAPlayer', 'NBATeam']

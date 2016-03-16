@@ -1,0 +1,451 @@
+,EVENTMSGACTIONTYPE,EVENTMSGTYPE,EVENTNUM,GAME_ID,HOMEDESCRIPTION,NEUTRALDESCRIPTION,PCTIMESTRING,PERIOD,PERSON1TYPE,PERSON2TYPE,PERSON3TYPE,PLAYER1_ID,PLAYER1_NAME,PLAYER1_TEAM_ABBREVIATION,PLAYER1_TEAM_CITY,PLAYER1_TEAM_ID,PLAYER1_TEAM_NICKNAME,PLAYER2_ID,PLAYER2_NAME,PLAYER2_TEAM_ABBREVIATION,PLAYER2_TEAM_CITY,PLAYER2_TEAM_ID,PLAYER2_TEAM_NICKNAME,PLAYER3_ID,PLAYER3_NAME,PLAYER3_TEAM_ABBREVIATION,PLAYER3_TEAM_CITY,PLAYER3_TEAM_ID,PLAYER3_TEAM_NICKNAME,SCORE,SCOREMARGIN,VISITORDESCRIPTION,WCTIMESTRING
+0,0,12,0,20901030,,,12:00,1,0,0,0,0,,,,,,0,,,,,,0,,,,,,,,,7:41 PM
+1,0,10,1,20901030,Jump Ball Anthony vs. Ratliff: Tip to Arroyo,,12:00,1,4,5,4,201202,Joel Anthony,MIA,Miami,1610612748,Heat,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,,,,7:41 PM
+2,1,2,2,20901030,MISS Beasley 17' Jump Shot,,11:45,1,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:42 PM
+3,0,4,3,20901030,,,11:44,1,5,0,0,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Ratliff REBOUND (Off:0 Def:1),7:42 PM
+4,56,2,4,20901030,Anthony BLOCK (1 BLK),,11:29,1,5,0,4,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,0,,,,,,201202,Joel Anthony,MIA,Miami,1610612748,Heat,,,MISS Ratliff 8' Running Hook Shot,7:42 PM
+5,0,4,5,20901030,Anthony REBOUND (Off:0 Def:1),,11:28,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:42 PM
+6,7,1,6,20901030,Anthony  Dunk (2 PTS) (Wade 1 AST),,11:12,1,4,4,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0 - 2,2,,7:42 PM
+7,1,2,7,20901030,,,10:54,1,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Felton 18' Jump Shot,7:43 PM
+8,0,4,8,20901030,Beasley REBOUND (Off:0 Def:1),,10:53,1,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:43 PM
+9,1,2,9,20901030,MISS Beasley 17' Jump Shot,,10:42,1,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:43 PM
+10,0,4,10,20901030,,,10:41,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:0 Def:1),7:43 PM
+11,1,2,11,20901030,,,10:25,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson  3PT Jump Shot,7:43 PM
+12,0,4,12,20901030,Anthony REBOUND (Off:0 Def:2),,10:24,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:43 PM
+13,1,1,13,20901030,Richardson 25' 3PT Jump Shot (3 PTS) (Arroyo 1 AST),,10:05,1,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,0,,,,,,0 - 5,5,,7:43 PM
+14,1,1,14,20901030,,,9:35,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,2-May,3,Diaw 22' Jump Shot (2 PTS),7:44 PM
+15,2,5,15,20901030,Beasley Lost Ball Turnover (P1.T1),,9:12,1,4,5,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Felton STEAL (1 STL),7:44 PM
+16,75,2,16,20901030,,,9:07,1,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace  Driving Finger Roll Layup,7:44 PM
+17,0,4,17,20901030,Anthony REBOUND (Off:0 Def:3),,9:06,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:44 PM
+18,1,1,18,20901030,Richardson 25' 3PT Jump Shot (6 PTS) (Wade 2 AST),,9:00,1,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,2-Aug,6,,7:45 PM
+19,1,1,19,20901030,,,8:31,1,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,4-Aug,4,Felton 8' Jump Shot (2 PTS),7:45 PM
+20,42,1,20,20901030,Wade  Driving Layup (2 PTS),,8:14,1,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,4-Oct,6,,7:45 PM
+21,1,5,21,20901030,Anthony STEAL (1 STL),,7:58,1,5,4,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,Jackson Bad Pass Turnover (P1.T1),7:46 PM
+22,1,1,22,20901030,Richardson 26' 3PT Jump Shot (9 PTS) (Wade 3 AST),,7:47,1,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,Apr-13,9,,7:46 PM
+23,1,9,23,20901030,,,7:40,1,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Regular (Reg.1 Short 0),7:46 PM
+24,1,1,27,20901030,,,7:21,1,5,5,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,Jun-13,7,Jackson 21' Jump Shot (2 PTS) (Diaw 1 AST),7:49 PM
+25,1,2,28,20901030,MISS Wade 18' Jump Shot,,7:03,1,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:49 PM
+26,0,4,29,20901030,,,7:02,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson REBOUND (Off:0 Def:1),7:49 PM
+27,1,6,30,20901030,Richardson P.FOUL (P1.T1),,6:52,1,4,5,1,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,7:50 PM
+28,45,2,31,20901030,Richardson BLOCK (1 BLK),,6:47,1,5,0,4,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,,,MISS Wallace 5' Jump Shot,7:50 PM
+29,0,4,32,20901030,,,6:46,1,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,7:50 PM
+30,5,1,33,20901030,,,6:40,1,5,5,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,Aug-13,5,Diaw  Layup (4 PTS) (Felton 1 AST),7:50 PM
+31,47,1,34,20901030,Beasley 14' Turnaround Jump Shot (2 PTS),,6:17,1,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,Aug-15,7,,7:51 PM
+32,1,2,35,20901030,,,5:57,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson  3PT Jump Shot,7:51 PM
+33,0,4,36,20901030,Richardson REBOUND (Off:0 Def:1),,5:56,1,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:51 PM
+34,1,1,37,20901030,Richardson 26' 3PT Jump Shot (12 PTS) (Wade 4 AST),,5:43,1,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,Aug-18,10,,7:51 PM
+35,1,6,38,20901030,Beasley P.FOUL (P1.T2),,5:27,1,4,5,1,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,7:52 PM
+36,1,1,39,20901030,,,5:18,1,5,5,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,Nov-18,7,Diaw 25' 3PT Jump Shot (7 PTS) (Felton 2 AST),7:52 PM
+37,1,2,40,20901030,MISS Arroyo 18' Jump Shot,,4:54,1,4,0,0,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:53 PM
+38,0,4,41,20901030,,,4:53,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson REBOUND (Off:0 Def:2),7:53 PM
+39,1,6,42,20901030,Arroyo P.FOUL (P1.T3),,4:49,1,4,5,1,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,7:53 PM
+40,75,1,43,20901030,,,4:41,1,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,13 - 18,5,Wallace  Driving Finger Roll Layup (2 PTS),7:53 PM
+41,1,2,44,20901030,MISS Richardson 25' 3PT Jump Shot,,4:23,1,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:53 PM
+42,0,4,45,20901030,Anthony REBOUND (Off:1 Def:3),,4:22,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:53 PM
+43,2,6,48,20901030,,,4:22,1,5,4,1,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,Ratliff S.FOUL (P1.T1),7:54 PM
+44,11,3,49,20901030,Anthony Free Throw 1 of 2 (3 PTS),,4:22,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,13 - 19,6,,7:54 PM
+45,0,8,51,20901030,,,4:22,1,5,5,0,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Chandler FOR Ratliff,7:54 PM
+46,0,8,52,20901030,SUB: Haslem FOR Beasley,,4:22,1,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,,,,7:54 PM
+47,12,3,53,20901030,MISS Anthony Free Throw 2 of 2,,4:22,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:54 PM
+48,0,4,55,20901030,,,4:21,1,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:0 Def:1),7:54 PM
+49,1,5,56,20901030,Haslem STEAL (1 STL),,4:08,1,5,4,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,,,Wallace Bad Pass Turnover (P1.T2),7:55 PM
+50,1,2,57,20901030,MISS Arroyo 19' Jump Shot,,4:00,1,4,0,0,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:55 PM
+51,0,4,58,20901030,,,3:59,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:0 Def:2),7:55 PM
+52,42,2,59,20901030,,,3:48,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson  Driving Layup,7:55 PM
+53,0,4,60,20901030,Anthony REBOUND (Off:1 Def:4),,3:47,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:55 PM
+54,1,2,61,20901030,MISS Richardson 25' 3PT Jump Shot,,3:29,1,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:55 PM
+55,0,4,62,20901030,Haslem REBOUND (Off:1 Def:0),,3:28,1,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:55 PM
+56,2,6,63,20901030,,,3:20,1,5,4,1,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,Felton S.FOUL (P1.T2),7:55 PM
+57,11,3,64,20901030,MISS Wade Free Throw 1 of 2,,3:20,1,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:56 PM
+58,1,4,65,20901030,HEAT Rebound,,3:20,1,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,7:56 PM
+59,12,3,66,20901030,Wade Free Throw 2 of 2 (3 PTS),,3:20,1,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,13 - 20,7,,7:56 PM
+60,1,2,68,20901030,,,3:01,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 6' Jump Shot,7:57 PM
+61,0,4,69,20901030,,,3:00,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:2),7:57 PM
+62,65,1,70,20901030,,,2:59,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,15 - 20,5,Diaw 6' Jump Hook Shot (9 PTS),7:57 PM
+63,63,2,71,20901030,MISS Wade 16' Fadeaway Jumper,,2:37,1,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:57 PM
+64,0,4,72,20901030,,,2:35,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:3),7:57 PM
+65,1,2,73,20901030,,,2:26,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 5' Jump Shot,7:57 PM
+66,0,4,74,20901030,Richardson REBOUND (Off:0 Def:2),,2:25,1,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:57 PM
+67,1,2,75,20901030,MISS Anthony 6' Jump Shot,,2:17,1,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,7:57 PM
+68,0,4,76,20901030,,,2:16,1,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:0 Def:2),7:57 PM
+69,1,1,77,20901030,,,2:10,1,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,17 - 20,3,Felton 8' Jump Shot (4 PTS),7:58 PM
+70,1,9,78,20901030,HEAT Timeout: Regular (Full 1 Short 0),,2:05,1,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,7:58 PM
+71,0,8,80,20901030,,,2:05,1,5,5,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Augustin FOR Felton,8:00 PM
+72,0,8,81,20901030,SUB: Chalmers FOR Arroyo,,2:05,1,4,4,0,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,,8:00 PM
+73,46,2,82,20901030,MISS Richardson 7' Running Jump Shot,,1:46,1,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:01 PM
+74,0,4,83,20901030,HEAT Rebound,,1:46,1,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,8:01 PM
+75,11,5,85,20901030,HEAT Turnover: Shot Clock (T#2),,1:46,1,2,0,1,1610612748,,,,,,0,,,,,,0,,,,,,,,,8:01 PM
+76,1,2,86,20901030,,,1:36,1,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 26' 3PT Jump Shot,8:01 PM
+77,0,4,87,20901030,Haslem REBOUND (Off:1 Def:1),,1:35,1,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:01 PM
+78,1,6,88,20901030,,,1:28,1,5,4,1,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,Jackson P.FOUL (P1.T3),8:01 PM
+79,0,8,89,20901030,SUB: Wright FOR Richardson,,1:28,1,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,,,,8:01 PM
+80,1,2,90,20901030,MISS Wade 9' Jump Shot,,1:17,1,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:02 PM
+81,0,4,91,20901030,,,1:16,1,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:0 Def:1),8:02 PM
+82,1,2,92,20901030,,,1:01,1,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 7' Jump Shot,8:02 PM
+83,0,4,93,20901030,,,1:00,1,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:2),8:02 PM
+84,2,6,94,20901030,Anthony S.FOUL (P1.T4),,1:00,1,4,5,1,201202,Joel Anthony,MIA,Miami,1610612748,Heat,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:02 PM
+85,11,3,95,20901030,,,1:00,1,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,18 - 20,2,Chandler Free Throw 1 of 2 (1 PTS),8:03 PM
+86,12,3,97,20901030,,,1:00,1,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,19 - 20,1,Chandler Free Throw 2 of 2 (2 PTS),8:03 PM
+87,1,2,101,20901030,MISS Chalmers 25' 3PT Jump Shot,,0:37,1,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:04 PM
+88,0,4,102,20901030,,,0:35,1,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:0 Def:2),8:04 PM
+89,1,1,103,20901030,,,0:21,1,5,0,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,21 - 20,-1,Augustin 19' Jump Shot (2 PTS),8:04 PM
+90,1,2,104,20901030,MISS Chalmers 24' 3PT Jump Shot,,0:04,1,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:04 PM
+91,0,4,105,20901030,,,0:01,1,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:3),8:04 PM
+92,0,13,106,20901030,,,0:00,1,0,0,0,0,,,,,,0,,,,,,0,,,,,,21 - 20,-1,,8:05 PM
+93,0,12,108,20901030,,,12:00,2,0,0,0,0,,,,,,0,,,,,,0,,,,,,21 - 20,-1,,8:08 PM
+94,75,1,109,20901030,,,11:41,2,5,0,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,23 - 20,-3,Augustin  Driving Finger Roll Layup (4 PTS),8:08 PM
+95,1,1,110,20901030,Beasley 19' Jump Shot (4 PTS),,11:25,2,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,23 - 22,-1,,8:08 PM
+96,7,1,111,20901030,,,11:10,2,5,5,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,25 - 22,-3,Chandler  Dunk (4 PTS) (Jackson 1 AST),8:08 PM
+97,1,2,112,20901030,MISS Jones 26' 3PT Jump Shot,,10:45,2,4,0,0,2592,James Jones,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:09 PM
+98,0,4,113,20901030,,,10:44,2,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:4),8:09 PM
+99,2,6,114,20901030,Beasley S.FOUL (P2.T1),,10:38,2,4,5,1,201563,Michael Beasley,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:09 PM
+100,11,3,115,20901030,,,10:38,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,26 - 22,-4,Jackson Free Throw 1 of 2 (3 PTS),8:09 PM
+101,0,8,117,20901030,,,10:38,2,5,5,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Thomas FOR Diaw,8:10 PM
+102,12,3,118,20901030,,,10:38,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,27 - 22,-5,Jackson Free Throw 2 of 2 (4 PTS),8:10 PM
+103,1,6,120,20901030,,,10:29,2,5,4,1,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Augustin P.FOUL (P1.T1),8:10 PM
+104,0,8,121,20901030,,,10:29,2,5,5,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,1716,Larry Hughes,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Hughes FOR Jackson,8:10 PM
+105,1,1,122,20901030,Beasley 19' Jump Shot (6 PTS) (Chalmers 1 AST),,10:15,2,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,27 - 24,-3,,8:11 PM
+106,40,5,123,20901030,,,10:03,2,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Thomas Out of Bounds Lost Ball Turnover (P1.T3),8:11 PM
+107,1,2,124,20901030,MISS Beasley 17' Jump Shot,,9:47,2,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:11 PM
+108,0,4,125,20901030,,,9:46,2,5,0,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Augustin REBOUND (Off:0 Def:1),8:11 PM
+109,42,2,126,20901030,Chalmers BLOCK (1 BLK),,9:44,2,5,0,4,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,,,MISS Augustin  Driving Layup,8:11 PM
+110,0,4,127,20901030,,,9:43,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:11 PM
+111,42,2,128,20901030,Beasley BLOCK (1 BLK),,9:31,2,5,0,4,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,201563,Michael Beasley,MIA,Miami,1610612748,Heat,,,MISS Thomas  Driving Layup,8:12 PM
+112,0,4,129,20901030,,,9:30,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:12 PM
+113,1,1,130,20901030,,,9:25,2,5,5,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,1716,Larry Hughes,CHA,Charlotte,1610612766,Bobcats,0,,,,,,30 - 24,-6,Augustin 25' 3PT Jump Shot (7 PTS) (Hughes 1 AST),8:12 PM
+114,1,1,131,20901030,Wright 24' 3PT Jump Shot (3 PTS) (Beasley 1 AST),,9:05,2,4,4,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,30 - 27,-3,,8:13 PM
+115,42,1,132,20901030,,,8:53,2,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,32 - 27,-5,Wallace  Driving Layup (4 PTS),8:13 PM
+116,2,6,133,20901030,Jones S.FOUL (P1.T2),,8:53,2,4,5,1,2592,James Jones,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:13 PM
+117,4,9,134,20901030,,,8:53,2,1,0,0,0,,,,,,0,,,,,,0,,,,,,,,,8:13 PM
+118,10,3,138,20901030,,,8:53,2,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,33 - 27,-6,Wallace Free Throw 1 of 1 (5 PTS),8:16 PM
+119,1,2,140,20901030,MISS Beasley 24' 3PT Jump Shot,,8:31,2,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:17 PM
+120,0,4,141,20901030,,,8:30,2,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:5),8:17 PM
+121,4,6,142,20901030,,,8:19,2,5,4,1,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,,,Chandler OFF.Foul (P1),8:17 PM
+122,5,5,143,20901030,,,8:19,2,5,0,1,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler Foul Turnover (P1.T4),8:17 PM
+123,1,2,144,20901030,MISS Beasley 18' Jump Shot,,8:09,2,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:17 PM
+124,0,4,145,20901030,,,8:08,2,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:6),8:17 PM
+125,46,2,146,20901030,Wright BLOCK (1 BLK),,7:43,2,5,0,4,1716,Larry Hughes,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2748,Dorell Wright,MIA,Miami,1610612748,Heat,,,MISS Hughes 5' Running Jump Shot,8:18 PM
+126,0,4,147,20901030,Jones REBOUND (Off:0 Def:1),,7:42,2,4,0,0,2592,James Jones,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:18 PM
+127,5,1,148,20901030,Beasley  Layup (8 PTS) (Chalmers 2 AST),,7:37,2,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,33 - 29,-4,,8:18 PM
+128,1,6,149,20901030,Beasley P.FOUL (P3.T3),,7:21,2,4,5,1,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:18 PM
+129,0,8,150,20901030,SUB: Anthony FOR Beasley,,7:21,2,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,,8:18 PM
+130,0,8,151,20901030,SUB: Wade FOR Jones,,7:21,2,4,4,0,2592,James Jones,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,,8:18 PM
+131,0,8,153,20901030,,,7:21,2,5,5,0,1716,Larry Hughes,CHA,Charlotte,1610612766,Bobcats,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Jackson FOR Hughes,8:19 PM
+132,1,5,155,20901030,Wade STEAL (1 STL),,7:17,2,5,4,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,Thomas Bad Pass Turnover (P2.T5),8:19 PM
+133,3,6,156,20901030,,,7:16,2,5,4,1,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,,,Thomas L.B.FOUL (P1.T2),8:19 PM
+134,0,8,162,20901030,,,7:16,2,5,5,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Graham FOR Wallace,8:20 PM
+135,42,2,157,20901030,MISS Chalmers  Driving Layup,,6:53,2,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:20 PM
+136,0,4,158,20901030,Haslem REBOUND (Off:2 Def:1),,6:52,2,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:20 PM
+137,87,1,159,20901030,Haslem  Putback Dunk (2 PTS),,6:51,2,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,33 - 31,-2,,8:20 PM
+138,1,6,160,20901030,Chalmers P.FOUL (P1.T4),,6:37,2,4,5,1,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:21 PM
+139,1,6,161,20901030,Wade P.FOUL (P1.PN),,6:32,2,4,5,1,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:21 PM
+140,11,3,163,20901030,,,6:32,2,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Graham Free Throw 1 of 2,8:22 PM
+141,1,4,164,20901030,,,6:32,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:22 PM
+142,12,3,165,20901030,,,6:32,2,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,34 - 31,-3,Graham Free Throw 2 of 2 (1 PTS),8:22 PM
+143,42,2,167,20901030,MISS Chalmers  Driving Layup,,6:15,2,4,0,5,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,,,Thomas BLOCK (1 BLK),8:22 PM
+144,0,4,168,20901030,Haslem REBOUND (Off:3 Def:1),,6:14,2,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:22 PM
+145,5,1,169,20901030,Haslem  Layup (4 PTS),,6:11,2,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,34 - 33,-1,,8:22 PM
+146,1,2,170,20901030,,,5:48,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 6' Jump Shot,8:23 PM
+147,1,9,171,20901030,HEAT Timeout: Regular (Full 2 Short 0),,5:47,2,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,8:23 PM
+148,0,10,177,20901030,Jump Ball Haslem vs. Chandler: Tip to Graham,,5:47,2,4,5,5,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,,,,8:26 PM
+149,0,4,178,20901030,,,5:47,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:26 PM
+150,1,6,179,20901030,Wright P.FOUL (P1.PN),,5:35,2,4,5,1,2748,Dorell Wright,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:26 PM
+151,11,3,180,20901030,,,5:35,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,35 - 33,-2,Jackson Free Throw 1 of 2 (5 PTS),8:27 PM
+152,12,3,182,20901030,,,5:35,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,36 - 33,-3,Jackson Free Throw 2 of 2 (6 PTS),8:27 PM
+153,1,2,184,20901030,MISS Wright 24' 3PT Jump Shot,,5:17,2,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:27 PM
+154,0,4,185,20901030,,,5:16,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson REBOUND (Off:0 Def:3),8:27 PM
+155,42,1,186,20901030,,,4:53,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,38 - 33,-5,Jackson  Driving Layup (8 PTS),8:28 PM
+156,2,6,187,20901030,Wright S.FOUL (P2.PN),,4:53,2,4,5,1,2748,Dorell Wright,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:28 PM
+157,0,8,188,20901030,SUB: Richardson FOR Wright,,4:53,2,4,4,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,,,,8:28 PM
+158,0,8,189,20901030,,,4:53,2,5,5,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Felton FOR Augustin,8:28 PM
+159,10,3,190,20901030,,,4:53,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,39 - 33,-6,Jackson Free Throw 1 of 1 (9 PTS),8:28 PM
+160,1,2,192,20901030,MISS Chalmers 25' 3PT Jump Shot,,4:28,2,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:29 PM
+161,0,4,193,20901030,,,4:27,2,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Graham REBOUND (Off:0 Def:1),8:29 PM
+162,1,2,194,20901030,,,4:15,2,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Graham 19' Jump Shot,8:29 PM
+163,0,4,195,20901030,Richardson REBOUND (Off:0 Def:3),,4:14,2,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:29 PM
+164,66,1,196,20901030,Wade 18' Jump Bank Shot (5 PTS) (Chalmers 3 AST),,3:51,2,4,4,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,39 - 35,-4,,8:30 PM
+165,2,6,197,20901030,Richardson S.FOUL (P2.PN),,3:33,2,4,5,1,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:30 PM
+166,0,8,198,20901030,,,3:33,2,5,5,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Diaw FOR Chandler,8:30 PM
+167,0,8,199,20901030,,,3:33,2,5,5,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Wallace FOR Graham,8:30 PM
+168,11,3,200,20901030,,,3:33,2,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,40 - 35,-5,Thomas Free Throw 1 of 2 (1 PTS),8:30 PM
+169,12,3,202,20901030,,,3:33,2,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,41 - 35,-6,Thomas Free Throw 2 of 2 (2 PTS),8:31 PM
+170,66,2,204,20901030,MISS Wade 18' Jump Bank Shot,,3:14,2,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:31 PM
+171,0,4,205,20901030,,,3:13,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson REBOUND (Off:0 Def:4),8:31 PM
+172,1,2,206,20901030,,,3:00,2,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Thomas 18' Jump Shot,8:31 PM
+173,0,4,207,20901030,Chalmers REBOUND (Off:0 Def:1),,2:59,2,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:31 PM
+174,1,1,208,20901030,Richardson 25' 3PT Jump Shot (15 PTS) (Chalmers 4 AST),,2:50,2,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,41 - 38,-3,,8:32 PM
+175,42,2,210,20901030,Wade BLOCK (1 BLK),,2:28,2,5,0,4,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,,,MISS Wallace  Driving Layup,8:32 PM
+176,0,4,211,20901030,Chalmers REBOUND (Off:0 Def:2),,2:27,2,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:32 PM
+177,1,1,212,20901030,Richardson 25' 3PT Jump Shot (18 PTS) (Chalmers 5 AST),,2:22,2,4,4,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,41 - 41,TIE,,8:32 PM
+178,1,9,213,20901030,,,2:20,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Regular (Reg.2 Short 0),8:32 PM
+179,0,8,215,20901030,,,2:20,2,5,5,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Chandler FOR Thomas,8:35 PM
+180,56,2,217,20901030,,,2:05,2,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 8' Running Hook Shot,8:35 PM
+181,0,4,218,20901030,Haslem REBOUND (Off:3 Def:2),,2:04,2,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:35 PM
+182,42,1,219,20901030,Haslem  Driving Layup (6 PTS) (Chalmers 6 AST),,1:47,2,4,4,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,41 - 43,2,,8:36 PM
+183,47,1,220,20901030,,,1:26,2,5,5,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,43 - 43,TIE,Jackson 17' Turnaround Jump Shot (11 PTS) (Felton 3 AST),8:36 PM
+184,2,6,221,20901030,Wade S.FOUL (P2.PN),,1:26,2,4,5,1,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:36 PM
+185,10,3,222,20901030,,,1:26,2,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,44 - 43,-1,Jackson Free Throw 1 of 1 (12 PTS),8:36 PM
+186,5,1,224,20901030,Haslem  Layup (8 PTS) (Wade 5 AST),,1:12,2,4,4,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,44 - 45,1,,8:37 PM
+187,4,5,225,20901030,,,0:58,2,5,0,1,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson Traveling Turnover (P2.T6),8:37 PM
+188,1,2,226,20901030,MISS Richardson 25' 3PT Jump Shot,,0:41,2,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:37 PM
+189,0,4,227,20901030,Haslem REBOUND (Off:4 Def:2),,0:41,2,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:38 PM
+190,1,6,228,20901030,,,0:41,2,5,4,1,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,,,Diaw P.FOUL (P1.T3),8:38 PM
+191,1,2,229,20901030,MISS Chalmers 25' 3PT Jump Shot,,0:28,2,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:38 PM
+192,0,4,230,20901030,,,0:27,2,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:4),8:38 PM
+193,2,6,231,20901030,Chalmers S.FOUL (P2.PN),,0:23,2,4,5,1,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,8:38 PM
+194,11,3,232,20901030,,,0:23,2,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw Free Throw 1 of 2,8:38 PM
+195,1,4,233,20901030,,,0:23,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:38 PM
+196,12,3,234,20901030,,,0:23,2,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,45 - 45,TIE,Diaw Free Throw 2 of 2 (10 PTS),8:39 PM
+197,52,1,236,20901030,Anthony  Alley Oop Dunk (5 PTS) (Wade 6 AST),,0:11,2,4,4,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,45 - 47,2,,8:39 PM
+198,7,2,237,20901030,Wade BLOCK (2 BLK),,0:02,2,5,0,4,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,,,MISS Chandler  Dunk,8:39 PM
+199,0,4,238,20901030,,,0:01,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:40 PM
+200,2,9,239,20901030,,,0:01,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Short (Reg.2 Short 1),8:40 PM
+201,1,2,243,20901030,,,0:01,2,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 19' Jump Shot,8:41 PM
+202,0,4,244,20901030,,,0:00,2,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,8:41 PM
+203,0,13,245,20901030,,,0:00,2,0,0,0,0,,,,,,0,,,,,,0,,,,,,45 - 47,2,,8:41 PM
+204,0,12,247,20901030,,,12:00,3,0,0,0,0,,,,,,0,,,,,,0,,,,,,45 - 47,2,,8:58 PM
+205,1,2,249,20901030,,,11:35,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 18' Jump Shot,8:58 PM
+206,0,4,250,20901030,Anthony REBOUND (Off:1 Def:5),,11:34,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:58 PM
+207,42,2,251,20901030,MISS Beasley  Driving Layup,,11:22,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:59 PM
+208,0,4,252,20901030,,,11:21,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:5),8:59 PM
+209,1,2,254,20901030,,,11:10,3,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace 19' Jump Shot,8:59 PM
+210,0,4,255,20901030,Richardson REBOUND (Off:0 Def:4),,11:09,3,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:59 PM
+211,42,1,256,20901030,Wade  Driving Layup (7 PTS),,11:01,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,45 - 49,4,,8:59 PM
+212,1,2,257,20901030,,,10:43,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 17' Jump Shot,8:59 PM
+213,0,4,258,20901030,Beasley REBOUND (Off:0 Def:2),,10:42,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,8:59 PM
+214,1,2,259,20901030,MISS Wade 26' 3PT Jump Shot,,10:34,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:00 PM
+215,0,4,260,20901030,Anthony REBOUND (Off:2 Def:5),,10:33,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:00 PM
+216,4,2,261,20901030,MISS Anthony  Tip Shot,,10:32,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:00 PM
+217,0,4,262,20901030,,,10:31,3,5,0,0,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Ratliff REBOUND (Off:0 Def:2),9:00 PM
+218,1,2,263,20901030,,,10:25,3,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Felton 16' Jump Shot,9:00 PM
+219,0,4,264,20901030,Wade REBOUND (Off:0 Def:1),,10:24,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:00 PM
+220,2,6,265,20901030,,,10:19,3,5,4,1,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,Felton S.FOUL (P2.T1),9:00 PM
+221,11,3,266,20901030,Anthony Free Throw 1 of 2 (6 PTS),,10:19,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,45 - 50,5,,9:00 PM
+222,12,3,268,20901030,Anthony Free Throw 2 of 2 (7 PTS),,10:19,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,45 - 51,6,,9:00 PM
+223,1,5,270,20901030,Richardson STEAL (1 STL),,10:08,3,5,4,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,,,Wallace Bad Pass Turnover (P2.T7),9:01 PM
+224,1,2,271,20901030,MISS Richardson 24' 3PT Jump Shot,,10:01,3,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:01 PM
+225,0,4,272,20901030,Anthony REBOUND (Off:3 Def:5),,10:00,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:01 PM
+226,5,1,273,20901030,Anthony  Layup (9 PTS) (Beasley 2 AST),,9:42,3,4,4,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,45 - 53,8,,9:01 PM
+227,42,2,274,20901030,Wade BLOCK (3 BLK),,9:25,3,5,0,4,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,,,MISS Jackson  Driving Layup,9:02 PM
+228,0,4,275,20901030,Beasley REBOUND (Off:0 Def:3),,9:24,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:02 PM
+229,1,2,276,20901030,MISS Wade 17' Jump Shot,,9:16,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:02 PM
+230,0,4,277,20901030,,,9:15,3,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:0 Def:3),9:02 PM
+231,1,2,278,20901030,,,8:59,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson  3PT Jump Shot,9:02 PM
+232,0,4,279,20901030,Richardson REBOUND (Off:0 Def:5),,8:58,3,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:02 PM
+233,42,2,280,20901030,MISS Beasley  Driving Layup,,8:49,3,4,0,5,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,,,Diaw BLOCK (1 BLK),9:02 PM
+234,0,4,281,20901030,HEAT Rebound,,8:48,3,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:02 PM
+235,1,2,282,20901030,MISS Wade 24' 3PT Jump Shot,,8:43,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:03 PM
+236,0,4,283,20901030,,,8:42,3,5,0,0,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Ratliff REBOUND (Off:0 Def:3),9:03 PM
+237,40,5,284,20901030,,,8:33,3,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace Out of Bounds Lost Ball Turnover (P3.T8),9:03 PM
+238,4,6,286,20901030,Anthony OFF.Foul (P2),,8:22,3,4,5,1,201202,Joel Anthony,MIA,Miami,1610612748,Heat,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:04 PM
+239,5,5,287,20901030,Anthony Foul Turnover (P1.T3),,8:22,3,4,0,1,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:04 PM
+240,5,2,288,20901030,,,8:10,3,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Felton  Layup,9:04 PM
+241,0,4,289,20901030,,,8:09,3,5,0,0,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Ratliff REBOUND (Off:1 Def:3),9:04 PM
+242,1,2,290,20901030,,,7:57,3,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace 26' 3PT Jump Shot,9:04 PM
+243,0,4,291,20901030,,,7:56,3,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,9:04 PM
+244,1,9,292,20901030,,,7:56,3,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Regular (Reg.3 Short 1),9:05 PM
+245,42,2,296,20901030,,,7:51,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson  Driving Layup,9:07 PM
+246,0,4,297,20901030,Beasley REBOUND (Off:0 Def:4),,7:50,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:07 PM
+247,1,2,298,20901030,MISS Beasley 17' Jump Shot,,7:43,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:08 PM
+248,0,4,299,20901030,,,7:42,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:6),9:08 PM
+249,47,1,300,20901030,,,7:20,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,47 - 53,6,Jackson 8' Turnaround Jump Shot (14 PTS),9:08 PM
+250,2,6,301,20901030,,,7:01,3,5,4,1,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,,,Diaw S.FOUL (P2.T2),9:08 PM
+251,11,3,302,20901030,Beasley Free Throw 1 of 2 (9 PTS),,7:01,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,47 - 54,7,,9:09 PM
+252,12,3,304,20901030,Beasley Free Throw 2 of 2 (10 PTS),,7:01,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,47 - 55,8,,9:09 PM
+253,1,2,306,20901030,,,6:43,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 8' Jump Shot,9:09 PM
+254,0,4,307,20901030,Anthony REBOUND (Off:3 Def:6),,6:42,3,4,0,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:09 PM
+255,75,1,309,20901030,Wade  Driving Finger Roll Layup (9 PTS),,6:33,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,47 - 57,10,,9:10 PM
+256,66,1,310,20901030,,,6:17,3,5,5,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,49 - 57,8,Wallace 18' Jump Bank Shot (7 PTS) (Felton 4 AST),9:10 PM
+257,1,6,311,20901030,,,6:03,3,5,4,1,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,Jackson P.FOUL (P2.T3),9:10 PM
+258,0,8,312,20901030,,,6:03,3,5,5,0,689,Theo Ratliff,CHA,Charlotte,1610612766,Bobcats,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Chandler FOR Ratliff,9:10 PM
+259,1,6,313,20901030,,,5:53,3,5,4,1,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,,,Jackson P.FOUL (P3.T4),9:11 PM
+260,1,2,314,20901030,MISS Richardson 19' Jump Shot,,5:43,3,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:11 PM
+261,0,4,315,20901030,,,5:42,3,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Felton REBOUND (Off:0 Def:1),9:11 PM
+262,42,2,316,20901030,,,5:25,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw  Driving Layup,9:12 PM
+263,0,4,317,20901030,Beasley REBOUND (Off:0 Def:5),,5:24,3,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:12 PM
+264,1,2,318,20901030,MISS Richardson  3PT Jump Shot,,5:11,3,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:12 PM
+265,0,4,319,20901030,,,5:10,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:7),9:12 PM
+266,42,1,320,20901030,,,5:07,3,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,51 - 57,6,Felton  Driving Layup (6 PTS),9:12 PM
+267,2,6,321,20901030,Arroyo S.FOUL (P2.T1),,5:07,3,4,5,1,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:12 PM
+268,10,3,322,20901030,,,5:07,3,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,52 - 57,5,Felton Free Throw 1 of 1 (7 PTS),9:12 PM
+269,1,2,324,20901030,MISS Wade  3PT Jump Shot,,4:53,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:13 PM
+270,0,4,325,20901030,,,4:52,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson REBOUND (Off:0 Def:5),9:13 PM
+271,3,1,326,20901030,,,4:37,3,5,5,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,54 - 57,3,Diaw 7' Hook Shot (12 PTS) (Felton 5 AST),9:13 PM
+272,1,9,327,20901030,HEAT Timeout: Regular (Full 3 Short 0),,4:37,3,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:13 PM
+273,0,8,330,20901030,SUB: Haslem FOR Beasley,,4:37,3,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,,,,9:16 PM
+274,1,2,331,20901030,MISS Richardson 26' 3PT Jump Shot,,4:17,3,4,0,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:16 PM
+275,0,4,332,20901030,,,4:16,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Diaw REBOUND (Off:1 Def:8),9:16 PM
+276,1,6,333,20901030,Haslem P.FOUL (P1.T2),,4:04,3,4,5,1,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:16 PM
+277,0,8,334,20901030,SUB: Chalmers FOR Arroyo,,4:04,3,4,4,0,2306,Carlos Arroyo,MIA,Miami,1610612748,Heat,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,,9:17 PM
+278,42,2,335,20901030,Anthony BLOCK (2 BLK),,3:56,3,5,0,4,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,201202,Joel Anthony,MIA,Miami,1610612748,Heat,,,MISS Diaw  Driving Layup,9:17 PM
+279,0,4,336,20901030,,,3:54,3,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:1 Def:3),9:17 PM
+280,2,6,337,20901030,Wade S.FOUL (P3.T3),,3:54,3,4,5,1,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:17 PM
+281,11,3,338,20901030,,,3:54,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,55 - 57,2,Jackson Free Throw 1 of 2 (15 PTS),9:17 PM
+282,12,3,340,20901030,,,3:54,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,56 - 57,1,Jackson Free Throw 2 of 2 (16 PTS),9:17 PM
+283,1,5,342,20901030,Richardson Bad Pass Turnover (P1.T4),,3:28,3,4,5,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Felton STEAL (2 STL),9:18 PM
+284,4,6,343,20901030,,,3:25,3,5,4,1,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Chandler OFF.Foul (P2),9:18 PM
+285,5,5,344,20901030,,,3:25,3,5,0,1,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler Foul Turnover (P2.T9),9:18 PM
+286,1,6,345,20901030,,,3:10,3,5,4,1,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Felton P.FOUL (P3.PN),9:19 PM
+287,11,3,346,20901030,MISS Chalmers Free Throw 1 of 2,,3:10,3,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:19 PM
+288,1,4,347,20901030,HEAT Rebound,,3:10,3,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:19 PM
+289,12,3,348,20901030,Chalmers Free Throw 2 of 2 (1 PTS),,3:10,3,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,56 - 58,2,,9:19 PM
+290,4,5,350,20901030,,,2:57,3,5,0,1,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Jackson Traveling Turnover (P3.T10),9:20 PM
+291,1,2,351,20901030,MISS Wade 19' Jump Shot,,2:37,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:20 PM
+292,0,4,352,20901030,,,2:36,3,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:1 Def:4),9:20 PM
+293,1,6,353,20901030,Richardson P.FOUL (P3.T4),,2:31,3,4,5,1,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:21 PM
+294,42,2,354,20901030,Wade BLOCK (4 BLK),,2:16,3,5,0,4,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,,,MISS Jackson  Driving Layup,9:21 PM
+295,0,4,355,20901030,Chalmers REBOUND (Off:0 Def:3),,2:15,3,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:21 PM
+296,1,5,356,20901030,Richardson Bad Pass Turnover (P2.T5),,2:08,3,4,5,0,2047,Quentin Richardson,MIA,Miami,1610612748,Heat,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Chandler STEAL (1 STL),9:21 PM
+297,1,2,357,20901030,Anthony BLOCK (3 BLK),,2:03,3,5,0,4,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,201202,Joel Anthony,MIA,Miami,1610612748,Heat,,,MISS Felton 10' Jump Shot,9:21 PM
+298,0,4,358,20901030,Wade REBOUND (Off:0 Def:2),,2:01,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:21 PM
+299,42,1,359,20901030,Wade  Driving Layup (11 PTS),,1:55,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,56 - 60,4,,9:21 PM
+300,1,2,360,20901030,,,1:34,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 20' Jump Shot,9:22 PM
+301,0,4,361,20901030,Haslem REBOUND (Off:4 Def:3),,1:33,3,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:22 PM
+302,1,5,362,20901030,Wade Bad Pass Turnover (P1.T6),,1:15,3,4,5,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Diaw STEAL (1 STL),9:22 PM
+303,1,2,363,20901030,,,0:59,3,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 6' Jump Shot,9:22 PM
+304,0,4,364,20901030,Wade REBOUND (Off:0 Def:3),,0:57,3,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:22 PM
+305,0,8,365,20901030,SUB: Wright FOR Wade,,0:39,3,4,4,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,,,,9:23 PM
+306,2,9,367,20901030,HEAT Timeout: Short (Full 3 Short 1),,0:39,3,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:23 PM
+307,11,5,370,20901030,HEAT Turnover: Shot Clock (T#7),,0:35,3,2,0,1,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:25 PM
+308,1,2,371,20901030,,,0:28,3,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 25' 3PT Jump Shot,9:25 PM
+309,0,4,372,20901030,HEAT Rebound,,0:27,3,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:25 PM
+310,5,2,373,20901030,MISS Anthony  Layup,,0:05,3,4,0,5,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,,,Chandler BLOCK (1 BLK),9:26 PM
+311,0,4,374,20901030,Chalmers REBOUND (Off:1 Def:3),,0:04,3,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:26 PM
+312,1,2,375,20901030,MISS Chalmers 26' 3PT Jump Shot,,0:04,3,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:26 PM
+313,0,4,376,20901030,Haslem REBOUND (Off:5 Def:3),,0:02,3,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:26 PM
+314,2,6,377,20901030,,,0:00,3,5,4,1,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,,,Chandler S.FOUL (P3.PN),9:26 PM
+315,0,18,379,20901030,,,0:00,3,0,0,1,0,,,,,,0,,,,,,0,,,,,,56 - 60,4,,9:27 PM
+316,11,3,380,20901030,MISS Haslem Free Throw 1 of 2,,0:00,3,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:28 PM
+317,1,4,381,20901030,HEAT Rebound,,0:00,3,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:28 PM
+318,12,3,382,20901030,Haslem Free Throw 2 of 2 (9 PTS),,0:00,3,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,56 - 61,5,,9:28 PM
+319,0,13,384,20901030,,,0:00,3,0,0,0,0,,,,,,0,,,,,,0,,,,,,56 - 61,5,,9:28 PM
+320,0,12,386,20901030,,,12:00,4,0,0,0,0,,,,,,0,,,,,,0,,,,,,56 - 61,5,,9:31 PM
+321,1,5,387,20901030,Wright Bad Pass Turnover (P1.T8),,11:46,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:31 PM
+322,2,6,388,20901030,Haslem S.FOUL (P2.T1),,11:33,4,4,5,1,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:31 PM
+323,11,3,389,20901030,,,11:33,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,57 - 61,4,Wallace Free Throw 1 of 2 (8 PTS),9:32 PM
+324,12,3,391,20901030,,,11:33,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,58 - 61,3,Wallace Free Throw 2 of 2 (9 PTS),9:32 PM
+325,1,2,393,20901030,MISS Jones 25' 3PT Jump Shot,,11:10,4,4,0,0,2592,James Jones,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:32 PM
+326,0,4,394,20901030,,,11:09,4,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:7),9:32 PM
+327,1,2,395,20901030,,,10:48,4,5,0,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Augustin 18' Jump Shot,9:33 PM
+328,0,4,396,20901030,Beasley REBOUND (Off:0 Def:6),,10:47,4,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:33 PM
+329,42,2,397,20901030,MISS Beasley  Driving Layup,,10:34,4,4,0,5,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,,,Chandler BLOCK (2 BLK),9:33 PM
+330,0,4,398,20901030,,,10:33,4,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:8),9:33 PM
+331,1,5,399,20901030,Chalmers STEAL (1 STL),,10:29,4,5,4,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Augustin Bad Pass Turnover (P1.T11),9:33 PM
+332,1,6,400,20901030,,,10:22,4,5,4,1,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Augustin P.FOUL (P2.T1),9:33 PM
+333,2,5,402,20901030,Beasley Lost Ball Turnover (P2.T9),,10:10,4,4,5,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Wallace STEAL (1 STL),9:34 PM
+334,2,6,403,20901030,Chalmers S.FOUL (P3.T2),,10:05,4,4,5,1,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:34 PM
+335,11,3,404,20901030,,,10:05,4,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,59 - 61,2,Graham Free Throw 1 of 2 (2 PTS),9:34 PM
+336,12,3,406,20901030,,,10:05,4,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Graham Free Throw 2 of 2,9:34 PM
+337,0,4,408,20901030,Haslem REBOUND (Off:5 Def:4),,10:04,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:34 PM
+338,1,2,409,20901030,MISS Jones 24' 3PT Jump Shot,,9:47,4,4,0,0,2592,James Jones,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:35 PM
+339,0,4,410,20901030,,,9:46,4,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Thomas REBOUND (Off:0 Def:1),9:35 PM
+340,5,2,411,20901030,Beasley BLOCK (2 BLK),,9:27,4,5,0,4,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,201563,Michael Beasley,MIA,Miami,1610612748,Heat,,,MISS Graham  Layup,9:35 PM
+341,0,4,412,20901030,,,9:26,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,9:35 PM
+342,0,8,413,20901030,SUB: Wade FOR Jones,,9:26,4,4,4,0,2592,James Jones,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,,9:36 PM
+343,1,2,414,20901030,,,9:11,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace 25' 3PT Jump Shot,9:36 PM
+344,0,4,415,20901030,,,9:10,4,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Thomas REBOUND (Off:1 Def:1),9:36 PM
+345,2,6,416,20901030,Beasley S.FOUL (P4.T3),,9:01,4,4,5,1,201563,Michael Beasley,MIA,Miami,1610612748,Heat,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:36 PM
+346,11,6,417,20901030,Beasley T.FOUL (P4.T3),,9:01,4,4,0,1,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:37 PM
+347,16,3,418,20901030,,,9:01,4,5,0,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,60 - 61,1,Augustin Free Throw Technical (8 PTS),9:37 PM
+348,11,3,420,20901030,,,9:01,4,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,61 - 61,TIE,Thomas Free Throw 1 of 2 (3 PTS),9:38 PM
+349,12,3,422,20901030,,,9:01,4,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Thomas Free Throw 2 of 2,9:38 PM
+350,0,4,424,20901030,Wright REBOUND (Off:0 Def:1),,9:00,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:38 PM
+351,1,9,425,20901030,HEAT Timeout: Regular (Full 4 Short 1),,8:59,4,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:38 PM
+352,2,6,429,20901030,,,8:52,4,5,4,1,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,,,Graham S.FOUL (P1.T2),9:41 PM
+353,11,3,430,20901030,Beasley Free Throw 1 of 2 (11 PTS),,8:52,4,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,61 - 62,1,,9:41 PM
+354,12,3,432,20901030,Beasley Free Throw 2 of 2 (12 PTS),,8:52,4,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,61 - 63,2,,9:41 PM
+355,2,6,434,20901030,Wade S.FOUL (P4.T4),,8:30,4,4,5,1,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:42 PM
+356,11,3,435,20901030,,,8:30,4,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Graham Free Throw 1 of 2,9:42 PM
+357,1,4,436,20901030,,,8:30,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,9:42 PM
+358,12,3,437,20901030,,,8:30,4,5,0,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Graham Free Throw 2 of 2,9:42 PM
+359,0,4,439,20901030,Wright REBOUND (Off:0 Def:2),,8:29,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:42 PM
+360,1,1,440,20901030,Wade 19' Jump Shot (13 PTS),,8:16,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,61 - 65,4,,9:43 PM
+361,8,5,441,20901030,,,7:59,4,5,0,1,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler 3 Second Violation Turnover (P3.T12),9:43 PM
+362,42,1,442,20901030,Beasley  Driving Layup (14 PTS) (Wade 7 AST),,7:42,4,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,61 - 67,6,,9:44 PM
+363,65,2,443,20901030,,,7:21,4,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Thomas 8' Jump Hook Shot,9:44 PM
+364,0,4,444,20901030,Haslem REBOUND (Off:5 Def:5),,7:20,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:44 PM
+365,1,2,445,20901030,MISS Wright  3PT Jump Shot,,7:10,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:44 PM
+366,0,4,446,20901030,,,7:09,4,5,0,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Thomas REBOUND (Off:1 Def:2),9:44 PM
+367,42,2,447,20901030,Wade BLOCK (5 BLK),,7:05,4,5,0,4,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,0,,,,,,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,,,MISS Thomas  Driving Layup,9:44 PM
+368,0,4,448,20901030,,,7:04,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,9:44 PM
+369,1,9,449,20901030,,,7:04,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Regular (Reg.4 Short 1),9:44 PM
+370,0,8,451,20901030,,,7:04,4,5,5,0,201571,D.J. Augustin,CHA,Charlotte,1610612766,Bobcats,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Jackson FOR Augustin,9:47 PM
+371,0,8,452,20901030,,,7:04,4,5,5,0,200748,Tyrus Thomas,CHA,Charlotte,1610612766,Bobcats,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Felton FOR Thomas,9:47 PM
+372,0,8,453,20901030,,,7:04,4,5,5,0,101211,Stephen Graham,CHA,Charlotte,1610612766,Bobcats,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,SUB: Diaw FOR Graham,9:47 PM
+373,1,2,456,20901030,,,6:49,4,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 14' Jump Shot,9:47 PM
+374,0,4,457,20901030,Haslem REBOUND (Off:5 Def:6),,6:48,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:47 PM
+375,1,2,458,20901030,MISS Haslem 18' Jump Shot,,6:32,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:48 PM
+376,0,4,459,20901030,,,6:31,4,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:1 Def:9),9:48 PM
+377,1,5,460,20901030,Beasley STEAL (1 STL),,6:25,4,5,4,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,,,Felton Bad Pass Turnover (P1.T13),9:48 PM
+378,43,1,461,20901030,Wright  Alley Oop Layup (5 PTS) (Wade 8 AST),,6:20,4,4,4,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,61 - 69,8,,9:48 PM
+379,40,5,463,20901030,,,6:01,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace Out of Bounds Lost Ball Turnover (P4.T14),9:48 PM
+380,1,2,464,20901030,MISS Wade 12' Jump Shot,,5:44,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:49 PM
+381,0,4,465,20901030,Wright REBOUND (Off:1 Def:2),,5:43,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:49 PM
+382,71,1,466,20901030,Beasley  Finger Roll Layup (16 PTS) (Wright 1 AST),,5:38,4,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,61 - 71,10,,9:49 PM
+383,2,6,467,20901030,Wright S.FOUL (P3.PN),,5:23,4,4,5,1,2748,Dorell Wright,MIA,Miami,1610612748,Heat,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:49 PM
+384,11,3,468,20901030,,,5:23,4,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,62 - 71,9,Jackson Free Throw 1 of 2 (17 PTS),9:50 PM
+385,12,3,470,20901030,,,5:23,4,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,63 - 71,8,Jackson Free Throw 2 of 2 (18 PTS),9:50 PM
+386,45,2,472,20901030,MISS Beasley 6' Jump Shot,,5:07,4,4,0,5,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,,,Chandler BLOCK (3 BLK),9:50 PM
+387,0,4,473,20901030,Beasley REBOUND (Off:1 Def:6),,5:06,4,4,0,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:50 PM
+388,2,5,474,20901030,Beasley Lost Ball Turnover (P3.T10),,5:03,4,4,5,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Wallace STEAL (2 STL),9:50 PM
+389,2,6,475,20901030,Wade S.FOUL (P5.PN),,4:55,4,4,5,1,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:50 PM
+390,11,3,476,20901030,,,4:55,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,64 - 71,7,Wallace Free Throw 1 of 2 (10 PTS),9:51 PM
+391,12,3,478,20901030,,,4:55,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,65 - 71,6,Wallace Free Throw 2 of 2 (11 PTS),9:51 PM
+392,1,5,480,20901030,Wade Bad Pass Turnover (P2.T11),,4:35,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:52 PM
+393,2,6,481,20901030,Chalmers S.FOUL (P4.PN),,4:15,4,4,5,1,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:52 PM
+394,11,3,482,20901030,,,4:15,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,66 - 71,5,Wallace Free Throw 1 of 2 (12 PTS),9:52 PM
+395,12,3,484,20901030,,,4:15,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,67 - 71,4,Wallace Free Throw 2 of 2 (13 PTS),9:52 PM
+396,1,2,486,20901030,MISS Haslem 18' Jump Shot,,4:00,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:53 PM
+397,0,4,487,20901030,,,3:59,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:1 Def:5),9:53 PM
+398,1,2,489,20901030,,,3:38,4,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 25' 3PT Jump Shot,9:53 PM
+399,0,4,490,20901030,Haslem REBOUND (Off:5 Def:7),,3:37,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:53 PM
+400,1,1,491,20901030,Wright 15' Jump Shot (7 PTS) (Wade 9 AST),,3:24,4,4,4,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,67 - 73,6,,9:53 PM
+401,78,1,492,20901030,,,2:59,4,5,0,0,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,69 - 73,4,Felton 8' Floating Jump Shot (9 PTS),9:54 PM
+402,11,5,493,20901030,HEAT Turnover: Shot Clock (T#12),,2:29,4,2,0,1,1610612748,,,,,,0,,,,,,0,,,,,,,,,9:54 PM
+403,4,9,494,20901030,,,2:29,4,1,0,0,0,,,,,,0,,,,,,0,,,,,,,,,9:55 PM
+404,0,8,497,20901030,SUB: Anthony FOR Beasley,,2:29,4,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,,9:57 PM
+405,1,2,498,20901030,,,2:09,4,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 21' Jump Shot,9:58 PM
+406,0,4,499,20901030,Wright REBOUND (Off:1 Def:3),,2:08,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:58 PM
+407,1,2,500,20901030,MISS Wade 20' Jump Shot,,1:54,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,9:58 PM
+408,0,4,501,20901030,,,1:53,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Rebound,9:58 PM
+409,1,2,502,20901030,,,1:41,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace 6' Jump Shot,9:59 PM
+410,0,4,504,20901030,,,1:40,4,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Chandler REBOUND (Off:2 Def:9),9:59 PM
+411,4,2,505,20901030,,,1:39,4,5,0,0,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Chandler  Tip Shot,9:59 PM
+412,0,4,506,20901030,,,1:38,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:2 Def:5),9:59 PM
+413,45,1,513,20901030,,,1:36,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,71 - 73,2,Wallace 3' Jump Shot (15 PTS),9:59 PM
+414,2,6,522,20901030,Anthony S.FOUL (P3.PN),,1:36,4,4,5,1,201202,Joel Anthony,MIA,Miami,1610612748,Heat,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,,9:59 PM
+415,0,8,533,20901030,SUB: Beasley FOR Anthony,,1:36,4,4,4,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,,,,9:59 PM
+416,10,3,528,20901030,,,1:36,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace Free Throw 1 of 1,9:59 PM
+417,0,4,553,20901030,,,1:35,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace REBOUND (Off:3 Def:5),9:59 PM
+418,4,6,509,20901030,,,1:33,4,5,4,1,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,,,Wallace OFF.Foul (P1),10:00 PM
+419,37,5,555,20901030,,,1:33,4,5,0,1,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,Wallace Offensive Foul Turnover (P5.T15),10:00 PM
+420,1,6,556,20901030,,,1:17,4,5,4,1,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,,,Wallace P.FOUL (P2.T3),10:01 PM
+421,1,2,510,20901030,MISS Wade 20' Jump Shot,,1:08,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:01 PM
+422,0,4,511,20901030,Haslem REBOUND (Off:6 Def:7),,1:06,4,4,0,0,2617,Udonis Haslem,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:01 PM
+423,2,6,512,20901030,,,0:55,4,5,4,1,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Diaw S.FOUL (P3.PN),10:01 PM
+424,0,8,558,20901030,SUB: Anthony FOR Beasley,,0:55,4,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,,10:01 PM
+425,11,3,514,20901030,Chalmers Free Throw 1 of 2 (2 PTS),,0:55,4,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,71 - 74,3,,10:01 PM
+426,12,3,516,20901030,Chalmers Free Throw 2 of 2 (3 PTS),,0:55,4,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,71 - 75,4,,10:02 PM
+427,1,9,518,20901030,,,0:55,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Regular (Reg.5 Short 1),10:03 PM
+428,1,2,523,20901030,,,0:48,4,5,0,0,1536,Stephen Jackson,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Jackson 26' 3PT Jump Shot,10:04 PM
+429,0,4,524,20901030,Wade REBOUND (Off:0 Def:4),,0:47,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:04 PM
+430,1,2,525,20901030,MISS Chalmers 25' 3PT Jump Shot,,0:29,4,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:04 PM
+431,0,4,526,20901030,Wright REBOUND (Off:2 Def:3),,0:28,4,4,0,0,2748,Dorell Wright,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:04 PM
+432,1,9,527,20901030,HEAT Timeout: Regular (Full 5 Short 1),,0:23,4,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,10:04 PM
+433,0,8,531,20901030,SUB: Beasley FOR Anthony,,0:23,4,4,4,0,201202,Joel Anthony,MIA,Miami,1610612748,Heat,201563,Michael Beasley,MIA,Miami,1610612748,Heat,0,,,,,,,,,10:06 PM
+434,1,5,559,20901030,Wade Bad Pass Turnover (P3.T13),,0:20,4,4,5,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,2199,Tyson Chandler,CHA,Charlotte,1610612766,Bobcats,0,,,,,,,,Chandler STEAL (2 STL),10:07 PM
+435,1,2,535,20901030,,,0:13,4,5,0,0,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Wallace  3PT Jump Shot,10:07 PM
+436,0,4,536,20901030,Chalmers REBOUND (Off:1 Def:4),,0:11,4,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:07 PM
+437,1,6,537,20901030,,,0:10,4,5,4,1,101109,Raymond Felton,CHA,Charlotte,1610612766,Bobcats,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,,,Felton P.FOUL (P4.PN),10:08 PM
+438,11,3,538,20901030,MISS Chalmers Free Throw 1 of 2,,0:10,4,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:08 PM
+439,1,4,539,20901030,HEAT Rebound,,0:10,4,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,10:08 PM
+440,12,3,540,20901030,Chalmers Free Throw 2 of 2 (4 PTS),,0:10,4,4,0,0,201596,Mario Chalmers,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,71 - 76,5,,10:08 PM
+441,2,9,542,20901030,,,0:10,4,3,0,0,1610612766,,,,,,0,,,,,,0,,,,,,,,Bobcats Timeout: Short (Reg.5 Short 2),10:08 PM
+442,0,8,544,20901030,SUB: Anthony FOR Beasley,,0:10,4,4,4,0,201563,Michael Beasley,MIA,Miami,1610612748,Heat,201202,Joel Anthony,MIA,Miami,1610612748,Heat,0,,,,,,,,,10:09 PM
+443,1,2,545,20901030,,,0:06,4,5,0,0,2564,Boris Diaw,CHA,Charlotte,1610612766,Bobcats,0,,,,,,0,,,,,,,,MISS Diaw 25' 3PT Jump Shot,10:09 PM
+444,0,4,546,20901030,Wade REBOUND (Off:0 Def:5),,0:05,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:09 PM
+445,1,6,547,20901030,,,0:03,4,5,4,1,2222,Gerald Wallace,CHA,Charlotte,1610612766,Bobcats,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,,,Wallace P.FOUL (P3.PN),10:09 PM
+446,11,3,548,20901030,MISS Wade Free Throw 1 of 2,,0:03,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,,,,10:10 PM
+447,1,4,549,20901030,HEAT Rebound,,0:03,4,2,0,0,1610612748,,,,,,0,,,,,,0,,,,,,,,,10:10 PM
+448,12,3,550,20901030,Wade Free Throw 2 of 2 (14 PTS),,0:03,4,4,0,0,2548,Dwyane Wade,MIA,Miami,1610612748,Heat,0,,,,,,0,,,,,,71 - 77,6,,10:10 PM
+449,0,13,552,20901030,,,0:00,4,0,0,0,0,,,,,,0,,,,,,0,,,,,,71 - 77,6,,10:10 PM

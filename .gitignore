@@ -61,3 +61,5 @@ target/
 # Pycharm project configuration
 .idea/
 /data
+stats_nba_cache.sqlite
+

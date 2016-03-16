@@ -19,7 +19,7 @@ class StatsNBA(object):
         from crawl.settings import DEFAULT_REQUEST_HEADERS
         response = requests.get(url, headers=DEFAULT_REQUEST_HEADERS)
         if response.status_code != 200:
-            raise Exception, response
+            raise Exception(url)
         resource = cls._parse_response(response)
         return resource
 
@@ -114,4 +114,45 @@ class StatsNBAPlayByPlay(StatsNBA):
         'EndPeriod': '10',
         'GameID': None,
         'StartPeriod': '1'
+    }
+
+
+class StatsNBALeaguePlayerStats(StatsNBA):
+    resource = 'leaguedashplayerstats'
+    default_params = {
+        'College': '',
+        'Conference': '',
+        'Country': '',
+        'DateFrom': '',
+        'DateTo': '',
+        'Division': '',
+        'DraftPick': '',
+        'DraftYear': '',
+        'GameScope': '',
+        'GameSegment': '',
+        'Height': '',
+        'LastNGames': 0,
+        'LeagueID': '00',
+        'Location': '',
+        'MeasureType': 'Base',
+        'Month': 0,
+        'OpponentTeamID': 0,
+        'Outcome': '',
+        'PORound': 0,
+        'PaceAdjust': 'N',
+        'PerMode': 'PerGame',
+        'Period': 0,
+        'PlayerExperience': '',
+        'PlayerPosition': '',
+        'PlusMinus': 'N',
+        'Rank': 'N',
+        'Season': None,
+        'SeasonSegment': '',
+        'SeasonType': 'Regular Season',
+        'ShotClockRange': '',
+        'StarterBench': '',
+        'TeamID': 0,
+        'VsConference': '',
+        'VsDivision': '',
+        'Weight': ''
     }

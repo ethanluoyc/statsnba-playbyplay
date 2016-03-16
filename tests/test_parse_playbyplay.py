@@ -19,13 +19,15 @@
 """
 import pytest
 from statsnba.models.nba import NBAGame
-
+from datetime import timedelta
 
 game_id = '0021400004'
 
 
 @pytest.fixture(scope='module')
 def sample_playbyplays():
+    import requests_cache
+    requests_cache.install_cache('stats_nba_cache')
     game = NBAGame(game_id='0021400004')
     return game.playbyplay
 
@@ -87,14 +89,12 @@ def test_turnover(sample_playbyplays):
     assert sample_playbyplays[26].event_type == 'turnover'
     assert sample_playbyplays[26].steal == 'Larry Sanders'
     assert sample_playbyplays[26].player == 'Michael Kidd-Gilchrist'
-    pytest.xfail()
 
 
 def test_foul(sample_playbyplays):
     assert sample_playbyplays[63].event_type == 'foul'
     assert sample_playbyplays[63].team == 'CHA'
     assert sample_playbyplays[63].player == 'Michael Kidd-Gilchrist'
-    pytest.xfail()
 
 
 def test_violation(sample_playbyplays):
@@ -138,6 +138,30 @@ def test_end_period(sample_playbyplays):
     assert sample_playbyplays[509].event_type == 'end of period'
 
 
+def test_parse_event_players(sample_playbyplays):
+    # ensure that the players are sorted by the name  # TODO sort by last name or first name
+    assert sample_playbyplays[1].home_player1_name == 'Brandon Knight'
+    assert sample_playbyplays[1].home_player2_name == 'Jabari Parker'
+
+
+def test_overall_time(sample_playbyplays):
+    # normal time period
+    assert sample_playbyplays[2].overall_elapsed_time == timedelta(seconds=18)
+    assert sample_playbyplays[2].overall_remaining_time == timedelta(minutes=52, seconds=42)
+    # overtime period
+    assert sample_playbyplays[-3].overall_elapsed_time == timedelta(minutes=52, seconds=58)
+    assert sample_playbyplays[-3].overall_remaining_time == timedelta(seconds=2)
+
+
+def test_period_time(sample_playbyplays):
+    # normal time period
+    assert sample_playbyplays[2].period_elapsed_time == timedelta(seconds=18)
+    assert sample_playbyplays[2].period_remaining_time == timedelta(minutes=11, seconds=42)
+    # overtime period
+    assert sample_playbyplays[-3].period_elapsed_time == timedelta(minutes=4, seconds=58)
+    assert sample_playbyplays[-3].period_remaining_time == timedelta(seconds=2)
+
+
 # Test that line-ups are correctly aggregated from the playbyplays
-def test_lineups():
+def test_lineups(sample_playbyplays):
     pytest.xfail()
