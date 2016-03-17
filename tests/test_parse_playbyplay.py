@@ -1,18 +1,6 @@
 """
     This tests generating a sample game playbyplay
-    The game selected has GameID='0020901030'
-    It is the game in 2009-10, CHARLOTTE BOBCATS Vs. MIAMI HEAT
-    Visit
-        http://stats.nba.com/game/#!/0020901030/
-    for details of this game.
-
-    Boxscore queries URL:
-    http://stats.nba.com/stats/boxscoretraditionalv2?EndPeriod=10&EndRange=28800&GameID=0020901030&RangeType=0&Season=2009-10&SeasonType=Regular+Season&StartPeriod=1&StartRange=0
-
-    PlayByPlay URL:
-    http://stats.nba.com/stats/playbyplayv2?GameID=0020901030&SeasonType=Regular+Season&StartPeriod=1&StartRange=0&EndPeriod=10
-
-    TODO:
+    The game selected has GameID='0021400004'
     Test whether an overtime game (i.e last period > 4) passes the tests
     http://stats.nba.com/game/#!/0021400004/ is a game with overtime
 

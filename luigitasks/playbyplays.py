@@ -1,5 +1,7 @@
 import luigi
 from statsnba.resources import *
+import pandas as pd
+from statsnba.utils import make_season
 
 
 def get_season_game_ids(season):
@@ -14,13 +16,23 @@ class StatsNBAPlayerStatsTask(luigi.ExternalTask, StatsNBALeaguePlayerStats):
     season = luigi.Parameter()
 
     def run(self):
-        result = self.fetch_resource({'Season': self.season})
+        season = make_season(int(self.season))
+        result = self.fetch_resource({'Season': season,
+                                      'PerMode': 'Totals'})
         with self.output().open('w') as out_file:
-            import pandas as pd
             pd.DataFrame(result['resultSets']['LeagueDashPlayerStats']).to_csv(out_file)
 
     def output(self):
         return luigi.LocalTarget('data/statsnba/playerstats/playerstats_%s.csv' % self.season)
+
+
+class ManySeasonsPlayerStats(luigi.WrapperTask):
+    seasons = luigi.parameter.Parameter()
+
+    def requires(self):
+        start_season, end_season = self.seasons.split('-')
+        for season in range(int(start_season), int(end_season)+1):
+            yield StatsNBAPlayerStatsTask(season=season)
 
 
 class StatsNBAGamelogTask(luigi.ExternalTask, StatsNBAGamelog):
@@ -95,28 +107,6 @@ class ProcessPlayByPlay(luigi.Task):
         return luigi.LocalTarget(('data/processed_playbyplay/' + self.output_file_format).format(game_id=self.game_id))
 
 
-class AggregatePbPToMatchups(luigi.Task):
-    game_id = luigi.Parameter
-    output_file_format = 'matchups_{game_id}.csv'
-
-    def requires(self):
-        return ProcessPlayByPlay(game_id=self.game_id)
-
-    def run(self):
-        import pandas as pd
-        with self.input().open() as in_file:
-            game_pbp = pd.DataFrame(in_file)
-
-        # fill up the score columns for better tabulation
-        game_pbp[['away_score', 'home_score']] = game_pbp[['away_score', 'home_score']].fillna(method='ffill')
-        game_pbp[['away_score', 'home_score']] = game_pbp[['away_score', 'home_score']].fillna(0)
-
-        # TODO separate the events into matchups
-
-    def output(self):
-        return luigi.LocalTarget(('data/matchups/' + self.output_file_format).format(game_id=self.game_id))
-
-
 class SeasonPlayByPlay(luigi.WrapperTask):
     season = luigi.parameter.Parameter()
 
@@ -127,16 +117,3 @@ class SeasonPlayByPlay(luigi.WrapperTask):
 
         for g in game_ids:
             yield ProcessPlayByPlay(game_id=g.strip())
-
-
-class ManySeasonsPlayByPlay(luigi.WrapperTask):
-    seasons = luigi.parameter.Parameter()
-
-    def requires(self):
-        start_season, end_season = self.seasons.split('-')
-        for season in range(int(start_season), int(end_season)+1):
-            yield SeasonPlayByPlay(season=season)
-
-
-if __name__ == '__main__':
-    luigi.build([SeasonPlayByPlay(season=2009)], local_scheduler=True)
