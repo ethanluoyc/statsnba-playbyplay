@@ -77,7 +77,7 @@ class ProcessPlayByPlay(luigi.Task):
             columns.extend(list(itertools.chain(*[['home_player{}_id'.format(i), 'home_player{}_name'.format(i)] for i in range(1, 6)])))
             columns.extend(list(itertools.chain(*[['away_player{}_id'.format(i), 'away_player{}_name'.format(i)] for i in range(1, 6)])))
             column_str = '| game_id | period | away_score | home_score | home_team | away_team | \
-                            play_length | play_id | team | event_type | away | home | block | \
+                            play_length | play_id | team | event_type | away | home | block | assist | \
                             entered | left | num | opponent | outof | player | points | possession \
                             | reason | result | steal | type | \
                             shot_distance | original_x | original_y | converted_x | converted_y | \

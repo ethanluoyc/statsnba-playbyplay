@@ -34,7 +34,7 @@ class NBAPlayer(object):
         return cmp(self.name, other.name)
 
     def __repr__(self):
-        return '<Player {}, {}>'.format(self.name, self.team_abbr)
+        return 'NBAPlayer({}, {})'.format(self.name, self.team_abbr)
 
     def __str__(self):
         return self.name
@@ -60,7 +60,7 @@ class NBAGame(object):
         self._playbyplay = []
 
     def __repr__(self):
-        return self.__class__.__name__ + ' ' + self.game_id
+        return 'NBAGame(game_id={g.game_id}, home_team={g.home_team}, away_team={g.away_team})'.format(g=self)
 
     @property
     def home_team(self):
@@ -76,6 +76,14 @@ class NBAGame(object):
             if p.team_abbr == getattr(self, team) and p.starter_or_bench == starter_or_bench:
                 selected.append(p)
         return set(selected)
+
+    @property
+    def home_boxscore(self):
+        return self._boxscore['resultSets']['TeamStats'][0]
+
+    @property
+    def away_boxscore(self):
+        return self._boxscore['resultSets']['TeamStats'][1]
 
     @property
     def home_starters(self):
@@ -98,13 +106,7 @@ class NBAGame(object):
         if self._playbyplay:
             return self._playbyplay
         """Playbyplay is the collection of events"""
-        on_court_players = self.home_starters | self.away_starters
-        pbp = []
-        for i, p in enumerate(self._pbp['resultSets']['PlayByPlay']):
-            ev = NBAEvent(i, game=self, on_court_players=on_court_players)
-            on_court_players = ev.on_court_players
-            pbp.append(ev)
-        self._playbyplay = pbp
+        self._playbyplay = PlayByPlay(self)
         return self._playbyplay
 
     @property
@@ -129,8 +131,27 @@ class NBAGame(object):
         raise Exception('%s is not found in this game' % player_name)
 
 
-class NBALineups(object):
-    def __init__(self):
+class PlayByPlay(list):
+    def __init__(self, game):
+        self.game = game
+        """Playbyplay is the collection of events"""
+        on_court_players = game.home_starters | game.away_starters
+        pbp = []
+        for i, p in enumerate(game._pbp['resultSets']['PlayByPlay']):
+            ev = NBAEvent(i, game=game, on_court_players=on_court_players)
+            on_court_players = ev.on_court_players
+            pbp.append(ev)
+        super(PlayByPlay, self).__init__(pbp)
+
+
+class PlayByPlayStats(object):
+    """Class to compute boxscore stats directly from playbyplay data."""
+
+    def __init__(self, playbyplay):
+        """Initialize with a segment of playbyplays, can be a game or a segment of game"""
+        self.pbp = playbyplay
+
+    def to_dict(self):
         pass
 
 __all__ = ['NBAEvent', 'NBAGame', 'NBAPlayer', 'NBATeam']

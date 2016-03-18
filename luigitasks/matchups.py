@@ -70,6 +70,10 @@ class PbPToMatchups(luigi.Task):
             out_cols = {'StartPlayID': group.iloc[0].play_id,
                         'EndPlayID': group.iloc[-1].play_id,
                         'PointDifference': after_ptd - before_ptd,
+                        'HomeStartScore': group.iloc[0].home_score,
+                        'HomeEndScore': group.iloc[-1].home_score,
+                        'AwayStartScore': group.iloc[0].away_score,
+                        'AwayEndScore': group.iloc[-1].away_score,
                         'AwayPossessions': away_possessions,
                         'HomePossessions': home_possessions,
                         'ElapsedTime': elapsed_time}

@@ -62,4 +62,5 @@ target/
 .idea/
 /data
 stats_nba_cache.sqlite
-
+tmp
+*_cache.sqlite

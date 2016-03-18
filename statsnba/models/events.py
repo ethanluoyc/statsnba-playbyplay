@@ -1,5 +1,7 @@
 import re
+import logging
 
+logger = logging.getLogger(__name__)
 
 #         (is_it_required, event_attr, event_data_key)
 column_functions = ((True, 'game_id', 'GAME_ID'),
@@ -107,25 +109,29 @@ class _NBAEvent(object):
         # forward looking for the current 10 players on the floor by relying the API
         if self.period > NBAEvent(self.event_stats_idx - 1, game=self._game).period:
             start_range = self.overall_elapsed_time.seconds * 10 + 5
-            to_update_floor_players = True
             j = self.event_stats_idx
+            to_update_floor_players = True
             while to_update_floor_players:
                 forward_ev = NBAEvent(j, game=self._game)
                 if forward_ev.event_type == 'substitution':
                     end_range = forward_ev.overall_elapsed_time.seconds * 10
                     on_court_players = self._game.find_players_in_range(start_range, end_range)
                     while len(on_court_players) != 10:
+                        logger.debug('num_on_court={}, start={}, end={}'.format(len(on_court_players), start_range, end_range))
                         end_range -= 5
                         if end_range <= start_range:
                             raise AssertionError(
-                                'could not locate on floor players %s, %s' % (start_range, end_range))
+                                'Could not locate on floor players %s, %s' % (start_range, end_range))
                         on_court_players = self._game.find_players_in_range(start_range, end_range)
                     to_update_floor_players = False
                 else:
                     j += 1
-                    if j == len(self._game._pbp['resultSets']['PlayByPlay'][j]):
+                    if j == len(self._game._pbp['resultSets']['PlayByPlay']):
+                        # if no sub at all after the increase in period, \
+                        # then find the players on court of all remaining time.
                         end_range = forward_ev.overall_elapsed_time.seconds * 10
-                        on_court_players = self.find_players_in_range(start_range, end_range)
+                        on_court_players = self._game.find_players_in_range(start_range, end_range)
+                        assert len(on_court_players) == 10
                         to_update_floor_players = False
         if self.event_type == 'substitution':
             on_court_players.remove(self._game._find_player(self.left))
@@ -145,24 +151,6 @@ class _NBAEvent(object):
             if field in self.fields:
                 if parse_func:
                     self._parsed_data[field] = self._event_stats[parse_func]
-
-    def to_dict(self, fields=None):
-        if not fields:
-            fields = []
-        d = self._parsed_data.copy()
-        home_cols = ['h1', 'h2', 'h3', 'h4', 'h5']
-        away_cols = ['a1', 'a2', 'a3', 'a4', 'a5']
-        hps = dict(zip(home_cols, self.home_players))
-        aps = dict(zip(away_cols, self.away_players))
-        d.update({
-            'period_elapsed_time': self.period_elapsed_time,
-            'overall_elapsed_time': self.overall_elapsed_time
-        })
-        d.update(hps)
-        d.update(aps)
-        if fields:
-            return {k: v for k, v in d.items() if k in fields}
-        return d
 
 # Below are the parsed properties.
 
@@ -327,6 +315,16 @@ class Shot(_NBAEvent):
         if str(self._event_stats['EVENTMSGTYPE']) == '2':
             return 'shot missed'
 
+    def type(self):
+        data = self._event_stats
+        descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                        data['NEUTRALDESCRIPTION']]
+        for des in descriptions:
+            if des is None:
+                    des = ''
+            if re.search('3PT', des):
+                return '3 points'
+
 
 class FreeThrow(_NBAEvent):
     event_type = 'free throw'
@@ -349,10 +347,10 @@ class Rebound(_NBAEvent):
     @property
     def event_type(self):
         prev_event = NBAEvent(self.event_stats_idx - 1, game=self._game)
-        try:
-            assert prev_event.event_type in ['shot missed', 'free throw', 'jumpball']
-        except AssertionError:
-            raise AssertionError('Previous event is %s, %s' % (prev_event, prev_event.event_type))
+        while prev_event.event_type not in ['shot missed', 'free throw', 'jumpball']:
+            event_stats_idx = prev_event.event_stats_idx - 1
+            assert event_stats_idx > 0
+            prev_event = NBAEvent(event_stats_idx, game=self._game)
         if prev_event.team == self.team:
             event_type = 'offensive rebound'
         else:

@@ -17,9 +17,10 @@ class StatsNBA(object):
         url = cls._encode_url(params)
         import requests
         from crawl.settings import DEFAULT_REQUEST_HEADERS
+        logger.debug('Fetching {}...'.format(url))
         response = requests.get(url, headers=DEFAULT_REQUEST_HEADERS)
         if response.status_code != 200:
-            raise Exception(url)
+            raise Exception
         resource = cls._parse_response(response)
         return resource
 
@@ -34,6 +35,11 @@ class StatsNBA(object):
         for name, data in resultSets:
             result_dict['resultSets'][name] = data
         logger.info('parse called on resource %s', response.url)
+
+        import sys
+        if hasattr(sys, '_called_from_test'):
+            cls._cache_resource(result_dict)
+
         return result_dict
 
     @staticmethod
@@ -72,6 +78,10 @@ class StatsNBA(object):
                 raise Exception('parameter {k} should not be used!'.format(k=k))
         return True
 
+    @classmethod
+    def _cache_resource(cls, resource):
+        pass
+
 
 class StatsNBABoxscore(StatsNBA):
     resource = 'boxscoretraditionalv2'
@@ -92,6 +102,14 @@ class StatsNBABoxscore(StatsNBA):
                                    'EndRange': end_range,
                                    'RangeType': '2'
                                 })
+
+    @classmethod
+    def _cache_resource(cls, resource):
+        import pandas as pd
+        import os, tempfile
+        tmp_dir = tempfile.mkdtemp()
+        game_id = resource['parameters']['GameID']
+        pd.DataFrame(resource['resultSets']['TeamStats']).to_csv(os.path.join(tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
 
 
 class StatsNBAGamelog(StatsNBA):
@@ -115,6 +133,14 @@ class StatsNBAPlayByPlay(StatsNBA):
         'GameID': None,
         'StartPeriod': '1'
     }
+
+    @classmethod
+    def _cache_resource(cls, resource):
+        import pandas as pd
+        import os, tempfile
+        tmp_dir = tempfile.mkdtemp()
+        game_id = resource['parameters']['GameID']
+        pd.DataFrame(resource['resultSets']['PlayByPlay']).to_csv(os.path.join(tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
 
 
 class StatsNBALeaguePlayerStats(StatsNBA):
