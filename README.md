@@ -20,13 +20,18 @@ information, you should definitely check out [py-Goldsberry](https://github.com/
 While there are still limitations with the current parsing strategy, it does not
 affect the tabulation of APM and other play-by-play based metrics.
 
+## Benefits of this package
+* The data is obtained directly from http://stats.nba.com, the parsed
+  play-by-plays can be verified against the official boxscores.
+
+* Numerous Luigi tasks for easily streamlining the parsing of a whole season of
+  data, which is invaluable for basketball analytics
+
 ## Set up the environment
 
 I use Conda to manage my Python virtual environments, but virtualenv is fine.
 Install the packages required in `setup.py` and you are ready to go.
 
-## Parsing the play-by-play
-TODO
 ## TODOs
 * Documentation.
 * Parse subtypes of events. (e.g. when there is a shot, is it a layup or
@@ -36,3 +41,4 @@ TODO
   [NBAStuffer](https://downloads.nbastuffer.com/nba-play-by-play-data-sets)
   includes shot distances for each shot of the players. I have not found a
   source that allow me to integrate those information
+* More tests at all levels of the package.
