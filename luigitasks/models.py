@@ -1,17 +1,14 @@
 import luigi
+from .helpers import LineupTransformer
 
 
-class SeasonModel(luigi.Task):
+class PlusMinusModel(luigi.Task):
     pass
 
 
-class APM(SeasonModel):
+class APM(PlusMinusModel):
     pass
 
 
-class RAPM(SeasonModel):
-    pass
-
-
-class AdSyn(SeasonModel):
+class RAPM(PlusMinusModel):
     pass
