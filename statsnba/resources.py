@@ -16,11 +16,21 @@ class StatsNBA(object):
         params = cls._update_params(params)
         url = cls._encode_url(params)
         import requests
-        from crawl.settings import DEFAULT_REQUEST_HEADERS
         logger.debug('Fetching {}...'.format(url))
-        response = requests.get(url, headers=DEFAULT_REQUEST_HEADERS)
+        response = requests.get(url, headers={
+            'Accept-Encoding': 'gzip, deflate, sdch',
+            'Accept-Language': 'en-US,en;q=0.8',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)' \
+                          ' AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.82 ' \
+                          'Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9' \
+                      ',image/webp,*/*;q=0.8',
+            'Cache-Control': 'max-age=0',
+            'Connection': 'keep-alive'
+        })
         if response.status_code != 200:
-            raise Exception
+            raise Exception(url)
         resource = cls._parse_response(response)
         return resource
 

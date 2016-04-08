@@ -1,0 +1,12 @@
+mongodb:
+  uri: '127.0.0.1:27017'
+  database: 'statsnba'
+
+data:
+  development: 'data/statsnba'
+  test: 'data/tests'
+
+database:
+  test: 'test'
+  development: 'development'
+  production: 'production'
