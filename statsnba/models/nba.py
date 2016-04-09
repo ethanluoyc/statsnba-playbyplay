@@ -154,4 +154,25 @@ class PlayByPlayStats(object):
     def to_dict(self):
         pass
 
-__all__ = ['NBAEvent', 'NBAGame', 'NBAPlayer', 'NBATeam']
+
+class NBAMatchup(object):
+    def __init__(self, **kargs):
+        self.__dict__.update(kargs)
+
+    @classmethod
+    def create_matchups(cls, pbps):
+        matchups = []
+        matchup_num = 1
+        start_play_id = end_play_id = pbps[0].play_id
+        start_idx = end_idx = 0
+        for i, event in enumerate(pbps[1:], start=1):
+            end_play_id = event.play_id
+            if event.players != pbps[i-1].players:
+                matchups.append(dict(start_play_id=start_play_id, end_play_id=end_play_id, matchup_num=matchup_num))
+                matchup_num += 1
+                start_play_id = pbps[i+1].play_id
+            if i == len(pbps) - 1:
+                matchups.append(dict(start_play_id=start_play_id, end_play_id=end_play_id, matchup_num=matchup_num))
+        return matchups
+
+__all__ = ['NBAEvent', 'NBAGame', 'NBAPlayer', 'NBATeam', 'NBAMatchup']

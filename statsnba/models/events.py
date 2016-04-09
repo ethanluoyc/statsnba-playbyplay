@@ -315,6 +315,7 @@ class Shot(_NBAEvent):
         if str(self._event_stats['EVENTMSGTYPE']) == '2':
             return 'shot missed'
 
+    @property
     def type(self):
         data = self._event_stats
         descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],

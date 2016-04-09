@@ -7,6 +7,6 @@ data:
   test: 'data/tests'
 
 database:
-  test: 'test'
-  development: 'development'
-  production: 'production'
+  test: 'statsnba_test'
+  development: 'statsnba_dev'
+  production: 'statsnba'
