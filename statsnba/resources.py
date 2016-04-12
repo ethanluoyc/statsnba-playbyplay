@@ -11,6 +11,9 @@ class StatsNBA(object):
     default_params = dict()
     resource = ''
 
+    def __init__(self, data):
+        self._data = data
+
     @classmethod
     def fetch_resource(cls, params):
         params = cls._update_params(params)
@@ -105,6 +108,9 @@ class StatsNBABoxscore(StatsNBA):
         'StartRange': '0'
     }
 
+    HOME_IDX = 0
+    AWAY_IDX = 1
+
     @classmethod
     def find_boxscore_in_range(cls, game_id, start_range, end_range):
         return cls.fetch_resource({'GameID': game_id,
@@ -120,6 +126,18 @@ class StatsNBABoxscore(StatsNBA):
         tmp_dir = tempfile.mkdtemp()
         game_id = resource['parameters']['GameID']
         pd.DataFrame(resource['resultSets']['TeamStats']).to_csv(os.path.join(tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
+
+    @classmethod
+    def home_boxscore(cls, data):
+        return data['resultSets']['TeamStats'][cls.HOME_IDX]
+
+    @classmethod
+    def away_boxscore(cls, data):
+        return data['resultSets']['TeamStats'][cls.AWAY_IDX]
+
+    @classmethod
+    def player_stats(cls, data):
+        return data['resultSets']['PlayerStats']
 
 
 class StatsNBAGamelog(StatsNBA):

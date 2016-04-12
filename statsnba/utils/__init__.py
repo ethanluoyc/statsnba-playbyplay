@@ -25,6 +25,10 @@ def make_table(doc):
     return df
 
 
+def convert_season_to_season_id(season):
+    return '2' + season.split('-')[0]
+
+
 def convert_result(result_dict):
     """
         :param result_dict the dict containing the headers, name and rowSet (see sample_data)

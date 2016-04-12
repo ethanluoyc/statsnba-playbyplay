@@ -1,5 +1,6 @@
 import re
 import logging
+from cached_property import cached_property
 
 logger = logging.getLogger(__name__)
 
@@ -41,7 +42,7 @@ all_fields = {c[1] for c in column_functions}
 required_fields = {c[1] for c in column_functions if c[0]}
 
 
-def NBAEvent(event_stats_idx, game=None, on_court_players=None):
+def NBAEvent(event_stats_idx, game=None):
     event_mapping = {
         1: Shot,
         2: Shot,
@@ -57,12 +58,12 @@ def NBAEvent(event_stats_idx, game=None, on_court_players=None):
         12: StartOfPeriod,
         13: EndOfPeriod
     }
-    event_dict = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
+    event_dict = game._get_playbyplay[event_stats_idx]
     event_num = int(event_dict['EVENTMSGTYPE'])
     try:
-        return event_mapping[event_num](event_stats_idx, game=game, on_court_players=on_court_players)
+        return event_mapping[event_num](event_stats_idx, game=game)
     except KeyError:
-        return Unknown(event_stats_idx, game=game, on_court_players=on_court_players)
+        return Unknown(event_stats_idx, game=game)
 
 
 class _NBAEvent(object):
@@ -71,74 +72,25 @@ class _NBAEvent(object):
     """
     optional_fields = set()
 
-    def __init__(self, event_stats_idx, game=None, on_court_players=None):
+    def __init__(self, event_stats_idx, game=None):
         self._game = game
         self.event_stats_idx = event_stats_idx
         self._players = set()
-        self._event_stats = game._pbp['resultSets']['PlayByPlay'][event_stats_idx]
+        self._event_stats = game._get_playbyplay[event_stats_idx]
         self._parse_event()
-        if on_court_players:
-            self._parse_players(on_court_players)
 
     def __getattr__(self, item):
         try:
             return self._parsed_data[item]
         except KeyError:
-            if item in all_fields:  # It needs to be a field parsed
-                return None
-            import re
-            m = re.match('^home_player(\d)_(.*)', item)
-            if m:
-                players = self.home_players
-                return getattr(players[int(m.group(1))-1], m.group(2))
-            m = re.match('^away_player(\d)_(.*)', item)
-            if m:
-                players = self.away_players
-                return getattr(players[int(m.group(1))-1], m.group(2))
-            raise KeyError(item)
+            raise AttributeError
 
     def __eq__(self, other):
         return self.play_id == other.play_id and \
                self.game_id == other.game_id
 
     def __repr__(self):
-        return '<' + self.__class__.__name__ + ' ' + str(self.event_stats_idx) + ' >'
-
-    def _parse_players(self, on_court_players):
-        _on_court_copy = on_court_players.copy()
-        # forward looking for the current 10 players on the floor by relying the API
-        if self.period > NBAEvent(self.event_stats_idx - 1, game=self._game).period:
-            start_range = self.overall_elapsed_time.seconds * 10 + 5
-            j = self.event_stats_idx
-            to_update_floor_players = True
-            while to_update_floor_players:
-                forward_ev = NBAEvent(j, game=self._game)
-                if forward_ev.event_type == 'substitution':
-                    end_range = forward_ev.overall_elapsed_time.seconds * 10
-                    on_court_players = self._game.find_players_in_range(start_range, end_range)
-                    while len(on_court_players) != 10:
-                        logger.debug('num_on_court={}, start={}, end={}'.format(len(on_court_players), start_range, end_range))
-                        end_range -= 5
-                        if end_range <= start_range:
-                            raise AssertionError(
-                                'Could not locate on floor players %s, %s' % (start_range, end_range))
-                        on_court_players = self._game.find_players_in_range(start_range, end_range)
-                    to_update_floor_players = False
-                else:
-                    j += 1
-                    if j == len(self._game._pbp['resultSets']['PlayByPlay']):
-                        # if no sub at all after the increase in period, \
-                        # then find the players on court of all remaining time.
-                        end_range = forward_ev.overall_elapsed_time.seconds * 10
-                        on_court_players = self._game.find_players_in_range(start_range, end_range)
-                        assert len(on_court_players) == 10
-                        to_update_floor_players = False
-        if self.event_type == 'substitution':
-            on_court_players.remove(self._game._find_player(self.left))
-            on_court_players.add(self._game._find_player(self.entered))
-            assert on_court_players != _on_court_copy
-        self.update_players(on_court_players)
-        self.on_court_players = on_court_players
+        return '<' + self.__class__.__name__ + ' ' + str(self.play_id) + ' >'
 
     def _parse_event(self):
         self._parsed_data = {}
@@ -151,6 +103,18 @@ class _NBAEvent(object):
             if field in self.fields:
                 if parse_func:
                     self._parsed_data[field] = self._event_stats[parse_func]
+
+    def to_dict(self):
+        fields = (
+            'game_id,period,away_score,home_score,home_team,away_team,'
+            'play_id,team,event_type,away,home,block,assist,'
+            'entered,left,num,opponent,outof,player,points,possession,'
+            'reason,result,steal,type,'
+            'shot_distance,original_x,original_y,converted_x,converted_y,'
+            'description,period_elapsed_time,period_remaining_time,'
+            'overall_elapsed_time,overall_remaining_time'
+        ).split(',')
+        return {f: getattr(self, f, None) for f in fields}
 
 # Below are the parsed properties.
 
@@ -173,22 +137,22 @@ class _NBAEvent(object):
     def home_players(self):
         players = []
         for p in self._players:
-            if p.team_abbr == self._game.home_team:
+            if p.team == self._game.home_team:
                 players.append(p)
-        return sorted(players)
+        return set(players)
 
     @property
     def away_players(self):
         players = []
         for p in self._players:
-            if p.team_abbr == self._game.away_team:
+            if p.team == self._game.away_team:
                 players.append(p)
-        return sorted(players)
+        return set(players)
 
     def update_players(self, players):
         self._players = self._players | players
 
-    @property
+    @cached_property
     def period_length(self):
         from datetime import timedelta
         period_time_total = timedelta(minutes=5) if int(self.period) > 4 else timedelta(minutes=12)
@@ -201,7 +165,7 @@ class _NBAEvent(object):
         time = datetime.strptime(timestring, '%M:%S')  # parse minutes like this '10:29'
         return timedelta(minutes=time.minute, seconds=time.second)
 
-    @property
+    @cached_property
     def period_elapsed_time(self):
         return self.period_length - self._parse_pctimestring(self.remaining_time)
 
@@ -236,15 +200,36 @@ class _NBAEvent(object):
             group = 2
         else:
             raise Exception('You specified an unknwon flag')
-        return score[group - 1].strip()
+        return int(score[group - 1].strip())
 
-    @property
+    # TODO refactor this
+    @cached_property
     def home_score(self):
-        return self._score(self._event_stats, 'home')
+        score =  self._score(self._event_stats, 'home')
+        stats_idx = self.event_stats_idx
+        while not score:
+            if stats_idx == 0:
+                return 0
+            else:
+                stats_idx -= 1
+                stats = self._game._get_playbyplay[stats_idx]
+                score = self._score(stats, 'home')
+        return score
 
-    @property
+    @cached_property
     def away_score(self):
-        return self._score(self._event_stats, 'away')
+        # return self._score(self._event_stats, 'away')
+        score =  self._score(self._event_stats, 'away')
+        stats_idx = self.event_stats_idx
+        while not score:
+            if stats_idx == 0:
+                return 0
+            else:
+                stats_idx -= 1
+                stats = self._game._get_playbyplay[stats_idx]
+                score = self._score(stats, 'away')
+        return score
+
 
     @property
     def points(self):
@@ -306,7 +291,7 @@ class _NBAEvent(object):
 
 
 class Shot(_NBAEvent):
-    optional_fields = {'team', 'assist', 'player', 'result'}
+    optional_fields = {'team', 'assist', 'player', 'result', 'block'}
 
     @property
     def event_type(self):
@@ -361,7 +346,7 @@ class Rebound(_NBAEvent):
 
 class Foul(_NBAEvent):
     event_type = 'foul'
-    optional_fields = {'team', 'player', 'steal'}
+    optional_fields = {'team', 'player'}
 
 
 class Violation(_NBAEvent):

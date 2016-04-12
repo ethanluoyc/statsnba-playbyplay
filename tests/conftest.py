@@ -27,11 +27,10 @@ def use_requests_cache():
     requests_cache.install_cache('test_cache')
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='module')
 def mongodb():
     from mongoengine import connect
     from mongoengine.connection import get_connection
-
     connect('statsnba_test', host='mongomock://localhost')
     conn = get_connection()
     return conn
