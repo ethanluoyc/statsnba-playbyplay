@@ -58,7 +58,7 @@ def NBAEvent(event_stats_idx, game=None):
         12: StartOfPeriod,
         13: EndOfPeriod
     }
-    event_dict = game._get_playbyplay[event_stats_idx]
+    event_dict = game._get_playbyplay()[event_stats_idx]
     event_num = int(event_dict['EVENTMSGTYPE'])
     try:
         return event_mapping[event_num](event_stats_idx, game=game)
@@ -76,7 +76,7 @@ class _NBAEvent(object):
         self._game = game
         self.event_stats_idx = event_stats_idx
         self._players = set()
-        self._event_stats = game._get_playbyplay[event_stats_idx]
+        self._event_stats = game._get_playbyplay()[event_stats_idx]
         self._parse_event()
 
     def __getattr__(self, item):
@@ -115,6 +115,50 @@ class _NBAEvent(object):
             'overall_elapsed_time,overall_remaining_time'
         ).split(',')
         return {f: getattr(self, f, None) for f in fields}
+
+    @staticmethod
+    def update_game_players(events):
+        """Update the players in each row of the playbyplays"""
+        game = events[0]._game
+        for i, ev in enumerate(events):
+            if i == 0:
+                ev.update_players(game.home_starters | game.away_starters)
+                continue
+            prev_ev = events[i-1]
+            on_court_players = prev_ev.players.copy()
+            _on_court_copy = on_court_players.copy()
+            # If another period, then it should fetch players starting the period from the API
+            if ev.period > prev_ev.period:
+                start_range = ev.overall_elapsed_time.seconds * 10 + 5
+                j = i
+                to_update_floor_players = True
+                while to_update_floor_players:   # Locate the range to look up for the players
+                    forward_ev = events[j]
+                    if forward_ev.event_type == 'substitution':
+                        end_range = forward_ev.overall_elapsed_time.seconds * 10
+                        on_court_players = game.find_players_in_range(start_range, end_range)
+                        while len(on_court_players) != 10:
+                            end_range -= 5
+                            if end_range <= start_range:
+                                raise AssertionError(
+                                    'Could not locate on floor players %s, %s' % (start_range, end_range))
+                            on_court_players = game.find_players_in_range(start_range, end_range)
+                        to_update_floor_players = False
+                    else:
+                        j += 1
+                        if j == len(game._playbyplay['resultSets']['PlayByPlay']):
+                            # if no sub at all after the increase in period, \
+                            # then find the players on court of all remaining time.
+                            end_range = forward_ev.overall_elapsed_time.seconds * 10
+                            on_court_players = game.find_players_in_range(start_range, end_range)
+                            assert len(on_court_players) == 10
+                            to_update_floor_players = False
+            if ev.event_type == 'substitution':
+                on_court_players.remove(game._find_player(ev.left))
+                on_court_players.add(game._find_player(ev.entered))
+                assert on_court_players != _on_court_copy
+            ev.update_players(on_court_players)
+        return events
 
 # Below are the parsed properties.
 
@@ -212,7 +256,7 @@ class _NBAEvent(object):
                 return 0
             else:
                 stats_idx -= 1
-                stats = self._game._get_playbyplay[stats_idx]
+                stats = self._game._get_playbyplay()[stats_idx]
                 score = self._score(stats, 'home')
         return score
 
@@ -226,7 +270,7 @@ class _NBAEvent(object):
                 return 0
             else:
                 stats_idx -= 1
-                stats = self._game._get_playbyplay[stats_idx]
+                stats = self._game._get_playbyplay()[stats_idx]
                 score = self._score(stats, 'away')
         return score
 

@@ -25,12 +25,3 @@ def use_pytest_tmp_dir(monkeypatch, tmpdir_factory):
 def use_requests_cache():
     import requests_cache
     requests_cache.install_cache('test_cache')
-
-
-@pytest.fixture(scope='module')
-def mongodb():
-    from mongoengine import connect
-    from mongoengine.connection import get_connection
-    connect('statsnba_test', host='mongomock://localhost')
-    conn = get_connection()
-    return conn

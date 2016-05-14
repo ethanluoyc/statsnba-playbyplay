@@ -1,5 +1,6 @@
 import urllib
-
+import json
+from statsnba.models import Game
 
 def encode_url(url, params):
     p = urllib.urlencode(params)
@@ -31,14 +32,15 @@ def convert_season_to_season_id(season):
 
 def convert_result(result_dict):
     """
-        :param result_dict the dict containing the headers, name and rowSet (see sample_data)
-        :return (name, data) a tuple containing the name of the resultSet and data
+        :param result_dict the dict containing the headers, name and rowSet
+               (see sample_data)
+        :return (name, data) a tuple containing the name of the
+               resultSet and data
     """
     result_name = result_dict['name']
     headers = result_dict['headers']
     data = result_dict['rowSet']
     import pandas as pd
-    import json
     df = pd.DataFrame(data, columns=headers)
     # use this to avoid Mongo conversion error
     return result_name, json.loads(df.to_json(orient='records'))
