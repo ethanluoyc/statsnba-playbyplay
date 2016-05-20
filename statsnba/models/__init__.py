@@ -173,8 +173,8 @@ class Matchup(object):
         return dict(
             start_id=first_ev.play_id,
             end_id=last_ev.play_id,
-            home_players=sorted([list(first_ev.home_players)]),
-            away_players=sorted([list(first_ev.away_players)]),
+            home_players=sorted(list(first_ev.home_players)),
+            away_players=sorted(list(first_ev.away_players)),
             home_stats=home_stats,
             away_stats=away_stats,
             home_start_score=first_ev.home_score,
