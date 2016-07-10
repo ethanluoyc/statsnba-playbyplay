@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use statsnba-pbp in a project::
+To use statsnba-playbyplay in a project::
 
-    import statsnba-pbp
+    import statsnba

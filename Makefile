@@ -55,15 +55,15 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source statsnba-pbp setup.py test
+	coverage run --source statsnba-playbyplay setup.py test
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
 docs:
-	rm -f docs/statsnba-pbp.rst
+	rm -f docs/statsnba-playbyplay.rst
 	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ statsnba-pbp
+	sphinx-apidoc -o docs/ statsnba
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
 	$(BROWSER) docs/_build/html/index.html

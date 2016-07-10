@@ -149,18 +149,18 @@ class Matchup(object):
 
         elapsed_time = (group.iloc[-1].overall_elapsed_time - group.iloc[0].overall_elapsed_time).seconds
         possessions = len(group[(FGA & _team)]) \
-                      - len(group[OREB & _team]) \
-                      + len(group[TOV & _team]) \
-                      + len(group[_FT_GROUPS & _team])
+            - len(group[OREB & _team]) \
+            + len(group[TOV & _team]) \
+            + len(group[_FT_GROUPS & _team])
 
         _stats = {}
-        for k,v in locals().items():
+        for k, v in locals().items():
             if isinstance(v, pd.Series) and not k.startswith('_'):
                 _stats[k] = len(group[v & _team])
             elif not k.startswith('_') and k not in ['group', 'team']:
                 _stats[k] = v if isinstance(v, int) or isinstance(v, float) else str(v)
-        _stats['STL'] = len(group[STL & _opp_team]) # steal is from the opposite
-        _stats['BLK'] = len(group[BLK & _opp_team]) # steal is from the opposite
+        _stats['STL'] = len(group[STL & _opp_team])  # steal is from the opposite
+        _stats['BLK'] = len(group[BLK & _opp_team])  # steal is from the opposite
         return _stats
 
     def to_json(self):

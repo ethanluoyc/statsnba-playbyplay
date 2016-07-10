@@ -8,7 +8,7 @@ except ImportError:
     from distutils.core import setup
 
 
-with open('README.md') as readme_file:
+with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 with open('HISTORY.rst') as history_file:
@@ -26,7 +26,7 @@ setup(
     name='statsnba-playbyplay',
     version='0.1.0',
     description="Package for parsing play-by-play data from stats.nba.com",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     author="Yicheng Luo",
     author_email='ethanluoyc@gmail.com',
     url='https://github.com/ethanluoyc/statsnba-playbyplay',
@@ -37,16 +37,10 @@ setup(
                  'statsnba'},
     include_package_data=True,
     install_requires=requirements,
-    license="ISCL",
+    license="MIT",
     zip_safe=False,
     keywords='statsnba',
-    classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: ISC License (ISCL)',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 2.7',
-    ],
-    test_suite='tests',
+    classifiers=[],
+    test_suite='pytest',
     tests_require=test_requirements
 )

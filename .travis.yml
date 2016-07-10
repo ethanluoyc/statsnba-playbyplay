@@ -27,5 +27,5 @@ deploy:
     secure: PLEASE_REPLACE_ME
   on:
     tags: true
-    repo: ethanluoyc/statsnba-pbp
+    repo: ethanluoyc/statsnba-playbyplay
     condition: $TOXENV == py27

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# statsnba-pbp documentation build configuration file, created by
+# statsnba-playbyplay documentation build configuration file, created by
 # sphinx-quickstart on Tue Jul  9 22:26:36 2013.
 #
 # This file is execfile()d with the current directory set to its
@@ -15,6 +15,7 @@
 
 import sys
 import os
+from recommonmark.parser import CommonMarkParser
 
 # If extensions (or modules to document with autodoc) are in another
 # directory, add these directories to sys.path here. If the directory is
@@ -46,7 +47,8 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.viewcode']
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = '.rst'
+source_parsers = {'.md': CommonMarkParser}
+source_suffix = ['.rst', '.md']
 
 # The encoding of source files.
 #source_encoding = 'utf-8-sig'
@@ -55,7 +57,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'statsnba-pbp'
+project = u'statsnba-playbyplay'
 copyright = u'2016, Yicheng Luo'
 
 # The version info for the project you're documenting, acts as replacement
@@ -111,7 +113,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the
@@ -188,7 +190,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'statsnba-pbpdoc'
+htmlhelp_basename = 'statsnba-playbyplaydoc'
 
 
 # -- Options for LaTeX output ------------------------------------------
@@ -208,7 +210,7 @@ latex_elements = {
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-    ('index', 'statsnba-pbp.tex',
+    ('index', 'statsnba-playbyplay.tex',
      u'statsnba_pbp Documentation',
      u'Yicheng Luo', 'manual'),
 ]
@@ -239,7 +241,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'statsnba_pbp',
+    ('index', 'statsnba_playbyplay',
      u'statsnba_pbp Documentation',
      [u'Yicheng Luo'], 1)
 ]
@@ -254,10 +256,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', 'statsnba-pbp',
-     u'statsnba_pbp Documentation',
+    ('index', 'statsnba-playbyplay',
+     u'statsnba_playbyplay Documentation',
      u'Yicheng Luo',
-     'statsnba_pbp',
+     'statsnba_playbyplay',
      'One line description of project.',
      'Miscellaneous'),
 ]
