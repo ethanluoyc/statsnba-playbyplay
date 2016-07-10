@@ -4,6 +4,11 @@ statsnba-playbyplay
 
 .. image:: https://img.shields.io/pypi/v/statsnba-playbyplay.svg?maxAge=2592000
    :target: https://pypi.python.org/pypi?name=statsnba-playbyplay&version=0.1.0&:action=display
+   :alt: PyPi Version
+
+.. image:: https://readthedocs.org/projects/statsnba-playbyplay/badge/?version=latest
+   :target: http://statsnba-playbyplay.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 NOTE: This project is still pretty much work in progress so it might
 introduce many breaking changes.
