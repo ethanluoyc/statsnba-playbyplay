@@ -1,38 +1,6 @@
 # -*- coding: utf-8 -*-
 import urllib
 import json
-import abc
-import keyword
-
-
-class FrozenJSON:
-    """A read-only façade for navigating a JSON-like object
-       using attribute notation.
-       We use this because it is immutable, and easy to query for attributes
-    """
-    def __new__(cls, arg):
-        if isinstance(arg, abc.Mapping):
-            return super().__new__(cls)
-        elif isinstance(arg, abc.MutableSequence):
-            return [cls(item) for item in arg]
-        else:
-            return arg
-
-    def __init__(self, mapping):
-        self.__data = {}
-        for key, value in mapping.items():
-            if keyword.iskeyword(key):
-                key += '_'
-            self.__data[key] = value
-
-    def __getattr__(self, name):
-        if hasattr(self.__data, name):
-            return getattr(self.__data, name)
-        else:
-            return FrozenJSON(self.__data[name])
-
-    def to_dict(self):
-        return self.__data
 
 
 def encode_url(url, params):

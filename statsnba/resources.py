@@ -40,7 +40,8 @@ class StatsNBA(object):
     @classmethod
     def _parse_response(cls, response):
         if response.status_code != 200:
-            logger.error('downloading failed: %s, error_code: %s', response.url, response.status_code)
+            logger.error('downloading failed: %s, error_code: %s',
+                         response.url, response.status_code)
         result_dict = json.loads(response.text)
         resultSets = map(StatsNBA._convert_result, result_dict['resultSets'])
         # TODO may refactor this into pipeline
@@ -88,7 +89,8 @@ class StatsNBA(object):
             try:
                 cls.default_params[k]
             except KeyError:
-                raise Exception('parameter {k} should not be used!'.format(k=k))
+                raise Exception('parameter {k} should not be used!'.format(
+                    k=k))
         return True
 
     @classmethod
@@ -116,8 +118,7 @@ class StatsNBABoxscore(StatsNBA):
         return cls.fetch_resource({'GameID': game_id,
                                    'StartRange': start_range,
                                    'EndRange': end_range,
-                                   'RangeType': '2'
-                                })
+                                   'RangeType': '2'})
 
     @classmethod
     def _cache_resource(cls, resource):
@@ -125,7 +126,8 @@ class StatsNBABoxscore(StatsNBA):
         import os, tempfile
         tmp_dir = tempfile.mkdtemp()
         game_id = resource['parameters']['GameID']
-        pd.DataFrame(resource['resultSets']['TeamStats']).to_csv(os.path.join(tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
+        pd.DataFrame(resource['resultSets']['TeamStats']).to_csv(os.path.join(
+            tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
 
     @classmethod
     def home_boxscore(cls, data):
@@ -156,11 +158,7 @@ class StatsNBAGamelog(StatsNBA):
 
 class StatsNBAPlayByPlay(StatsNBA):
     resource = 'playbyplayv2'
-    default_params = {
-        'EndPeriod': '10',
-        'GameID': None,
-        'StartPeriod': '1'
-    }
+    default_params = {'EndPeriod': '10', 'GameID': None, 'StartPeriod': '1'}
 
     @classmethod
     def _cache_resource(cls, resource):
@@ -168,7 +166,8 @@ class StatsNBAPlayByPlay(StatsNBA):
         import os, tempfile
         tmp_dir = tempfile.mkdtemp()
         game_id = resource['parameters']['GameID']
-        pd.DataFrame(resource['resultSets']['PlayByPlay']).to_csv(os.path.join(tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
+        pd.DataFrame(resource['resultSets']['PlayByPlay']).to_csv(os.path.join(
+            tmp_dir, '%s_%s.csv' % (cls.__name__, game_id)))
 
 
 class StatsNBALeaguePlayerStats(StatsNBA):

@@ -9,3 +9,6 @@ __version__ = '0.1.0'
 
 
 config = yaml.safe_load(open(path.join(path.dirname(__file__), '../config.yml'), 'r'))
+
+from .api import Api
+from .models import Game

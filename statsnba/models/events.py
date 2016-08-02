@@ -1,240 +1,219 @@
 import re
 import logging
 from cached_property import cached_property
+from statsnba.models import Player
+from enum import Enum
 
 logger = logging.getLogger(__name__)
 
-#         (is_it_required, event_attr, event_data_key)
-column_functions = ((True, 'game_id', 'GAME_ID'),
-                    (True, 'period', 'PERIOD'),
-                    (True, 'away_score', None),
-                    (True, 'home_score', None),
-                    (True, 'remaining_time', 'PCTIMESTRING'),
-                    (True, 'elapsed', None),
-                    (True, 'play_length', None),
-                    (True, 'play_id', 'EVENTNUM'),
-                    (False, 'team', 'PLAYER1_TEAM_ABBREVIATION'),
-                    (True, 'event_type', None),
-                    (False, 'assist', 'PLAYER2_NAME'),
-                    (False, 'away', 'PLAYER2_NAME'),
-                    (False, 'home', 'PLAYER1_NAME'),
-                    (False, 'block', 'PLAYER3_NAME'),
-                    (False, 'entered', 'PLAYER2_NAME'),
-                    (False, 'left', 'PLAYER1_NAME'),
-                    (False, 'num', None),
-                    (False, 'opponent', 'PLAYER2_NAME'),
-                    (False, 'outof', None),
-                    (False, 'player', 'PLAYER1_NAME'),
-                    (False, 'points', None),
-                    (False, 'possession', 'PLAYER3_NAME'),
-                    (True, 'reason', None),
-                    (False, 'result', None),
-                    (False, 'steal', 'PLAYER2_NAME'),
-                    (True, 'type', None),
-                    (False, 'shot_distance', None),  # TODO complete shot log
-                    (True, 'original_x', None),
-                    (True, 'original_y', None),
-                    (True, 'converted_x', None),
-                    (True, 'converted_y', None),
-                    (False, 'description', None))
 
-all_fields = {c[1] for c in column_functions}
-required_fields = {c[1] for c in column_functions if c[0]}
+def parse_player(num, event_stats):
+    # TODO parse PersonType
+    pat = re.compile('^PLAYER{0}_.+'.format(num))
+    pat_team = re.compile('^PLAYER{0}_TEAM_.+'.format(num))
+    kwargs = {}
+    for k, v in event_stats.items():
+        if pat.match(k):
+            if pat_team.match(k):
+                kwargs[re.sub(r'PLAYER\d_', '', k)] = v
+            else:
+                kwargs[re.sub(r'\d', '', k)] = v
+    return Player(kwargs)
 
 
-def NBAEvent(event_stats_idx, game=None):
-    event_mapping = {
-        1: Shot,
-        2: Shot,
-        3: FreeThrow,
-        4: Rebound,
-        5: Turnover,
-        6: Foul,
-        7: Violation,
-        8: Substitution,
-        9: Timeout,
-        10: Jumpball,
-        11: Ejection,
-        12: StartOfPeriod,
-        13: EndOfPeriod
-    }
-    event_dict = game._get_playbyplay()[event_stats_idx]
-    event_num = int(event_dict['EVENTMSGTYPE'])
-    try:
-        return event_mapping[event_num](event_stats_idx, game=game)
-    except KeyError:
-        return Unknown(event_stats_idx, game=game)
+def limit_to_types(eventtype_or_lst):
+    def real_dec(func):
+        def limit_eventtype(self):
+            if not isinstance(eventtype_or_lst, list):
+                permitted = [eventtype_or_lst]
+            else:
+                permitted = eventtype_or_lst
+            permitted = [EventType[item] for item in permitted]
+            if self.EventType in permitted:
+                return func(self)
+            return None
+        return limit_eventtype
+    return real_dec
 
 
-class _NBAEvent(object):
-    """
-        The class for creating an event instance based on data in the play-by-play
-    """
-    optional_fields = set()
+class EventType(Enum):
+    """The EventType as identified by EVENTMSGTYPE from the PlayByPlay dict"""
+    ShotMade = 1
+    ShotMiss = 2
+    FreeThrow = 3
+    Rebound = 4
+    Turnover = 5
+    Foul = 6
+    Violation = 7
+    Substitution = 8
+    Timeout = 9
+    JumpBall = 10
+    Ejection = 11
+    StartOfPeriod = 12
+    EndOfPeriod = 13
+    Unknown = -1
 
-    def __init__(self, event_stats_idx, game=None):
-        self._game = game
-        self.event_stats_idx = event_stats_idx
-        self._players = set()
-        self._event_stats = game._get_playbyplay()[event_stats_idx]
-        self._parse_event()
 
-    def __getattr__(self, item):
-        try:
-            return self._parsed_data[item]
-        except KeyError:
-            raise AttributeError
+# noinspection PyPep8Naming
+class Event(object):
+    Fields = ['EventType', 'Type', 'PlayId', 'Description',
+              'Team', 'HomeTeam', 'AwayTeam',
+              'Player', 'HomePlayers', 'AwayPlayers', 'OnCourtPlayers',
+              'Period', 'PeriodLength', 'PeriodElapsedTime', 'PeriodRemainingTime',
+              'OverallLength', 'OverallElapsedTime', 'OverallRemainingTime',
+              'HomeScore', 'AwayScore',
+              'Block', 'Assist', 'Points', 'Result', 'Away', 'Possession', 'Steal',
+              'Left', 'Entered',
+              'Num', 'OutOf']
 
-    def __eq__(self, other):
-        return self.play_id == other.play_id and \
-               self.game_id == other.game_id
+    def __init__(self, stats_dict_or_idx, Game=None):
+        if isinstance(stats_dict_or_idx, int):
+            event_dict = Game._get_playbyplay()[stats_dict_or_idx]
+        else:
+            event_dict = stats_dict_or_idx
+        self._Game = Game
+        self._Players = set()
+        self._EventDict = event_dict
+        self._EventNum = Game._get_playbyplay().index(event_dict)
 
     def __repr__(self):
-        return '<' + self.__class__.__name__ + ' ' + str(self.play_id) + ' >'
+        return '<{0},{1}>'.format(self.EventType.name, self._EventNum)
 
-    def _parse_event(self):
-        self._parsed_data = {}
+    def ToDict(self):
+        return {field: getattr(self, field) for field in self.Fields}
 
-        self.fields = self.optional_fields | required_fields
+    @cached_property
+    def EventType(self):
+        """
+            Returns:
+                event_type (EventType): the event_type of the NBA event.
+        """
+        type_num = self._EventDict['EVENTMSGTYPE']
+        try:
+            return EventType(type_num)
+        except ValueError:
+            return EventType.Unknown
 
-        for col in column_functions:
-            field = col[1]
-            parse_func = col[2]
-            if field in self.fields:
-                if parse_func:
-                    self._parsed_data[field] = self._event_stats[parse_func]
-
-    def to_dict(self):
-        fields = (
-            'game_id,period,away_score,home_score,home_team,away_team,'
-            'play_id,team,event_type,away,home,block,assist,'
-            'entered,left,num,opponent,outof,player,points,possession,'
-            'reason,result,steal,type,'
-            'shot_distance,original_x,original_y,converted_x,converted_y,'
-            'description,period_elapsed_time,period_remaining_time,'
-            'overall_elapsed_time,overall_remaining_time'
-        ).split(',')
-        return {f: getattr(self, f, None) for f in fields}
-
-    @staticmethod
-    def update_game_players(events):
-        """Update the players in each row of the playbyplays"""
-        game = events[0]._game
-        for i, ev in enumerate(events):
-            if i == 0:
-                ev.update_players(game.home_starters | game.away_starters)
-                continue
-            prev_ev = events[i-1]
-            on_court_players = prev_ev.players.copy()
-            _on_court_copy = on_court_players.copy()
-            # If another period, then it should fetch players starting the period from the API
-            if ev.period > prev_ev.period:
-                start_range = ev.overall_elapsed_time.seconds * 10 + 5
-                j = i
-                to_update_floor_players = True
-                while to_update_floor_players:   # Locate the range to look up for the players
-                    forward_ev = events[j]
-                    if forward_ev.event_type == 'substitution':
-                        end_range = forward_ev.overall_elapsed_time.seconds * 10
-                        on_court_players = game.find_players_in_range(start_range, end_range)
-                        while len(on_court_players) != 10:
-                            end_range -= 5
-                            if end_range <= start_range:
-                                raise AssertionError(
-                                    'Could not locate on floor players %s, %s' % (start_range, end_range))
-                            on_court_players = game.find_players_in_range(start_range, end_range)
-                        to_update_floor_players = False
-                    else:
-                        j += 1
-                        if j == len(game._playbyplay['resultSets']['PlayByPlay']):
-                            # if no sub at all after the increase in period, \
-                            # then find the players on court of all remaining time.
-                            end_range = forward_ev.overall_elapsed_time.seconds * 10
-                            on_court_players = game.find_players_in_range(start_range, end_range)
-                            assert len(on_court_players) == 10
-                            to_update_floor_players = False
-            if ev.event_type == 'substitution':
-                on_court_players.remove(game._find_player(ev.left))
-                on_court_players.add(game._find_player(ev.entered))
-                assert on_court_players != _on_court_copy
-            ev.update_players(on_court_players)
-        return events
-
-# Below are the parsed properties.
+    @cached_property
+    def Type(self):
+        if self.EventType in [EventType.ShotMiss, EventType.ShotMade]:
+            data = self._EventDict
+            descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+                            data['NEUTRALDESCRIPTION']]
+            for des in descriptions:
+                if des is None:
+                    des = ''
+                if re.search('3PT', des):
+                    return '3 points'
+        if self.EventType is EventType.Rebound:
+            prev_event = Event(self._EventNum - 1, Game=self._Game)
+            while prev_event.EventType not in [EventType.ShotMade, EventType.ShotMiss,
+                                         EventType.FreeThrow, EventType.JumpBall]:
+                event_stats_idx = prev_event._EventNum - 1
+                assert event_stats_idx > 0
+                prev_event = Event(event_stats_idx, Game=self._Game)
+            if prev_event.Team == self.Team:
+                event_type = 'offensive'
+            else:
+                event_type = 'defensive'
+            return event_type
 
     @property
-    def home_team(self):
-        return self._game.home_team
+    def PlayId(self):
+        return self._EventDict['EVENTNUM']
 
     @property
-    def away_team(self):
-        return self._game.away_team
+    def Description(self):
+        # TODO implement this
+        return None
+
+    # Team related
+    @property
+    def Team(self):
+        if self.EventType is EventType.Rebound:
+            if self._EventDict['HOMEDESCRIPTION']:
+                return self.HomeTeam
+            elif self._EventDict['VISITORDESCRIPTION']:
+                return self.AwayTeam
+        if self._EventDict['PLAYER1_NAME']:
+            return parse_player(1, self._EventDict).Team
+        return None
 
     @property
-    def players(self):
-        if self._players:
-            return self._players
+    def HomeTeam(self):
+        return self._Game.HomeTeam
+
+    @property
+    def AwayTeam(self):
+        return self._Game.AwayTeam
+
+    # Player related
+    @property
+    def Player(self):
+        return parse_player(1, self._EventDict)
+
+    @property
+    def OnCourtPlayers(self):
+        if self._Players:
+            return self._Players
         else:
             raise Exception('You have not updated the players')
 
     @property
-    def home_players(self):
-        players = []
-        for p in self._players:
-            if p.team == self._game.home_team:
-                players.append(p)
-        return set(players)
+    def HomePlayers(self):
+        return set([p for p in self._Players if p.team == self._Game.HomeTeam])
 
     @property
-    def away_players(self):
-        players = []
-        for p in self._players:
-            if p.team == self._game.away_team:
-                players.append(p)
-        return set(players)
+    def AwayPlayers(self):
+        return set([p for p in self._Players if p.team == self._Game.AwayTeam])
 
-    def update_players(self, players):
-        self._players = self._players | players
+    def _UpdatePlayers(self, players):
+        self._Players = self._Players | players
+
+    # Period related
+    @property
+    def Period(self):
+        return int(self._EventDict['PERIOD'])
 
     @cached_property
-    def period_length(self):
+    def PeriodLength(self):
         from datetime import timedelta
-        period_time_total = timedelta(minutes=5) if int(self.period) > 4 else timedelta(minutes=12)
+        period_time_total = timedelta(minutes=5) if int(self.Period) > 4 else timedelta(minutes=12)
 
         return period_time_total
 
     @staticmethod
-    def _parse_pctimestring(timestring):
+    def _ParsePCTimeString(timestring):
         from datetime import datetime, timedelta
         time = datetime.strptime(timestring, '%M:%S')  # parse minutes like this '10:29'
         return timedelta(minutes=time.minute, seconds=time.second)
 
     @cached_property
-    def period_elapsed_time(self):
-        return self.period_length - self._parse_pctimestring(self.remaining_time)
+    def PeriodElapsedTime(self):
+        return self.PeriodLength - self._ParsePCTimeString(self._EventDict['PCTIMESTRING'])
 
-    @property
-    def period_remaining_time(self):
-        return self._parse_pctimestring(self.remaining_time)
+    @cached_property
+    def PeriodRemainingTime(self):
+        return self._ParsePCTimeString(self._EventDict['PCTIMESTRING'])
 
-    @property
-    def overall_length(self):
-        return self._game.game_length
+    @cached_property
+    def OverallLength(self):
+        return self._Game.GameLength
 
-    @property
-    def overall_elapsed_time(self):
+    @cached_property
+    def OverallElapsedTime(self):
         from datetime import timedelta
-        if self.period > 4:
-            return timedelta(minutes=(int(self.period) - 5) * 5 + 12 * 4) + self.period_elapsed_time
+        if self.Period > 4:
+            return timedelta(minutes=(int(self.Period) - 5) * 5 + 12 * 4) + self.PeriodElapsedTime
         else:
-            return timedelta(minutes=(int(self.period) - 1) * 12) + self.period_elapsed_time
+            return timedelta(minutes=(int(self.Period) - 1) * 12) + self.PeriodElapsedTime
 
-    @property
-    def overall_remaining_time(self):
-        return self.overall_length - self.overall_elapsed_time
+    @cached_property
+    def OverallRemainingTime(self):
+        return self.OverallLength - self.OverallElapsedTime
 
     @staticmethod
-    def _score(data, home_or_away):
+    def _Score(data, home_or_away):
         if not data['SCORE']:
             return None
         score = data['SCORE'].split('-')
@@ -246,38 +225,61 @@ class _NBAEvent(object):
             raise Exception('You specified an unknwon flag')
         return int(score[group - 1].strip())
 
+    # Score related
     # TODO refactor this
     @cached_property
-    def home_score(self):
-        score =  self._score(self._event_stats, 'home')
-        stats_idx = self.event_stats_idx
+    def HomeScore(self):
+        score = self._Score(self._EventDict, 'home')
+        stats_idx = self._EventNum
         while not score:
             if stats_idx == 0:
                 return 0
             else:
                 stats_idx -= 1
-                stats = self._game._get_playbyplay()[stats_idx]
-                score = self._score(stats, 'home')
+                stats = self._Game._get_playbyplay()[stats_idx]
+                score = self._Score(stats, 'home')
         return score
 
     @cached_property
-    def away_score(self):
-        # return self._score(self._event_stats, 'away')
-        score =  self._score(self._event_stats, 'away')
-        stats_idx = self.event_stats_idx
+    def AwayScore(self):
+        score = self._Score(self._EventDict, 'away')
+        stats_idx = self._EventNum
         while not score:
             if stats_idx == 0:
                 return 0
             else:
                 stats_idx -= 1
-                stats = self._game._get_playbyplay()[stats_idx]
-                score = self._score(stats, 'away')
+                stats = self._Game._get_playbyplay()[stats_idx]
+                score = self._Score(stats, 'away')
         return score
 
+    # Properties limited to certain EventType
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMissed'])
+    def Block(self):
+        return parse_player(3, self._EventDict)
 
-    @property
-    def points(self):
-        data = self._event_stats
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMissed'])
+    def Assist(self):
+        return parse_player(2, self._EventDict)
+
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMissed', 'FreeThrow'])
+    def Result(self):
+        if self.EventType is EventType.FreeThrow:
+            descriptions = [self._EventDict['HOMEDESCRIPTION'], self._EventDict['VISITORDESCRIPTION'],
+                        self._EventDict['NEUTRALDESCRIPTION']]
+            for des in descriptions:
+                if des:
+                    if re.match(r"^MISS", des):
+                        return 'missed'
+            return 'made'
+
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow'])
+    def Points(self):
+        data = self._EventDict
         descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
                         data['NEUTRALDESCRIPTION']]
         if str(data['EVENTMSGTYPE']) == '1':
@@ -294,35 +296,14 @@ class _NBAEvent(object):
         else:
             pts = None
             return pts
-        if self.result == 'missed':
+        if self.Result == 'missed':
             pts = 0
         return pts
 
-    @property
-    def description(self):
-        return None
-
-    @staticmethod
-    def _num_outof(data, group_no):
-        descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
-                        data['NEUTRALDESCRIPTION']]
-        for des in descriptions:
-            if des:
-                m = re.search(r'(\d) of (\d)', des)
-                if m:
-                    return m.group(group_no)
-
-    @property
-    def num(self):
-        return self._num_outof(self._event_stats, 1)
-
-    @property
-    def outof(self):
-        return self._num_outof(self._event_stats, 2)
-
-    @property
-    def result(self):
-        data = self._event_stats
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow'])
+    def Result(self):
+        data = self._EventDict
         if str(data['EVENTMSGTYPE']) == '1': return 'made'
         if str(data['EVENTMSGTYPE']) == '2': return 'missed'
         descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
@@ -333,104 +314,100 @@ class _NBAEvent(object):
                     return 'missed'
         return 'made'
 
+    @cached_property
+    @limit_to_types('JumpBall')
+    def Home(self):
+        return parse_player(1, self._EventDict)
 
-class Shot(_NBAEvent):
-    optional_fields = {'team', 'assist', 'player', 'result', 'block'}
+    @cached_property
+    @limit_to_types('JumpBall')
+    def Away(self):
+        return parse_player(2, self._EventDict)
 
-    @property
-    def event_type(self):
-        if str(self._event_stats['EVENTMSGTYPE']) == '1':
-            return 'shot made'
-        if str(self._event_stats['EVENTMSGTYPE']) == '2':
-            return 'shot missed'
+    @cached_property
+    @limit_to_types('JumpBall')
+    def Possession(self):
+        return parse_player(3, self._EventDict)
 
-    @property
-    def type(self):
-        data = self._event_stats
+    @cached_property
+    @limit_to_types('Turnover')
+    def Steal(self):
+        return parse_player(2, self._EventDict)
+
+    @cached_property
+    @limit_to_types('Substitution')
+    def Left(self):
+        return parse_player(1, self._EventDict)
+
+    @cached_property
+    @limit_to_types('Substitution')
+    def Entered(self):
+        return parse_player(2, self._EventDict)
+
+    @staticmethod
+    def _NumOutof(data, group_no):
         descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
                         data['NEUTRALDESCRIPTION']]
         for des in descriptions:
-            if des is None:
-                    des = ''
-            if re.search('3PT', des):
-                return '3 points'
-
-
-class FreeThrow(_NBAEvent):
-    event_type = 'free throw'
-    optional_fields = {'team', 'player', 'num', 'outof', 'result'}
-
-    @property
-    def result(self):
-        descriptions = [self._event_stats['HOMEDESCRIPTION'], self._event_stats['VISITORDESCRIPTION'],
-                    self._event_stats['NEUTRALDESCRIPTION']]
-        for des in descriptions:
             if des:
-                if re.match(r"^MISS", des):
-                    return 'missed'
-        return 'made'
+                m = re.search(r'(\d) of (\d)', des)
+                if m:
+                    return int(m.group(group_no))
+        return None
+
+    @cached_property
+    @limit_to_types('FreeThrow')
+    def Num(self):
+        return self._NumOutof(self._EventDict, 1)
+
+    @cached_property
+    @limit_to_types('FreeThrow')
+    def OutOf(self):
+        return self._NumOutof(self._EventDict, 2)
 
 
-class Rebound(_NBAEvent):
-    optional_fields = {'team', 'player'}
-
-    @property
-    def event_type(self):
-        prev_event = NBAEvent(self.event_stats_idx - 1, game=self._game)
-        while prev_event.event_type not in ['shot missed', 'free throw', 'jumpball']:
-            event_stats_idx = prev_event.event_stats_idx - 1
-            assert event_stats_idx > 0
-            prev_event = NBAEvent(event_stats_idx, game=self._game)
-        if prev_event.team == self.team:
-            event_type = 'offensive rebound'
-        else:
-            event_type = 'defensive rebound'
-        return event_type
-
-
-class Foul(_NBAEvent):
-    event_type = 'foul'
-    optional_fields = {'team', 'player'}
-
-
-class Violation(_NBAEvent):
-    event_type = 'violation'
-    optional_fields = {'team', 'player'}
-
-
-class Substitution(_NBAEvent):
-    event_type = 'substitution'
-    optional_fields = {'team', 'entered', 'left'}
-
-
-class Timeout(_NBAEvent):
-    event_type = 'timeout'
-
-
-class Turnover(_NBAEvent):
-    event_type = 'turnover'
-    optional_fields = {'team', 'player', 'steal'}
-
-
-class Jumpball(_NBAEvent):
-    event_type = 'jumpball'
-    optional_fields = {'team', 'player', 'home', 'away', 'possession'}
+def update_game_players(events):
+    """Update the players in each row of the playbyplays"""
+    game = events[0]._Game
+    for i, ev in enumerate(events):
+        if i == 0:
+            ev._UpdatePlayers(game.HomeStarters | game.AwayStarters)
+            continue
+        prev_ev = events[i - 1]
+        on_court_players = prev_ev.OnCourtPlayers.copy()
+        _on_court_copy = on_court_players.copy()
+        # If another period, then it should fetch players starting the period from the API
+        if ev.Period > prev_ev.Period:
+            start_range = ev.OverallElapsedTime.seconds * 10 + 5
+            j = i
+            to_update_floor_players = True
+            while to_update_floor_players:  # Locate the range to look up for the players
+                forward_ev = events[j]
+                if forward_ev.EventType == EventType.Substitution:
+                    end_range = forward_ev.OverallElapsedTime.seconds * 10
+                    on_court_players = game.FindPlayersInRange(start_range, end_range)
+                    while len(on_court_players) != 10:
+                        end_range -= 5
+                        if end_range <= start_range:
+                            raise AssertionError(
+                                'Could not locate on floor players %s, %s' % (start_range, end_range))
+                        on_court_players = game.FindPlayersInRange(start_range, end_range)
+                    to_update_floor_players = False
+                else:
+                    j += 1
+                    if j == len(game._playbyplay['resultSets']['PlayByPlay']):
+                        # if no sub at all after the increase in period, \
+                        # then find the players on court of all remaining time.
+                        end_range = forward_ev.OverallElapsedTime.seconds * 10
+                        on_court_players = game.FindPlayersInRange(start_range, end_range)
+                        assert len(on_court_players) == 10
+                        to_update_floor_players = False
+        if ev.EventType == EventType.Substitution:
+            on_court_players.remove(ev.Left)
+            on_court_players.add(ev.Entered)
+            assert on_court_players != _on_court_copy
+        ev._UpdatePlayers(on_court_players)
+    return events
 
 
-class Ejection(_NBAEvent):
-    event_type = 'ejection'
-
-
-class StartOfPeriod(_NBAEvent):
-    event_type = 'start of period'
-
-
-class EndOfPeriod(_NBAEvent):
-    event_type = 'end of period'
-
-
-class Unknown(_NBAEvent):
-    event_type = 'unknown'
-
-
-__all__ = ['NBAEvent']
+__all__ = ['Event']

@@ -5,9 +5,43 @@ import requests
 import functools
 import inspect
 from requests.exceptions import (HTTPError)
-import json
+
+# Without this header, there will be no err message.
+_headers = {
+    'Accept-Encoding': 'gzip, deflate, sdch',
+    'Accept-Language': 'en-US,en;q=0.8',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)'
+                  'AppleWebKit/537.36 (KHTML, like Gecko)'
+                  'Chrome/48.0.2564.82 '
+                  'Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9'
+              ',image/webp,*/*;q=0.8',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive'}
 
 
+def Resource(resource_name):
+    def real_dec(func):
+        @functools.wraps(func)
+        def fetch_resource(*args, **kwargs):
+            called_args = inspect.getcallargs(func, *args, **kwargs)
+            # We do not need `self` for building the params
+            self = called_args.pop('self')
+            url = self._BuildUrl('http://stats.nba.com/stats/',
+                                    resource_name,
+                                    called_args)
+            resp_dict = self._FetchUrl(url).json()
+            if self._transform_json:
+                resp_dict = Api._TransformResponseDict(resp_dict)
+            if self._cache:
+                self._CacheResource(resp_dict)
+            return resp_dict
+        return fetch_resource
+    return real_dec
+
+
+# noinspection PyPep8Naming
 class Api(object):
     """The endpoint for querying the StatsNBA APIs.
         Use this in place of the resource.py
@@ -40,14 +74,6 @@ class Api(object):
             but rather separated as header and rowSets, which is not
             convenient for querying the attributes of the resultSets.
         """
-        def _convert_resultset(result_dict):
-            result_name = result_dict['name']
-            headers = result_dict['headers']
-            data = result_dict['rowSet']
-            import pandas as pd
-            df = pd.DataFrame(data, columns=headers)
-            # use this to avoid Mongo conversion error
-            return result_name, json.loads(df.to_json(orient='records'))
 
         from .utils import convert_resultset
         resultSets = map(convert_resultset, resp_dict['resultSets'])
@@ -57,19 +83,6 @@ class Api(object):
         return resp_dict
 
     def _FetchUrl(self, url, verb='GET'):
-        _headers = {
-            'Accept-Encoding': 'gzip, deflate, sdch',
-            'Accept-Language': 'en-US,en;q=0.8',
-            'Upgrade-Insecure-Requests': '1',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64)'
-                          'AppleWebKit/537.36 (KHTML, like Gecko)'
-                          'Chrome/48.0.2564.82 '
-                          'Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9'
-                      ',image/webp,*/*;q=0.8',
-            'Cache-Control': 'max-age=0',
-            'Connection': 'keep-alive'
-        }  # Without this header, there will be no err message.
         resp = requests.request(verb, url, headers=_headers)
         try:
             resp.raise_for_status()
@@ -81,33 +94,17 @@ class Api(object):
         else:
             return resp
 
-    def _BuildUrl(self, base_url, resource, params):
+    @staticmethod
+    def _BuildUrl(base_url, resource, params):
         p = urlencode(params)
         return base_url + resource + '?' + p
 
-    def Resource(resource_name):
-        def real_dec(func):
-            @functools.wraps(func)
-            def fetch_resource(*args, **kwargs):
-                called_args = inspect.getcallargs(func, *args, **kwargs)
-                # We do not need `self` for building the params
-                self = called_args.pop('self')
-                url = self._BuildUrl('http://stats.nba.com/stats/',
-                                     resource_name,
-                                     called_args)
-                resp_dict = self._FetchUrl(url).json()
-                if self._transform_json:
-                    resp_dict = Api._TransformResponseDict(resp_dict)
-                if self._cache:
-                    self._CacheResource(resp_dict)
-                return resp_dict
-            return fetch_resource
-        return real_dec
-
+    # The below functions are API endpoints.
     @Resource('playbyplayv2')
     def GetPlayByPlay(self, GameID,
                       EndPeriod=10,
                       StartPeriod=1):
+        """Download the PlayByPlay"""
         pass
 
     @Resource('boxscoretraditionalv2')
@@ -117,6 +114,7 @@ class Api(object):
                     RangeType=0,
                     StartPeriod=1,
                     StartRange=0):
+        """Download the boxscore"""
         pass
 
     @Resource('leaguegamelog')
@@ -166,3 +164,15 @@ class Api(object):
                              VsDivision='',
                              Weight=''):
         pass
+
+    def GetSeasonGameIDs(self, Season,
+                         SeasonType, **kwargs):
+        """Get a list of the game_ids from the SeasonType of Season"""
+        gamelog = self.GetGamelog(Season, SeasonType, **kwargs)
+        return [l['GAME_ID'] for l in gamelog['resultSets']['LeagueGamelog']]
+
+    def GetPlayerStats(self, PlayerID):
+        pass  # TODO
+
+
+__all__ = ['Api']

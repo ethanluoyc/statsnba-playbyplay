@@ -1,0 +1,10 @@
+sample_game:
+  HomeTeam:
+    TeamAbbreviation: 'MIA'
+    TeamId: 1610612748
+  AwayTeam:
+    TeamAbbreviation: 'CHA'
+    TeamId: 1610612766
+
+
+

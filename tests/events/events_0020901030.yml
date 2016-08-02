@@ -1,0 +1,65 @@
+Shot:
+  - index: 2
+    Result: "missed"
+    Team:
+      TeamId: 1610612748
+      TeamAbbreviation: "MIA"
+    Points: 0
+  - index: 6
+    Result: "made"
+    Points: 2
+  - index: 13
+    Points: 3
+    Result: "made"
+    Type: "3 points"
+FreeThrow:
+  - index: 44
+    Points: 1
+    Result: "made"
+    Num: 1
+    OutOf: 2
+  - index: 47
+    Points: 0
+    Result: "missed"
+    Num: 2
+    OutOf: 2
+Rebound:
+  - index: 3
+    Type: 'defensive'
+  - index: 5
+    Type: 'defensive'
+Turnover:
+  - index: 49
+    Steal:
+      PlayerName: "Udonis Haslem"
+  - index: 75
+    Team: null
+Foul:
+Violation:
+Substitution:
+  - index: 101
+    Left:
+      PlayerName: "Boris Diaw"
+    Entered:
+      PlayerName: "Tyrus Thomas"
+    Team:
+      TeamAbbreviation: "CHA"
+Timeout:
+JumpBall:
+  - index: 1
+    Possession:
+      PlayerName: "Carlos Arroyo"
+    Home:
+      PlayerName: "Joel Anthony"
+    Away:
+      PlayerName: "Theo Ratliff"
+Ejection:
+StartOfPeriod:
+  - index: 0
+    Team: null
+EndOfPeriod:
+  - index: 92
+    Team: null
+    Period: 1
+  - index: 203
+    Period: 2

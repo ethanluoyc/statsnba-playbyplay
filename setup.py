@@ -15,7 +15,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'requests', 'pandas', 'pymongo', 'luigi'
+    'requests', 'pandas', 'pymongo', 'luigi', 'inflection'
 ]
 
 test_requirements = [

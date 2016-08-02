@@ -1,14 +1,17 @@
 from datetime import timedelta
 from json import JSONEncoder
-from cached_property import cached_property
-import pandas as pd
 
-from statsnba.resources import StatsNBABoxscore, StatsNBAPlayByPlay
-from statsnba.models.events import NBAEvent, _NBAEvent
+import pandas as pd
+from cached_property import cached_property
+from inflection import camelize
+
+from statsnba.api import Api
+from statsnba.resources import StatsNBABoxscore
 
 
 class GameEncoder(JSONEncoder):
     """Used to encode a game object to a JSON object"""
+
     def default(self, o):
         if hasattr(o, 'to_json'):
             return getattr(o, 'to_json')()
@@ -26,109 +29,127 @@ class GameEncoder(JSONEncoder):
         return JSONEncoder().default(o)
 
 
-class Team(object):
-    def __init__(self, abbr, id):
-        self.abbr = abbr
-        self.id = id
+# noinspection PyUnresolvedReferences
+class Model(object):
+    _required_fields = []
+
+    def __init__(self, model_dict=None, **kwargs):
+        """All attributes are CamelCased"""
+        if isinstance(model_dict, dict):
+            try:
+                assert not kwargs
+            except AssertionError:
+                raise AssertionError(
+                    'When using a dict to instantiate {0}, no other keywords should be supplied'.format(self.__class__))
+            else:
+                kws = model_dict
+        elif model_dict is None:
+            kws = kwargs
+        else:
+            raise TypeError("Invalid arguments supplied")
+
+        for key, value in kws.items():
+            setattr(self, camelize(key.lower()), value)
+        self._validate_fields()
+
+    def _validate_fields(self):
+        for field in self._required_fields:
+            if not getattr(self, field, None):
+                raise TypeError('{0} is required by {1}'.format(field, self.__class__.__name__))
+
+
+# noinspection PyUnresolvedReferences
+class Team(Model):
+    _required_fields = ['TeamAbbreviation', 'TeamId']
 
     def __eq__(self, other):
-        return self.id == other.id
+        return self.TeamId == other.TeamId
 
     def __repr__(self):
-        return 'Team({}, {})'.format(self.abbr, self.id)
+        return 'Team({}, {})'.format(self.TeamAbbreviation, self.TeamId)
 
     def __str__(self):
-        return self.abbr
-
-    def to_json(self):
-        return {'abbr': self.abbr, 'id': self.id}
-
-    @classmethod
-    def from_boxscore(cls, team_boxscore):
-        abbr = team_boxscore['TEAM_ABBREVIATION']
-        id = team_boxscore['TEAM_ID']
-        return Team(abbr, id)
+        return self.TeamName
 
 
-class Player(object):
+# noinspection PyUnresolvedReferences
+class Player(Model):
     STARTER_POSITION = 'starters'
-    BENCH_POSITION   = 'bench'
+    BENCH_POSITION = 'bench'
+    _required_fields = ['PlayerId', 'PlayerName', 'Team']
 
-    def __init__(self, name, id, team, start_position, **kwargs):
-        self.name = name
-        self.id = id
-        self.team = team
-        self.start_position = start_position
-
-        self.__dict__.update(kwargs)
+    def __init__(self, stats_dict=None, **kwargs):
+        stats_dict = stats_dict.copy()
+        team_kwargs = {}
+        for field in stats_dict.keys():
+            if field.startswith('TEAM_'):
+                team_kwargs[field] = stats_dict.pop(field)
+        self.Team = Team(**team_kwargs)
+        super(Player, self).__init__(stats_dict)
 
     def __hash__(self):
-        return hash(self.id)
+        return hash(self.Team.TeamId)
 
     def __eq__(self, other):
         """Check the equity between two players"""
-        if self.id == other.id:
+        if self.PlayerId == other.PlayerId:
             return True
-        else: return False
+        return False
 
     def __cmp__(self, other):
         """This is not for sorting the players in a container object"""
-        return cmp(self.name, other.name)
+        return cmp(self.PlayerName, other.PlayerName)
 
     def __repr__(self):
-        return 'Player({}, {}, {})'.format(self.name, self.id, self.team.abbr)
+        return 'Player({}, {}, {})'.format(self.PlayerName,
+                                           self.PlayerId, repr(self.Team))
 
     def __str__(self):
-        return self.name
-
-    def to_json(self):
-        return {'name': self.name, 'id': self.id, 'team': self.team}
+        return self.PlayerName
 
     @property
     def starter_or_bench(self):
-        return self.start_position
+        return self.STARTER_POSITION if self.is_starter() else self.BENCH_POSITION
 
     def is_starter(self):
-        return True if self.start_position == Player.STARTER_POSITION else False
-
-    @classmethod
-    def from_player_stats(cls, player_stats):
-        name = player_stats['PLAYER_NAME']
-        id = player_stats['PLAYER_ID']
-        team = Team(abbr=player_stats['TEAM_ABBREVIATION'],
-                    id=player_stats['TEAM_ID'])
-        start_position = Player.STARTER_POSITION if player_stats['START_POSITION'] else Player.BENCH_POSITION
-        return Player(name=name, id=id, team=team, start_position=start_position)
+        return True if self.StartPosition else False
 
 
 class Matchup(object):
+    """A matchup is a collection of events identified by the players on the court."""
+
     def __init__(self, matchup_group):
         self.matchup_group = matchup_group
-        self._df = pd.DataFrame([e.to_dict() for e in matchup_group])
+        self._df = pd.DataFrame([e.ToDict() for e in matchup_group])
 
     @classmethod
-    def matchup_groups(cls, playbyplay):
-        """Split the game's playbyplay into separate groups of matchups"""
+    def MatchupGroups(cls, playbyplay):
+        """Split the game's playbyplay into separate groups of matchups
+
+            Returns:
+                matchup_lst (list): list of Events in a group
+        """
         matchup = []
         for i, event in enumerate(playbyplay[:-1]):
             matchup.append(event)
-            if event.players != playbyplay[i+1].players and playbyplay[i+2].event_type != 'substitution' :
+            if event.OnCourtPlayers != playbyplay[i + 1].OnCourtPlayers \
+                and playbyplay[i + 2].EventType != EventType.Substitution:
                 yield matchup
                 matchup = []
         yield matchup
 
     @staticmethod
-    def compute_boxscore(group, team):
-        home_team = group.iloc[0].home_team.abbr
-        away_team = group.iloc[0].away_team.abbr
+    def ComputeBoxscore(group, team):
+        home_team = group.iloc[0].HomeTeam.abbr
+        away_team = group.iloc[0].AwayTeam.abbr
 
         _home = group['team'] == home_team
         _away = group['team'] == away_team
-        _team = locals()['_'+team]
+        _team = locals()['_' + team]
         _opp_team = _home if team == 'away' else _away
 
-        _before_ptd = group.iloc[0].home_score - group.iloc[0].away_score
-        _after_ptd = group.iloc[-1].home_score - group.iloc[-1].away_score
+        _before_ptd = group.iloc[0].HomeScore - group.iloc[0].AwayScore
+        _after_ptd = group.iloc[-1].HomeScore - group.iloc[-1].AwayScore
 
         FGM = ((group['event_type'] == 'shot made'))
         FGA = (FGM | (group['event_type'] == 'shot missed'))
@@ -147,11 +168,11 @@ class Matchup(object):
         STL = group['steal'].notnull() & TOV
         PF = ((group['event_type'] == 'foul')) | ((group['event_type'] == 'violation'))
 
-        elapsed_time = (group.iloc[-1].overall_elapsed_time - group.iloc[0].overall_elapsed_time).seconds
+        elapsed_time = (group.iloc[-1].OverallElapsedTime - group.iloc[0].OverallElapsedTime).seconds
         possessions = len(group[(FGA & _team)]) \
-            - len(group[OREB & _team]) \
-            + len(group[TOV & _team]) \
-            + len(group[_FT_GROUPS & _team])
+                      - len(group[OREB & _team]) \
+                      + len(group[TOV & _team]) \
+                      + len(group[_FT_GROUPS & _team])
 
         _stats = {}
         for k, v in locals().items():
@@ -165,24 +186,24 @@ class Matchup(object):
 
     def to_json(self):
         group = self._df
-        home_stats = Matchup.compute_boxscore(group, 'home')
-        away_stats = Matchup.compute_boxscore(group, 'away')
+        home_stats = Matchup.ComputeBoxscore(group, 'home')
+        away_stats = Matchup.ComputeBoxscore(group, 'away')
         first_ev = self.matchup_group[0]
         last_ev = self.matchup_group[-1]
         # TODO Refactor this to be accessors on a Matchup instance
         return dict(
             start_id=first_ev.play_id,
             end_id=last_ev.play_id,
-            home_players=sorted(list(first_ev.home_players)),
-            away_players=sorted(list(first_ev.away_players)),
+            home_players=sorted(list(first_ev.HomePlayers)),
+            away_players=sorted(list(first_ev.AwayPlayers)),
             home_stats=home_stats,
             away_stats=away_stats,
-            home_start_score=first_ev.home_score,
-            away_start_score=first_ev.away_score,
-            home_end_score=last_ev.home_score,
-            away_end_score=last_ev.away_score,
-            point_difference=((last_ev.home_score - first_ev.home_score)
-                              - (last_ev.away_score - first_ev.away_score)),
+            home_start_score=first_ev.HomeScore,
+            away_start_score=first_ev.AwayScore,
+            home_end_score=last_ev.HomeScore,
+            away_end_score=last_ev.AwayScore,
+            point_difference=((last_ev.HomeScore - first_ev.HomeScore)
+                              - (last_ev.AwayScore - first_ev.AwayScore)),
             elapsed_seconds=home_stats['elapsed_time'])
 
 
@@ -191,16 +212,10 @@ class Game(object):
         self.game_id = game_id
         self._boxscore = boxscore
         self._playbyplay = playbyplays
-        if not self._boxscore:
-            self._boxscore= StatsNBABoxscore.fetch_resource({'GameID': self.game_id})
-        if not self._playbyplay:
-            self._playbyplay = StatsNBAPlayByPlay.fetch_resource({'GameID': self.game_id})
-
-    @classmethod
-    def create_game(cls, game_id):
-        boxscore= StatsNBABoxscore.fetch_resource({'GameID': game_id})
-        pbps = StatsNBAPlayByPlay.fetch_resource({'GameID': game_id})
-        return Game(game_id, boxscore, pbps)
+        if not self._boxscore or not self._playbyplay:
+            api = Api()
+            self._boxscore = api.GetBoxscore(game_id)
+            self._playbyplay = api.GetPlayByPlay(game_id)
 
     def to_json(self):
         fields = [
@@ -211,83 +226,94 @@ class Game(object):
             'home_bench', 'away_bench',
             'home_starters', 'away_starters',
             'game_length']
-        return {k:getattr(self, k) for k in fields}
+        return {k: getattr(self, k) for k in fields}
 
     def _get_playbyplay(self):
         """Return a cached copy of the playbyplay resultSet"""
         return self._playbyplay['resultSets']['PlayByPlay']
 
     @cached_property
-    def playbyplay(self):
+    def PlayByPlay(self):
+        # TODO refactor
         pbps = []
         for i in range(len(self._get_playbyplay())):
-            ev = NBAEvent(i, game=self)
+            ev = Event(i, Game=self)
             pbps.append(ev)
-        pbps = _NBAEvent.update_game_players(pbps)
+        pbps = update_game_players(pbps)
         return pbps
 
     @property
-    def matchups(self):
-        matchups = Matchup.matchup_groups(self.playbyplay)
+    def Matchups(self):
+        matchups = Matchup.MatchupGroups(self.PlayByPlay)
         for m in iter(matchups):
             yield Matchup(m)
 
+    _HOME_INDEX = 0
+    _AWAY_INDEX = 1
+
     # Below are properties of the game
-    @cached_property
-    def home_team(self):
-        home_boxscore = StatsNBABoxscore.home_boxscore(self._boxscore)
-        return Team.from_boxscore(home_boxscore)
+    @property
+    def _HomeBoxscore(self):
+        return self._boxscore['resultSets']['TeamStats'][Game._HOME_INDEX]
+
+    @property
+    def _AwayBoxscore(self):
+        return self._boxscore['resultSets']['TeamStats'][Game._AWAY_INDEX]
 
     @cached_property
-    def away_team(self):
-        away_boxscore = StatsNBABoxscore.away_boxscore(self._boxscore)
-        return Team.from_boxscore(away_boxscore)
+    def HomeTeam(self):
+        return Team(self._HomeBoxscore)
 
     @cached_property
-    def players(self):
-        player_stats = StatsNBABoxscore.player_stats(self._boxscore)
-        return set(map(lambda p: Player.from_player_stats(p), player_stats))
+    def AwayTeam(self):
+        return Team(self._AwayBoxscore)
+
+    @property
+    def _PlayerStats(self):
+        return self._boxscore['resultSets']['PlayerStats']
 
     @cached_property
-    def home_players(self):
-        return set([p for p in self.players if p.team == self.home_team])
+    def Players(self):
+        """Return a set of players"""
+        return set(map(lambda p: Player(p), self._PlayerStats))
 
     @cached_property
-    def home_starters(self):
-        return set([p for p in self.home_players if p.starter_or_bench=='starters'])
+    def HomePlayers(self):
+        return set([p for p in self.Players if p.Team == self.HomeTeam])
 
     @cached_property
-    def home_bench(self):
-        return set([p for p in self.home_players if p.starter_or_bench=='bench'])
+    def HomeStarters(self):
+        return set([p for p in self.HomePlayers if p.starter_or_bench == 'starters'])
 
     @cached_property
-    def away_players(self):
-        return set([p for p in self.players if p.team == self.away_team])
+    def HomeBench(self):
+        return set([p for p in self.HomePlayers if p.starter_or_bench == 'bench'])
 
     @cached_property
-    def away_starters(self):
-        return set([p for p in self.away_players if p.starter_or_bench=='starters'])
+    def AwayPlayers(self):
+        return set([p for p in self.Players if p.Team == self.AwayTeam])
 
     @cached_property
-    def away_bench(self):
-        return set([p for p in self.away_players if p.starter_or_bench=='bench'])
+    def AwayStarters(self):
+        return set([p for p in self.AwayPlayers if p.starter_or_bench == 'starters'])
 
     @cached_property
-    def game_length(self):
+    def AwayBench(self):
+        return set([p for p in self.AwayPlayers if p.starter_or_bench == 'bench'])
+
+    @cached_property
+    def GameLength(self):
         from datetime import timedelta
         period = int(self._playbyplay['resultSets']['PlayByPlay'][-1]['PERIOD'])
         if period > 4:
-            return timedelta(minutes=((period-4) * 5 + 12 * 4))
+            return timedelta(minutes=((period - 4) * 5 + 12 * 4))
         else:
             return timedelta(minutes=48)
 
-    def find_players_in_range(self, start_range, end_range):
+    def FindPlayersInRange(self, start_range, end_range):
         range_boxscore = StatsNBABoxscore.find_boxscore_in_range(self.game_id, start_range, end_range)
-        return set(map(Player.from_player_stats, range_boxscore['resultSets']['PlayerStats']))
+        return set(map(lambda p: Player(p), range_boxscore['resultSets']['PlayerStats']))
 
-    def _find_player(self, player_name):
-        """use player's name and team to find the player"""
-        for p in self.players:
-            if p.name == player_name:
-                return p
-        raise Exception('%s is not found in this game' % player_name)
+
+from statsnba.models.events import Event, update_game_players
+from .events import EventType
