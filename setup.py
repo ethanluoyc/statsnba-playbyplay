@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='statsnba-playbyplay',
-    version='0.1.1',
+    version='0.2.0',
     description="Package for parsing play-by-play data from stats.nba.com",
     long_description=readme,
     author="Yicheng Luo",
