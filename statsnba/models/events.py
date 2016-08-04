@@ -8,6 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 def parse_player(num, event_stats):
+    """Parse the num'th player from event_dict, return None if the player is None
+        :param num: (int) the position of the player to parse
+        :param event_stats: the dict for parsing
+    """
     # TODO parse PersonType
     pat = re.compile('^PLAYER{0}_.+'.format(num))
     pat_team = re.compile('^PLAYER{0}_TEAM_.+'.format(num))
@@ -18,6 +22,8 @@ def parse_player(num, event_stats):
                 kwargs[re.sub(r'PLAYER\d_', '', k)] = v
             else:
                 kwargs[re.sub(r'\d', '', k)] = v
+    if not kwargs['PLAYER_NAME']:
+        return None
     return Player(kwargs)
 
 
@@ -56,15 +62,19 @@ class EventType(Enum):
 
 # noinspection PyPep8Naming
 class Event(object):
-    Fields = ['EventType', 'Type', 'PlayId', 'Description',
+    Fields = ['GameId', 'EventType', 'Type', 'PlayId', 'Description',
               'Team', 'HomeTeam', 'AwayTeam',
-              'Player', 'HomePlayers', 'AwayPlayers', 'OnCourtPlayers',
+              'Player', 'HomePlayers', 'AwayPlayers',
               'Period', 'PeriodLength', 'PeriodElapsedTime', 'PeriodRemainingTime',
               'OverallLength', 'OverallElapsedTime', 'OverallRemainingTime',
-              'HomeScore', 'AwayScore',
-              'Block', 'Assist', 'Points', 'Result', 'Away', 'Possession', 'Steal',
-              'Left', 'Entered',
-              'Num', 'OutOf']
+              'HomeScore', 'AwayScore', 'Points',
+              'Block',                             # ShotMade ShotMiss
+              'Assist',                            # ShotMade ShotMiss
+              'Result',                            # ShotMade ShotMiss FreeThrow
+              'Steal',                             # Turnover
+              'Home', 'Away', 'Possession',        # JumpBall
+              'Left', 'Entered',                   # Substitution
+              'Num', 'OutOf']                      # FreeThrow
 
     def __init__(self, stats_dict_or_idx, Game=None):
         if isinstance(stats_dict_or_idx, int):
@@ -81,6 +91,10 @@ class Event(object):
 
     def ToDict(self):
         return {field: getattr(self, field) for field in self.Fields}
+
+    @cached_property
+    def GameId(self):
+        return self._Game.GameId
 
     @cached_property
     def EventType(self):
@@ -112,7 +126,8 @@ class Event(object):
                 event_stats_idx = prev_event._EventNum - 1
                 assert event_stats_idx > 0
                 prev_event = Event(event_stats_idx, Game=self._Game)
-            if prev_event.Team == self.Team:
+            if (prev_event.EventType is EventType.JumpBall
+                and prev_event.Possession.Team == self.Team) or prev_event.Team == self.Team:
                 event_type = 'offensive'
             else:
                 event_type = 'defensive'
@@ -129,6 +144,8 @@ class Event(object):
 
     # Team related
     @property
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound', 'Substitution', 'Turnover',
+                     'Foul', 'Violation', 'Timeout', 'Ejection'])
     def Team(self):
         if self.EventType is EventType.Rebound:
             if self._EventDict['HOMEDESCRIPTION']:
@@ -149,6 +166,8 @@ class Event(object):
 
     # Player related
     @property
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound', 'Substitution', 'Turnover',
+                     'Foul', 'Violation', 'Timeout', 'Ejection'])
     def Player(self):
         return parse_player(1, self._EventDict)
 
@@ -161,11 +180,11 @@ class Event(object):
 
     @property
     def HomePlayers(self):
-        return set([p for p in self._Players if p.team == self._Game.HomeTeam])
+        return set([p for p in self._Players if p.Team == self.HomeTeam])
 
     @property
     def AwayPlayers(self):
-        return set([p for p in self._Players if p.team == self._Game.AwayTeam])
+        return set([p for p in self._Players if p.Team == self.AwayTeam])
 
     def _UpdatePlayers(self, players):
         self._Players = self._Players | players
@@ -255,28 +274,6 @@ class Event(object):
 
     # Properties limited to certain EventType
     @cached_property
-    @limit_to_types(['ShotMade', 'ShotMissed'])
-    def Block(self):
-        return parse_player(3, self._EventDict)
-
-    @cached_property
-    @limit_to_types(['ShotMade', 'ShotMissed'])
-    def Assist(self):
-        return parse_player(2, self._EventDict)
-
-    @cached_property
-    @limit_to_types(['ShotMade', 'ShotMissed', 'FreeThrow'])
-    def Result(self):
-        if self.EventType is EventType.FreeThrow:
-            descriptions = [self._EventDict['HOMEDESCRIPTION'], self._EventDict['VISITORDESCRIPTION'],
-                        self._EventDict['NEUTRALDESCRIPTION']]
-            for des in descriptions:
-                if des:
-                    if re.match(r"^MISS", des):
-                        return 'missed'
-            return 'made'
-
-    @cached_property
     @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow'])
     def Points(self):
         data = self._EventDict
@@ -299,6 +296,28 @@ class Event(object):
         if self.Result == 'missed':
             pts = 0
         return pts
+
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMiss'])
+    def Block(self):
+        return parse_player(3, self._EventDict)
+
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMiss'])
+    def Assist(self):
+        return parse_player(2, self._EventDict)
+
+    @cached_property
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow'])
+    def Result(self):
+        if self.EventType is EventType.FreeThrow:
+            descriptions = [self._EventDict['HOMEDESCRIPTION'], self._EventDict['VISITORDESCRIPTION'],
+                        self._EventDict['NEUTRALDESCRIPTION']]
+            for des in descriptions:
+                if des:
+                    if re.match(r"^MISS", des):
+                        return 'missed'
+            return 'made'
 
     @cached_property
     @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow'])
@@ -368,6 +387,7 @@ class Event(object):
 
 def update_game_players(events):
     """Update the players in each row of the playbyplays"""
+    # TODO can refactor this
     game = events[0]._Game
     for i, ev in enumerate(events):
         if i == 0:

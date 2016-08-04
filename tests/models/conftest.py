@@ -15,9 +15,6 @@ def pytest_unconfigure(config):
     del sys._called_from_test
 
 
-def pytest_generate_tests(metafunc):
-    pass
-
 
 def pytest_collect_file(parent, path):
     if path.ext == ".yml" and path.basename.startswith("test"):

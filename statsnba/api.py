@@ -121,7 +121,7 @@ class Api(object):
     def GetGamelog(self, Season,
                    SeasonType,
                    Direction='DESC',
-                   Sorter=None,
+                   Sorter="DATE",
                    Counter=1000,
                    PlayerOrTeam='T',
                    LeagueID='00'):
@@ -169,10 +169,14 @@ class Api(object):
                          SeasonType, **kwargs):
         """Get a list of the game_ids from the SeasonType of Season"""
         gamelog = self.GetGamelog(Season, SeasonType, **kwargs)
-        return [l['GAME_ID'] for l in gamelog['resultSets']['LeagueGamelog']]
+        print gamelog['resultSets'].keys()
+        return list(set([l['GAME_ID'] for l in gamelog['resultSets']['LeagueGameLog']]))
 
     def GetPlayerStats(self, PlayerID):
         pass  # TODO
 
+    @Resource('boxscoresummaryv2')
+    def GetBoxscoreSummary(self, GameID):
+        pass
 
 __all__ = ['Api']

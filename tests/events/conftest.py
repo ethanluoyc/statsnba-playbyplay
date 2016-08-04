@@ -61,13 +61,24 @@ class Event(pytest.Item):
         self.event.pop('index')
         for key, value in self.event.items():
             event_attr = getattr(actual, key)
-            if isinstance(event_attr, Model):
-                Event.assert_model(event_attr, value)
-            else:
-                assert event_attr == value
+            try:
+                if isinstance(event_attr, Model):
+                    Event.assert_model(event_attr, value)
+                else:
+                    assert event_attr == value
+            except AssertionError as e:
+                raise FieldMismatchError(str(e))
 
     def runtest(self):
         self._assert_event()
 
+    def repr_failure(self, excinfo):
+        if isinstance(excinfo.value, FieldMismatchError):
+            return str(excinfo.value)
+
     def reportinfo(self):
         return self.fspath, None, self.name
+
+
+class FieldMismatchError(Exception):
+    pass
