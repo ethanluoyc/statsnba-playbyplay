@@ -169,7 +169,6 @@ class Api(object):
                          SeasonType, **kwargs):
         """Get a list of the game_ids from the SeasonType of Season"""
         gamelog = self.GetGamelog(Season, SeasonType, **kwargs)
-        print gamelog['resultSets'].keys()
         return list(set([l['GAME_ID'] for l in gamelog['resultSets']['LeagueGameLog']]))
 
     def GetPlayerStats(self, PlayerID):

@@ -140,6 +140,14 @@ class Matchup(object):
                 matchup = []
         yield matchup
 
+    @property
+    def HomePlayers(self):
+        return self.matchup_group[0].HomePlayers
+
+    @property
+    def AwayPlayers(self):
+        return self.matchup_group[0].AwayPlayers
+
 
 class Game(object):
     def __init__(self, game_id, boxscore=None, playbyplays=None):
@@ -155,6 +163,9 @@ class Game(object):
     def _get_playbyplay(self):
         """Return a cached copy of the playbyplay resultSet"""
         return self._playbyplay['resultSets']['PlayByPlay']
+
+    def __repr__(self):
+        return 'Game({})'.format(self.game_id)
 
     @cached_property
     def GameId(self):

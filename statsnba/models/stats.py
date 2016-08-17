@@ -22,7 +22,7 @@ class BoxscoreStats:
     def AwayTeamEvents(self):
         return [event for event in self._event_lst if event.Team and event.Team == event.AwayTeam]
 
-    @cached_property
+    @property
     def HomeTeamStats(self):
         team_event_lst = self.HomeTeamEvents
         stats_dict = {}
@@ -33,7 +33,7 @@ class BoxscoreStats:
         stats_dict['BLK'] = BoxscoreStats._BLK(self.AwayTeamEvents)
         return stats_dict
 
-    @cached_property
+    @property
     def AwayTeamStats(self):
         team_event_lst = self.AwayTeamEvents
         stats_dict = {}

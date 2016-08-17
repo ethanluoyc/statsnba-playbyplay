@@ -2,7 +2,8 @@ import pytest
 import pandas as pd
 
 
-@pytest.fixture(params=['Home', 'Away'])
+@pytest.fixture(params=['Home',
+                        'Away'])
 def computed_actual_team_stats(request, game):
     matchups = game.Matchups
     boxscores = [matchup.Boxscore for matchup in matchups]
