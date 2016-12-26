@@ -6,6 +6,7 @@ import functools
 import inspect
 from requests.exceptions import (HTTPError)
 
+
 # Without this header, there will be no err message.
 _headers = {
     'Accept-Encoding': 'gzip, deflate, sdch',
@@ -31,7 +32,8 @@ def Resource(resource_name):
             url = self._BuildUrl('http://stats.nba.com/stats/',
                                     resource_name,
                                     called_args)
-            resp_dict = self._FetchUrl(url).json()
+            resp = self._FetchUrl(url)
+            resp_dict = resp.json()
             if self._transform_json:
                 resp_dict = Api._TransformResponseDict(resp_dict)
             if self._cache:
@@ -45,6 +47,19 @@ def Resource(resource_name):
 class Api(object):
     """The endpoint for querying the StatsNBA APIs.
         Use this in place of the resource.py
+
+    When you want to query some data from stats.nba.com, the way you would do
+    it would be to first instantiate an Api object. like so:
+
+    >>> api = Api()
+
+    Then you can use the public methods on the object to perform the queries.
+
+    Notice that however, if you are interested in fetching statistics about a
+    particular game, you may not need to use this class directly except for one
+    purpose: fetch a list of game ids using this api. Other than that, the most
+    convenient way to get information about a particular object is to use the
+    Game object.
     """
 
     def __init__(self, cache=False, cache_format='json',

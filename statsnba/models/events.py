@@ -38,7 +38,9 @@ def limit_to_types(eventtype_or_lst):
             if self.EventType in permitted:
                 return func(self)
             return None
+
         return limit_eventtype
+
     return real_dec
 
 
@@ -62,19 +64,46 @@ class EventType(Enum):
 
 # noinspection PyPep8Naming
 class Event(object):
-    Fields = ['GameId', 'EventType', 'Type', 'PlayId', 'Description',
-              'Team', 'HomeTeam', 'AwayTeam',
-              'Player', 'HomePlayers', 'AwayPlayers',
-              'Period', 'PeriodLength', 'PeriodElapsedTime', 'PeriodRemainingTime',
-              'OverallLength', 'OverallElapsedTime', 'OverallRemainingTime',
-              'HomeScore', 'AwayScore', 'Points',
-              'Block',                             # ShotMade ShotMiss
-              'Assist',                            # ShotMade ShotMiss
-              'Result',                            # ShotMade ShotMiss FreeThrow
-              'Steal',                             # Turnover
-              'Home', 'Away', 'Possession',        # JumpBall
-              'Left', 'Entered',                   # Substitution
-              'Num', 'OutOf']                      # FreeThrow
+    """An Event is a record of what happened at a specific point during the
+    course of a game.
+
+    The package currently recognizes 14 different types of events
+    (including Unknown). See EventType for what they are.
+
+    TODO: parse event subtypes
+    """
+    Fields = ['GameId',
+              'EventType',
+              'Type',
+              'PlayId',
+              'Description',
+              'Team',
+              'HomeTeam',
+              'AwayTeam',
+              'Player',
+              'HomePlayers',
+              'AwayPlayers',
+              'Period',
+              'PeriodLength',
+              'PeriodElapsedTime',
+              'PeriodRemainingTime',
+              'OverallLength',
+              'OverallElapsedTime',
+              'OverallRemainingTime',
+              'HomeScore',
+              'AwayScore',
+              'Points',
+              'Block',  # ShotMade ShotMiss
+              'Assist',  # ShotMade ShotMiss
+              'Result',  # ShotMade ShotMiss FreeThrow
+              'Steal',  # Turnover
+              'Home',
+              'Away',
+              'Possession',  # JumpBall
+              'Left',
+              'Entered',  # Substitution
+              'Num',
+              'OutOf']  # FreeThrow
 
     def __init__(self, stats_dict_or_idx, Game=None):
         if isinstance(stats_dict_or_idx, int):
@@ -85,6 +114,10 @@ class Event(object):
         self._Players = set()
         self._EventDict = event_dict
         self._EventNum = Game._get_playbyplay().index(event_dict)
+
+    @property
+    def EventNum(self):
+        return self._EventNum
 
     def __repr__(self):
         return '<{0},{1}>'.format(self.EventType.name, self._EventNum)
@@ -112,7 +145,8 @@ class Event(object):
     def Type(self):
         if self.EventType in [EventType.ShotMiss, EventType.ShotMade]:
             data = self._EventDict
-            descriptions = [data['HOMEDESCRIPTION'], data['VISITORDESCRIPTION'],
+            descriptions = [data['HOMEDESCRIPTION'],
+                            data['VISITORDESCRIPTION'],
                             data['NEUTRALDESCRIPTION']]
             for des in descriptions:
                 if des is None:
@@ -121,13 +155,16 @@ class Event(object):
                     return '3 points'
         if self.EventType is EventType.Rebound:
             prev_event = Event(self._EventNum - 1, Game=self._Game)
-            while prev_event.EventType not in [EventType.ShotMade, EventType.ShotMiss,
-                                         EventType.FreeThrow, EventType.JumpBall]:
+            while prev_event.EventType not in [
+                    EventType.ShotMade, EventType.ShotMiss,
+                    EventType.FreeThrow, EventType.JumpBall
+            ]:
                 event_stats_idx = prev_event._EventNum - 1
                 assert event_stats_idx > 0
                 prev_event = Event(event_stats_idx, Game=self._Game)
-            if (prev_event.EventType is EventType.JumpBall
-                and prev_event.Possession.Team == self.Team) or prev_event.Team == self.Team:
+            if (prev_event.EventType is EventType.JumpBall and
+                    prev_event.Possession.Team == self.Team
+                ) or prev_event.Team == self.Team:
                 event_type = 'offensive'
             else:
                 event_type = 'defensive'
@@ -144,8 +181,9 @@ class Event(object):
 
     # Team related
     @property
-    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound', 'Substitution', 'Turnover',
-                     'Foul', 'Violation', 'Timeout', 'Ejection'])
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound',
+                     'Substitution', 'Turnover', 'Foul', 'Violation',
+                     'Timeout', 'Ejection'])
     def Team(self):
         if self.EventType is EventType.Rebound:
             if self._EventDict['HOMEDESCRIPTION']:
@@ -166,8 +204,9 @@ class Event(object):
 
     # Player related
     @property
-    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound', 'Substitution', 'Turnover',
-                     'Foul', 'Violation', 'Timeout', 'Ejection'])
+    @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound',
+                     'Substitution', 'Turnover', 'Foul', 'Violation',
+                     'Timeout', 'Ejection'])
     def Player(self):
         return parse_player(1, self._EventDict)
 
@@ -197,19 +236,22 @@ class Event(object):
     @cached_property
     def PeriodLength(self):
         from datetime import timedelta
-        period_time_total = timedelta(minutes=5) if int(self.Period) > 4 else timedelta(minutes=12)
+        period_time_total = timedelta(
+            minutes=5) if int(self.Period) > 4 else timedelta(minutes=12)
 
         return period_time_total
 
     @staticmethod
     def _ParsePCTimeString(timestring):
         from datetime import datetime, timedelta
-        time = datetime.strptime(timestring, '%M:%S')  # parse minutes like this '10:29'
+        time = datetime.strptime(timestring,
+                                 '%M:%S')  # parse minutes like this '10:29'
         return timedelta(minutes=time.minute, seconds=time.second)
 
     @cached_property
     def PeriodElapsedTime(self):
-        return self.PeriodLength - self._ParsePCTimeString(self._EventDict['PCTIMESTRING'])
+        return self.PeriodLength - self._ParsePCTimeString(self._EventDict[
+            'PCTIMESTRING'])
 
     @cached_property
     def PeriodRemainingTime(self):
@@ -223,9 +265,11 @@ class Event(object):
     def OverallElapsedTime(self):
         from datetime import timedelta
         if self.Period > 4:
-            return timedelta(minutes=(int(self.Period) - 5) * 5 + 12 * 4) + self.PeriodElapsedTime
+            return timedelta(minutes=(int(self.Period) - 5) * 5 + 12 *
+                             4) + self.PeriodElapsedTime
         else:
-            return timedelta(minutes=(int(self.Period) - 1) * 12) + self.PeriodElapsedTime
+            return timedelta(minutes=(int(self.Period) - 1) *
+                             12) + self.PeriodElapsedTime
 
     @cached_property
     def OverallRemainingTime(self):
@@ -311,8 +355,9 @@ class Event(object):
     @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow'])
     def Result(self):
         if self.EventType is EventType.FreeThrow:
-            descriptions = [self._EventDict['HOMEDESCRIPTION'], self._EventDict['VISITORDESCRIPTION'],
-                        self._EventDict['NEUTRALDESCRIPTION']]
+            descriptions = [self._EventDict['HOMEDESCRIPTION'],
+                            self._EventDict['VISITORDESCRIPTION'],
+                            self._EventDict['NEUTRALDESCRIPTION']]
             for des in descriptions:
                 if des:
                     if re.match(r"^MISS", des):
@@ -385,9 +430,12 @@ class Event(object):
         return self._NumOutof(self._EventDict, 2)
 
 
+class UpdatePlayersException(Exception):
+    pass
+
+
 def update_game_players(events):
     """Update the players in each row of the playbyplays"""
-    # TODO can refactor this
     game = events[0]._Game
     for i, ev in enumerate(events):
         if i == 0:
@@ -409,17 +457,21 @@ def update_game_players(events):
                     while len(on_court_players) != 10:
                         end_range -= 5
                         if end_range <= start_range:
-                            raise AssertionError(
-                                'Could not locate on floor players %s, %s' % (start_range, end_range))
-                        on_court_players = game.FindPlayersInRange(start_range, end_range)
+                            raise UpdatePlayersException(
+                                'Could not locate on floor players %s, %s'
+                                % (start_range, end_range))
+                        on_court_players = game.FindPlayersInRange(
+                            start_range, end_range)
                     to_update_floor_players = False
                 else:
                     j += 1
-                    if j == len(game._playbyplay['resultSets']['PlayByPlay']):
+                    if j == len(game._playbyplay['resultSets'][
+                            'PlayByPlay']):
                         # if no sub at all after the increase in period, \
                         # then find the players on court of all remaining time.
                         end_range = forward_ev.OverallElapsedTime.seconds * 10
-                        on_court_players = game.FindPlayersInRange(start_range, end_range)
+                        on_court_players = game.FindPlayersInRange(
+                            start_range, end_range)
                         assert len(on_court_players) == 10
                         to_update_floor_players = False
         if ev.EventType == EventType.Substitution:

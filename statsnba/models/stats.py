@@ -1,5 +1,4 @@
 from statsnba.models.events import EventType
-from cached_property import cached_property
 
 
 class BoxscoreStats:
