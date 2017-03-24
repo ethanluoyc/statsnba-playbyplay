@@ -3,9 +3,11 @@ include CONTRIBUTING.rst
 include HISTORY.rst
 include LICENSE
 include README.rst
+include statsnba/nba.json
 
 recursive-include tests *
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
+recursive-exclude * .DS_Store
 
 recursive-include docs *.rst conf.py Makefile make.bat

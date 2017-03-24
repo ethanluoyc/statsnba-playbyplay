@@ -1,4 +1,4 @@
-.PHONY: clean-pyc clean-build docs clean
+.PHONY: clean-pyc clean-build docs clean codegen-api
 define BROWSER_PYSCRIPT
 import os, webbrowser, sys
 try:
@@ -24,6 +24,7 @@ help:
 	@echo "release - package and upload a release"
 	@echo "dist - package"
 	@echo "install - install the package to the active Python's site-packages"
+	@echo "codegen-api - Generate the API access script from info."
 
 clean: clean-build clean-pyc clean-test
 
@@ -82,3 +83,8 @@ dist: clean
 
 install: clean
 	python setup.py install
+
+codegen-api:
+	python lib/nba-client-template/codegen.py statsnba/nba_api.py
+	cp lib/nba-client-template/nba.json statsnba/
+	cp lib/nba-client-template/client.py statsnba/

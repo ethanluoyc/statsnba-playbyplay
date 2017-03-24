@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
-
+from setuptools import setup
+from setuptools import Command
+import subprocess
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -14,12 +12,27 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'requests', 'pandas', 'pymongo', 'luigi', 'inflection'
+    'requests', 'pandas', 'inflection'
 ]
 
 test_requirements = [
     'pytest'
 ]
+
+
+class CodeGenWrapper(Command):
+    description = "Generate the wrapper for accessing statsnba's endpoint"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        subprocess.call(["make", "codegen-api"])
+
 
 setup(
     name='statsnba-playbyplay',
@@ -34,6 +47,9 @@ setup(
     ],
     package_dir={'statsnba':
                  'statsnba'},
+    package_data={
+        'statsnba': ['nba.json']
+    },
     include_package_data=True,
     install_requires=requirements,
     license="MIT",
@@ -41,5 +57,8 @@ setup(
     keywords='statsnba',
     classifiers=[],
     test_suite='pytest',
-    tests_require=test_requirements
+    tests_require=test_requirements,
+    cmdclass={
+        "api_wrapper": CodeGenWrapper
+    }
 )

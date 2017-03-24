@@ -1,0 +1,3 @@
+[submodule "lib/nba-client-template"]
+	path = lib/nba-client-template
+	url = https://github.com/ethanluoyc/nba-client-template
