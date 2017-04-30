@@ -1,5 +1,5 @@
 from statsnba.models.events import EventType
-
+import datetime
 
 class BoxscoreStats:
     _BoxscoreFields = ['FGM', 'FGA', 'FG_PCT',
@@ -26,6 +26,10 @@ class BoxscoreStats:
         team_event_lst = self.HomeTeamEvents
         stats_dict = {}
         for field in self._BoxscoreFields:
+            stats_dict[field] = 0
+        stats_dict['ElapsedTime'] = datetime.timedelta(0)
+
+        for field in self._BoxscoreFields:
             stats_dict[field] = getattr(self, '_'+field)(team_event_lst)
         stats_dict['PLUS_MINUS'] = stats_dict['PTS'] - BoxscoreStats._PTS(self.AwayTeamEvents)
         stats_dict['STL'] = BoxscoreStats._STL(self.AwayTeamEvents)
@@ -36,6 +40,11 @@ class BoxscoreStats:
     def AwayTeamStats(self):
         team_event_lst = self.AwayTeamEvents
         stats_dict = {}
+
+        for field in self._BoxscoreFields:
+            stats_dict[field] = 0
+        stats_dict['ElapsedTime'] = datetime.timedelta(0)
+
         for field in self._BoxscoreFields:
             stats_dict[field] = getattr(self, '_'+field)(team_event_lst)
         stats_dict['PLUS_MINUS'] = stats_dict['PTS'] - BoxscoreStats._PTS(self.HomeTeamEvents)
@@ -164,7 +173,7 @@ class BoxscoreStats:
     def _ElapsedTime(team_event_lst):
         if team_event_lst:
             return team_event_lst[-1].OverallElapsedTime - team_event_lst[0].OverallElapsedTime
-        return 0
+        return datetime.timedelta(0)
 
     @staticmethod
     def _Possessions(team_event_lst):

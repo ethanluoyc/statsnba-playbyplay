@@ -1,12 +1,9 @@
 from datetime import timedelta
-from json import JSONEncoder
-
-from cached_property import cached_property
 from inflection import camelize
 
 from statsnba.api import Api
 import gevent
-
+from cached_property import cached_property
 _async_fetch = True
 
 __all__ = ['Game', 'Player', 'Team', 'Matchup']
@@ -76,7 +73,7 @@ class Player(Model):
             if field.startswith('TEAM_'):
                 team_kwargs[field] = stats_dict.pop(field)
         self.Team = Team(**team_kwargs)
-        super(Player, self).__init__(stats_dict)
+        super(self.__class__, self).__init__(stats_dict)
 
     def __hash__(self):
         return hash(self.Team.TeamId)
@@ -99,11 +96,11 @@ class Player(Model):
         return self.PlayerName
 
     @property
-    def starter_or_bench(self):
-        return self.STARTER_POSITION if self.is_starter(
+    def StarterOrBench(self):
+        return self.STARTER_POSITION if self.IsStarter(
         ) else self.BENCH_POSITION
 
-    def is_starter(self):
+    def IsStarter(self):
         return True if self.StartPosition else False
 
 
@@ -128,8 +125,8 @@ class Matchup(object):
     teams in a particular matchup. They are located in matchup.Boxscore.
     You can query those statistics by
 
-    >>> matchup.Boxscore.HomeTeamStats # for home team.
-    >>> matchup.Boxscore.AwayTeamStats # away team.
+    >>> matchup.HomeTeamStats # for home team.
+    >>> matchup.AwayTeamStats # away team.
 
     """
 
@@ -138,7 +135,7 @@ class Matchup(object):
         self.Boxscore = BoxscoreStats(matchup_group)
 
     @classmethod
-    def MatchupGroups(cls, playbyplay):
+    def FromMatchups(cls, playbyplay):
         """Split the game's playbyplay into separate groups of matchups
 
             Returns:
@@ -156,21 +153,28 @@ class Matchup(object):
         except Exception:
             raise MatchupGroupException()
 
-    @property
+    @cached_property
     def HomePlayers(self):
         return self.matchup_group[0].HomePlayers
 
-    @property
+    @cached_property
     def AwayPlayers(self):
         return self.matchup_group[0].AwayPlayers
 
-    @property
+    @cached_property
     def Players(self):
         return self.HomePlayers | self.AwayPlayers
 
-    @property
+    @cached_property
     def GameId(self):
         return self.matchup_group[0].GameId
+
+    def __getattr__(self, item):
+        if item in ['GameId', 'AwayPlayers', 'HomePlayers']:
+            return getattr(self.matchup_group[0], item)
+        if item in ['HomeTeamStats', 'AwayTeamStats', 'HomeTeamEvents', 'AwayTeamEvents']:
+            return getattr(self.Boxscore, item)
+        return self.__getattribute__(item)
 
     def __getitem__(self, key):
         return self.matchup_group[key]
@@ -268,7 +272,7 @@ class Game(object):
             pbps.append(ev)
         if len(pbps) == 0:
             raise EmptyPlayByPlayException(
-                'the playbyplay is empty for {}'.format(repr(self)))
+                'Playbyplay is empty for {}'.format(repr(self)))
         pbps = update_game_players(pbps)
         return pbps
 
@@ -283,7 +287,7 @@ class Game(object):
         """
         if self._matchups:
             return self._matchups
-        matchups_grps = Matchup.MatchupGroups(self.PlayByPlay)
+        matchups_grps = Matchup.FromMatchups(self.PlayByPlay)
         matchups = [Matchup(m) for m in iter(matchups_grps)]
         self._matchups = matchups
         return matchups
@@ -320,7 +324,7 @@ class Game(object):
     def AwayTeam(self):
         return Team(self._AwayBoxscore)
 
-    @property
+    @cached_property
     def _PlayerStats(self):
         return self._boxscore['resultSets']['PlayerStats']
 
@@ -336,12 +340,12 @@ class Game(object):
     @cached_property
     def HomeStarters(self):
         return set(
-            [p for p in self.HomePlayers if p.starter_or_bench == 'starters'])
+            [p for p in self.HomePlayers if p.StarterOrBench == 'starters'])
 
     @cached_property
     def HomeBench(self):
         return set(
-            [p for p in self.HomePlayers if p.starter_or_bench == 'bench'])
+            [p for p in self.HomePlayers if p.StarterOrBench == 'bench'])
 
     @cached_property
     def AwayPlayers(self):
@@ -350,12 +354,12 @@ class Game(object):
     @cached_property
     def AwayStarters(self):
         return set(
-            [p for p in self.AwayPlayers if p.starter_or_bench == 'starters'])
+            [p for p in self.AwayPlayers if p.StarterOrBench == 'starters'])
 
     @cached_property
     def AwayBench(self):
         return set(
-            [p for p in self.AwayPlayers if p.starter_or_bench == 'bench'])
+            [p for p in self.AwayPlayers if p.StarterOrBench == 'bench'])
 
     @cached_property
     def GameLength(self):

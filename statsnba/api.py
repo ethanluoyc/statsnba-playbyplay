@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import tempfile
-from urllib import (urlencode)
+from urllib.parse import (urlencode)
 import requests
+import requests_cache
 import functools
 import inspect
 from requests.exceptions import (HTTPError)
@@ -36,8 +37,6 @@ def Resource(resource_name):
             resp_dict = resp.json()
             if self._transform_json:
                 resp_dict = Api._TransformResponseDict(resp_dict)
-            if self._cache:
-                self._CacheResource(resp_dict)
             return resp_dict
         return fetch_resource
     return real_dec
@@ -62,24 +61,12 @@ class Api(object):
     Game object.
     """
 
-    def __init__(self, cache=False, cache_format='json',
-                 transform_json=True):
+    def __init__(self, cache=False,
+                 cache_filename="requests.cache"):
         self._cache = cache
-        self._cache_format = cache_format  # TODO support other format
-        self._transform_json = transform_json
-
-    def _CacheResource(self, resource_json):
-        # tmp_dir = tempfile.mkdtemp()
-        format = self._cache_format
-        fd, path = tempfile.mkstemp('.'+format)
-        with open(path, 'w') as out_file:
-            if format == 'json':
-                import json
-                json.dump(resource_json, out_file)
-            else:
-                # TODO csv format
-                raise TypeError('the format `{0}` you specified is \
-                                not supported'.format(format))
+        if cache:
+            requests_cache.install_cache(cache_filename)
+        self._transform_json = True
 
     @staticmethod
     def _TransformResponseDict(resp_dict):

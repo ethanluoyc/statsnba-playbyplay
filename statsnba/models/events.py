@@ -1,9 +1,8 @@
 import re
 import logging
-from cached_property import cached_property
 from statsnba.models import Player
 from enum import Enum
-
+from cached_property import cached_property
 logger = logging.getLogger(__name__)
 
 
@@ -115,7 +114,7 @@ class Event(object):
         self._EventDict = event_dict
         self._EventNum = Game._get_playbyplay().index(event_dict)
 
-    @property
+    @cached_property
     def EventNum(self):
         return self._EventNum
 
@@ -170,17 +169,17 @@ class Event(object):
                 event_type = 'defensive'
             return event_type
 
-    @property
+    @cached_property
     def PlayId(self):
         return self._EventDict['EVENTNUM']
 
-    @property
+    @cached_property
     def Description(self):
         # TODO implement this
         return None
 
     # Team related
-    @property
+    @cached_property
     @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound',
                      'Substitution', 'Turnover', 'Foul', 'Violation',
                      'Timeout', 'Ejection'])
@@ -194,34 +193,34 @@ class Event(object):
             return parse_player(1, self._EventDict).Team
         return None
 
-    @property
+    @cached_property
     def HomeTeam(self):
         return self._Game.HomeTeam
 
-    @property
+    @cached_property
     def AwayTeam(self):
         return self._Game.AwayTeam
 
     # Player related
-    @property
+    @cached_property
     @limit_to_types(['ShotMade', 'ShotMiss', 'FreeThrow', 'Rebound',
                      'Substitution', 'Turnover', 'Foul', 'Violation',
                      'Timeout', 'Ejection'])
     def Player(self):
         return parse_player(1, self._EventDict)
 
-    @property
+    @cached_property
     def OnCourtPlayers(self):
         if self._Players:
             return self._Players
         else:
             raise Exception('You have not updated the players')
 
-    @property
+    @cached_property
     def HomePlayers(self):
         return set([p for p in self._Players if p.Team == self.HomeTeam])
 
-    @property
+    @cached_property
     def AwayPlayers(self):
         return set([p for p in self._Players if p.Team == self.AwayTeam])
 
@@ -229,7 +228,7 @@ class Event(object):
         self._Players = self._Players | players
 
     # Period related
-    @property
+    @cached_property
     def Period(self):
         return int(self._EventDict['PERIOD'])
 

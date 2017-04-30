@@ -12,7 +12,8 @@ def pytest_configure(config):
         import requests_cache
         requests_cache.install_cache('test_cache')
     api = Api()
-    pytest.game_ids = api.GetSeasonGameIDs('2009-10', 'Regular Season')[:5]  # Hack to carry the gameids to tests
+    pytest.game_ids = api.GetSeasonGameIDs('2009-10', 'Regular Season')[:2]  # Hack to carry the gameids to tests
+    pytest.game_ids = ['0020900292']
 
 
 def pytest_generate_tests(metafunc):
@@ -27,6 +28,5 @@ def idfn(game_id):
 
 @pytest.fixture
 def game(request):
+    print 'Starting to test for game %s' % request.param
     return Game(request.param)
-
-
