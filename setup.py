@@ -36,7 +36,7 @@ class CodeGenWrapper(Command):
 
 setup(
     name='statsnba-playbyplay',
-    version='0.2.0',
+    version='0.3.0',
     description="Package for parsing play-by-play data from stats.nba.com",
     long_description=readme,
     author="Yicheng Luo",

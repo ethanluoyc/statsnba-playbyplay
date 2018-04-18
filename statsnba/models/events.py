@@ -155,16 +155,13 @@ class Event(object):
         if self.EventType is EventType.Rebound:
             prev_event = Event(self._EventNum - 1, Game=self._Game)
             while prev_event.EventType not in [
-                    EventType.ShotMade, EventType.ShotMiss,
-                    EventType.FreeThrow, EventType.JumpBall
+                    EventType.ShotMiss, EventType.FreeThrow
             ]:
                 event_stats_idx = prev_event._EventNum - 1
                 assert event_stats_idx > 0
                 prev_event = Event(event_stats_idx, Game=self._Game)
-            if (prev_event.EventType is EventType.JumpBall and
-                    prev_event.Possession.Team == self.Team
-                ) or prev_event.Team == self.Team:
-                event_type = 'offensive'
+            if  prev_event.Team == self.Team:
+                event_type = 'offensive'            
             else:
                 event_type = 'defensive'
             return event_type

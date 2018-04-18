@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import tempfile
-from urllib.parse import (urlencode)
+from urllib import urlencode
 import requests
 import requests_cache
 import functools

@@ -46,9 +46,9 @@ Use the data
 
 If you just want to use the data that is processed with the package
 without touching it, you can find a copy of the data
-`from S3 <http://statsnba.s3-website-us-east-1.amazonaws.com/>`__. Under
-``data/zip/`` you will find the gamelog and game files in JSON format.
-You may introspect into the JSONs for the fields that are included in
+`from here <https://www.doc.ic.ac.uk/~yl11416/statsnba-data/>`__. You
+will find the gamelog and game files in JSON format.
+You may inspect the JSON for the fields that are included in
 them.
 
 Benefits of this package
